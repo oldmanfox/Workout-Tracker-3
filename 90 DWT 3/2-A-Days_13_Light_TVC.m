@@ -1,18 +1,18 @@
 //
-//  Bulk_8_Light_TVC.m
+//  2-A-Days_13_Light_TVC.m
 //  90 DWT 3
 //
-//  Created by Jared Grant on 1/5/14.
+//  Created by Jared Grant on 1/12/14.
 //  Copyright (c) 2014 Grant, Jared. All rights reserved.
 //
 
-#import "Bulk_8_Light_TVC.h"
+#import "2-A-Days_13_Light_TVC.h"
 
-@interface Bulk_8_Light_TVC ()
+@interface __A_Days_13_Light_TVC ()
 
 @end
 
-@implementation Bulk_8_Light_TVC
+@implementation __A_Days_13_Light_TVC
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -42,7 +42,7 @@
                                @YES,
                                @YES,
                                @YES,
-                               @YES];
+                               @NO];
     
     NSArray *cellColor = @[@NO,
                            @NO,
@@ -53,12 +53,11 @@
                            @NO];
     
     [self configureTableView:tableCell :accessoryIcon :cellColor];
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    [self.tableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning
@@ -89,61 +88,61 @@
     NSString *week = ((DataNavController *)self.parentViewController).week;
     
     NSArray *workoutArray = @[@"Core I",
-                              @"Core D",
-                              @"Gladiator",
+                              @"Cardio Speed",
                               @"Pilates",
-                              @"Plyometrics D",
                               @"Yoga",
-                              @"Core D"];
+                              @"Core D",
+                              @"Core D",
+                              @"Finished"];
     
     ((DataNavController *)self.parentViewController).workout = workoutArray[indexPath.row];
     
     // Normal routine
-    if ([selectedRoutine isEqualToString:@"Bulk"]) {
+    if ([selectedRoutine isEqualToString:@"2-A-Days"]) {
         
-        // Week 8
-        if ([week isEqualToString:@"Week 8"]) {
+        // Week 13
+        if ([week isEqualToString:@"Week 13"]) {
             
             if (indexPath.row == 0) {
                 
-                // Core I 2
-                ((DataNavController *)self.parentViewController).index = @2;
+                // Core I 10
+                ((DataNavController *)self.parentViewController).index = @10;
             }
             
             else if (indexPath.row == 1) {
                 
-                // Core D 9
-                ((DataNavController *)self.parentViewController).index = @9;
+                // Cardio Speed 10
+                ((DataNavController *)self.parentViewController).index = @10;
             }
             
             else if (indexPath.row == 2) {
                 
-                // Gladiator 2
-                ((DataNavController *)self.parentViewController).index = @2;
+                // Pilates 7
+                ((DataNavController *)self.parentViewController).index = @7;
             }
             
             else if (indexPath.row == 3) {
                 
-                // Pilates 5
-                ((DataNavController *)self.parentViewController).index = @5;
+                // Yoga 13
+                ((DataNavController *)self.parentViewController).index = @13;
             }
             
             else if (indexPath.row == 4) {
                 
-                // Plyometrics D 1
-                ((DataNavController *)self.parentViewController).index = @1;
+                // Core D 34
+                ((DataNavController *)self.parentViewController).index = @34;
             }
             
             else if (indexPath.row == 5) {
                 
-                // Yoga 8
-                ((DataNavController *)self.parentViewController).index = @8;
+                // Core D 35
+                ((DataNavController *)self.parentViewController).index = @35;
             }
             
             else if (indexPath.row == 6) {
                 
-                // Core D 10
-                ((DataNavController *)self.parentViewController).index = @10;
+                // Finished 3rd Month
+                ((DataNavController *)self.parentViewController).index = @1;
             }
         }
     }

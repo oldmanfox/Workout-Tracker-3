@@ -106,7 +106,7 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    NSLog(@"Routine = %@", ((DataNavController *)self.parentViewController).routine);
+    //NSLog(@"Routine = %@", ((DataNavController *)self.parentViewController).routine);
     
     // Return the number of sections.
     if ([self.navigationItem.title isEqualToString:@"Bulk"]) {
