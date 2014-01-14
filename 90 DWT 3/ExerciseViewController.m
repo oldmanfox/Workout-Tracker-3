@@ -349,6 +349,7 @@
     [self.currentNotes resignFirstResponder];
 }
 
+/*
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     ResultsViewController *resultsVC = (ResultsViewController *)segue.destinationViewController;
@@ -358,6 +359,7 @@
         resultsVC.exerciseNames = ((DataNavController *)self.parentViewController).coreFitness;
     }
 }
+ */
 
 - (void)configureViewForIOSVersion {
     

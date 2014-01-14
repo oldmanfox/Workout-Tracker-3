@@ -16,11 +16,12 @@
 @property (strong, nonatomic) NSString *workout;  // Full name of an individual workout.
 @property (strong, nonatomic) NSNumber *index;    // The number of times this workout has been done.
 
-@property (strong, nonatomic) NSArray *chestBack;    // List of exercises for this workout with round added to it.
-@property (strong, nonatomic) NSArray *shouldersArms;  // List of exercises for this workout with round added to it.
-@property (strong, nonatomic) NSArray *legsBack;  // List of exercises for this workout with round added to it.
-@property (strong, nonatomic) NSArray *coreFitness;  // List of exercises for this workout with round added to it.
-@property (strong, nonatomic) NSArray *chestShouldersTri;  // List of exercises for this workout with round added to it.
-@property (strong, nonatomic) NSArray *backBiceps;  // List of exercises for this workout with round added to it.
+@property (strong, nonatomic) NSArray *negativeLower;    // List of exercises for this workout with round added to it.
+@property (strong, nonatomic) NSArray *negativeUpper;  // List of exercises for this workout with round added to it.
+@property (strong, nonatomic) NSArray *agilityUpper;  // List of exercises for this workout with round added to it.
+@property (strong, nonatomic) NSArray *agilityLower;  // List of exercises for this workout with round added to it.
+@property (strong, nonatomic) NSArray *devastator;  // List of exercises for this workout with round added to it.
+@property (strong, nonatomic) NSArray *completeFitness;  // List of exercises for this workout with round added to it.
+@property (strong, nonatomic) NSArray *theGoal;  // List of exercises for this workout with round added to it.
 @property (strong, nonatomic) NSString *lightCell5;  // ((Week 8 or 13) AND routine = Lean) = Full on Cardio.  Else = Core Fitness.
 @end

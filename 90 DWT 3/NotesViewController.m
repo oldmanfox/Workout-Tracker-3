@@ -359,6 +359,7 @@
     NSString *workoutName = ((DataNavController *)self.parentViewController).workout;
     Workout_AbRipper_ResultsViewController *summaryVC = (Workout_AbRipper_ResultsViewController *)segue.destinationViewController;
     
+    /*
     if ([segue.identifier isEqualToString:@"toSummary"])
     {
         if ([workoutName isEqualToString:@"Chest + Back & Ab Workout"]) {
@@ -381,5 +382,6 @@
             summaryVC.exerciseNames = ((DataNavController *)self.parentViewController).backBiceps;
         }
     }
+     */
 }
 @end
