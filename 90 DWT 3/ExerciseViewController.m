@@ -51,6 +51,16 @@
     {
         self.renamedRound = @"Round 3";
     }
+    
+    else if ([self.roundButton.title isEqualToString:@"R4"])
+    {
+        self.renamedRound = @"Round 4";
+    }
+
+    else if ([self.roundButton.title isEqualToString:@"R5"])
+    {
+        self.renamedRound = @"Round 5";
+    }
 }
 
 -(void)keyboardType {
