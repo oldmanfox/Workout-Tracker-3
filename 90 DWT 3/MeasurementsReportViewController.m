@@ -97,7 +97,7 @@
     
     [mailComposer setToRecipients:emailAddresses];
     
-    NSString *subject = @"90 DWT 1";
+    NSString *subject = @"90 DWT 3";
     subject = [subject stringByAppendingFormat:@" %@ Measurements", self.navigationItem.title];
     [mailComposer setSubject:subject];
     [mailComposer addAttachmentData:csvData mimeType:@"text/csv" fileName:fileName];

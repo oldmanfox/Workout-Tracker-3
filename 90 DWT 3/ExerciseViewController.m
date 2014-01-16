@@ -359,17 +359,44 @@
     [self.currentNotes resignFirstResponder];
 }
 
-/*
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    ResultsViewController *resultsVC = (ResultsViewController *)segue.destinationViewController;
     
-    if ([segue.identifier isEqualToString:@"coreFitness"])
+    NSString *workoutName = ((DataNavController *)self.parentViewController).workout;
+    ResultsViewController *summaryVC = (ResultsViewController *)segue.destinationViewController;
+
+    if ([segue.identifier isEqualToString:@"toSummary"])
     {
-        resultsVC.exerciseNames = ((DataNavController *)self.parentViewController).coreFitness;
+     
+        if ([workoutName isEqualToString:@"Negative Lower"]) {
+        summaryVC.exerciseNames = ((DataNavController *)self.parentViewController).negativeLower;
+        }
+
+        if ([workoutName isEqualToString:@"Negative Upper"]) {
+        summaryVC.exerciseNames = ((DataNavController *)self.parentViewController).negativeUpper;
+        }
+
+        if ([workoutName isEqualToString:@"Agility Upper"]) {
+        summaryVC.exerciseNames = ((DataNavController *)self.parentViewController).agilityUpper;
+        }
+
+        if ([workoutName isEqualToString:@"Agility Lower"]) {
+        summaryVC.exerciseNames = ((DataNavController *)self.parentViewController).agilityLower;
+        }
+
+        if ([workoutName isEqualToString:@"Devastator"]) {
+        summaryVC.exerciseNames = ((DataNavController *)self.parentViewController).devastator;
+        }
+        
+        if ([workoutName isEqualToString:@"Complete Fitness"]) {
+            summaryVC.exerciseNames = ((DataNavController *)self.parentViewController).completeFitness;
+        }
+        
+        if ([workoutName isEqualToString:@"The Goal"]) {
+            summaryVC.exerciseNames = ((DataNavController *)self.parentViewController).theGoal;
+        }
     }
 }
- */
 
 - (void)configureViewForIOSVersion {
     

@@ -214,7 +214,7 @@
     }
     
     [mailComposer setToRecipients:emailAddresses];
-    [mailComposer setSubject:@"90 DWT 1 Workout Data"];
+    [mailComposer setSubject:@"90 DWT 3 Workout Data"];
     [mailComposer addAttachmentData:csvData mimeType:@"text/csv" fileName:workoutName];
     [self presentViewController:mailComposer animated:YES completion:^{
         [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];

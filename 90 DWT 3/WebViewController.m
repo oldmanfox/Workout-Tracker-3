@@ -30,7 +30,7 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
-    if ([[DWT3IAPHelper sharedInstance] productPurchased:@"com.grantsoftware.90DWT1.slidergraph"]) {
+    if ([[DWT3IAPHelper sharedInstance] productPurchased:@"com.grantsoftware.90DWT3.slidergraph"]) {
         
         //NSLog(@"Allow iPad Table");
         

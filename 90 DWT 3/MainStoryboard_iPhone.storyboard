@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="L9t-kp-GLG">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="12F45" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="L9t-kp-GLG">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
     </dependencies>
@@ -14451,6 +14451,7 @@
                                 </state>
                                 <connections>
                                     <action selector="submitEntry:" destination="esA-yn-Dvx" eventType="touchUpInside" id="xJ1-eG-UaW"/>
+                                    <segue destination="aTV-gG-ezn" kind="push" identifier="toSummary" id="rga-5m-CLj"/>
                                 </connections>
                             </button>
                         </barButtonItem>
@@ -18490,6 +18491,7 @@
                                 </state>
                                 <connections>
                                     <action selector="submitEntry:" destination="yil-17-9Cy" eventType="touchUpInside" id="szS-7G-gkm"/>
+                                    <segue destination="aTV-gG-ezn" kind="push" identifier="toSummary" id="zn7-Gx-d3L"/>
                                 </connections>
                             </button>
                         </barButtonItem>
@@ -23337,6 +23339,7 @@
                                 </state>
                                 <connections>
                                     <action selector="submitEntry:" destination="pHA-A9-F9g" eventType="touchUpInside" id="Fy7-ra-pwA"/>
+                                    <segue destination="aTV-gG-ezn" kind="push" identifier="toSummary" id="Zgj-dE-gLC"/>
                                 </connections>
                             </button>
                         </barButtonItem>
@@ -27174,6 +27177,7 @@
                                 </state>
                                 <connections>
                                     <action selector="submitEntry:" destination="EWN-zo-Gm6" eventType="touchUpInside" id="aXf-Ts-UO9"/>
+                                    <segue destination="aTV-gG-ezn" kind="push" identifier="toSummary" id="pG5-F6-Wjj"/>
                                 </connections>
                             </button>
                         </barButtonItem>
@@ -30809,6 +30813,7 @@
                                 </state>
                                 <connections>
                                     <action selector="submitEntry:" destination="sQB-GM-ith" eventType="touchUpInside" id="vKb-MB-htR"/>
+                                    <segue destination="aTV-gG-ezn" kind="push" identifier="toSummary" id="iiX-eU-I8x"/>
                                 </connections>
                             </button>
                         </barButtonItem>
@@ -33838,6 +33843,7 @@
                                 </state>
                                 <connections>
                                     <action selector="submitEntry:" destination="bkE-Dz-lIV" eventType="touchUpInside" id="NuT-qU-S6x"/>
+                                    <segue destination="aTV-gG-ezn" kind="push" identifier="toSummary" id="hIc-aB-t06"/>
                                 </connections>
                             </button>
                         </barButtonItem>
@@ -37069,6 +37075,7 @@
                                 </state>
                                 <connections>
                                     <action selector="submitEntry:" destination="8gR-Nd-q1y" eventType="touchUpInside" id="cMK-Ye-NN1"/>
+                                    <segue destination="aTV-gG-ezn" kind="push" identifier="toSummary" id="EPh-pT-k6L"/>
                                 </connections>
                             </button>
                         </barButtonItem>
@@ -37097,6 +37104,49 @@
             </objects>
             <point key="canvasLocation" x="10752" y="62"/>
         </scene>
+        <!--Results View Controller - Summary-->
+        <scene sceneID="z4X-OG-E85">
+            <objects>
+                <viewController id="aTV-gG-ezn" customClass="ResultsViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Si3-ib-RWo"/>
+                        <viewControllerLayoutGuide type="bottom" id="nn9-sa-0a3"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="o8X-X5-unX">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jMy-yC-bfB">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="lightTextColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="jMy-yC-bfB" secondAttribute="trailing" id="0gJ-lV-Dxp"/>
+                            <constraint firstItem="jMy-yC-bfB" firstAttribute="top" secondItem="o8X-X5-unX" secondAttribute="top" id="Bru-S7-xT4"/>
+                            <constraint firstItem="jMy-yC-bfB" firstAttribute="leading" secondItem="o8X-X5-unX" secondAttribute="leading" id="JkI-G4-GDh"/>
+                            <constraint firstAttribute="bottom" secondItem="jMy-yC-bfB" secondAttribute="bottom" id="bWl-KC-Zl6"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Summary" id="O7V-We-nKD">
+                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="xn2-e3-lcc">
+                            <connections>
+                                <action selector="shareActionSheet:" destination="aTV-gG-ezn" id="p3I-1X-c0z"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="shareActionButton" destination="xn2-e3-lcc" id="gh6-FX-k6i"/>
+                        <outlet property="workoutSummary" destination="jMy-yC-bfB" id="4yN-BL-l92"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MW7-AB-Zty" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="14816" y="-1652"/>
+        </scene>
     </scenes>
     <resources>
         <image name="icon-button-blue-iPhone.png" width="23" height="23"/>
@@ -37114,27 +37164,28 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
+        <segue reference="rUu-SD-hGJ"/>
         <segue reference="tMj-uU-wX1"/>
         <segue reference="tte-QS-Zsp"/>
         <segue reference="s45-2H-Cf4"/>
         <segue reference="e9X-zY-tVH"/>
-        <segue reference="jHQ-Nm-g19"/>
-        <segue reference="lso-nU-7wJ"/>
-        <segue reference="B5O-yZ-Fo0"/>
-        <segue reference="CYl-vn-Eh7"/>
-        <segue reference="SN0-sc-o1O"/>
-        <segue reference="XFz-xk-N11"/>
-        <segue reference="dcU-ra-0cr"/>
-        <segue reference="bvL-A1-Pt3"/>
-        <segue reference="vhc-tn-dr6"/>
-        <segue reference="rUu-SD-hGJ"/>
-        <segue reference="yEe-Zg-jle"/>
         <segue reference="0qe-cs-pge"/>
-        <segue reference="tZK-1V-wHt"/>
         <segue reference="XAX-P4-88E"/>
         <segue reference="1w8-Xu-6Kn"/>
         <segue reference="TLh-Uj-eP6"/>
-        <segue reference="ZRc-Ky-6dn"/>
+        <segue reference="tZK-1V-wHt"/>
+        <segue reference="EPh-pT-k6L"/>
+        <segue reference="B5O-yZ-Fo0"/>
+        <segue reference="lso-nU-7wJ"/>
+        <segue reference="jHQ-Nm-g19"/>
+        <segue reference="CYl-vn-Eh7"/>
+        <segue reference="yEe-Zg-jle"/>
         <segue reference="vFG-Ww-gsa"/>
+        <segue reference="SN0-sc-o1O"/>
+        <segue reference="ZRc-Ky-6dn"/>
+        <segue reference="bvL-A1-Pt3"/>
+        <segue reference="vhc-tn-dr6"/>
+        <segue reference="dcU-ra-0cr"/>
+        <segue reference="XFz-xk-N11"/>
     </inferredMetricsTieBreakers>
 </document>

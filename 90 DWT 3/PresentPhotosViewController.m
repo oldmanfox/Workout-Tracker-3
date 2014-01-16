@@ -90,7 +90,7 @@
         
         // ALL PHOTOS
         if ([self.navigationItem.title isEqualToString:@"All"]) {
-            [mailComposer setSubject:@"90 DWT 1 All Photos"];
+            [mailComposer setSubject:@"90 DWT 3 All Photos"];
             
             // MONTH 1
             imageFile = [docDir stringByAppendingPathComponent:@"Start Month 1 Front.JPG"];
@@ -159,7 +159,7 @@
         
         // FRONT PHOTOS
         else if ([self.navigationItem.title isEqualToString:@"Front"]) {
-            [mailComposer setSubject:@"90 DWT 1 Front Photos"];
+            [mailComposer setSubject:@"90 DWT 3 Front Photos"];
             
             // MONTH 1
             imageFile = [docDir stringByAppendingPathComponent:@"Start Month 1 Front.JPG"];
@@ -188,7 +188,7 @@
         
         // SIDE PHOTOS
         else if ([self.navigationItem.title isEqualToString:@"Side"]) {
-            [mailComposer setSubject:@"90 DWT 1 Side Photos"];
+            [mailComposer setSubject:@"90 DWT 3 Side Photos"];
             
             // MONTH 1
             imageFile = [docDir stringByAppendingPathComponent:@"Start Month 1 Side.JPG"];
@@ -217,7 +217,7 @@
         
         // BACK PHOTOS
         else if ([self.navigationItem.title isEqualToString:@"Back"]) {
-            [mailComposer setSubject:@"90 DWT 1 Back Photos"];
+            [mailComposer setSubject:@"90 DWT 3 Back Photos"];
             
             // MONTH 1
             imageFile = [docDir stringByAppendingPathComponent:@"Start Month 1 Back.JPG"];
