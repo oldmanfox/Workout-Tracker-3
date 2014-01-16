@@ -353,35 +353,4 @@
 {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
-
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    NSString *workoutName = ((DataNavController *)self.parentViewController).workout;
-    Workout_AbRipper_ResultsViewController *summaryVC = (Workout_AbRipper_ResultsViewController *)segue.destinationViewController;
-    
-    /*
-    if ([segue.identifier isEqualToString:@"toSummary"])
-    {
-        if ([workoutName isEqualToString:@"Chest + Back & Ab Workout"]) {
-            summaryVC.exerciseNames = ((DataNavController *)self.parentViewController).chestBack;
-        }
-        
-        if ([workoutName isEqualToString:@"Shoulders + Arms & Ab Workout"]) {
-            summaryVC.exerciseNames = ((DataNavController *)self.parentViewController).shouldersArms;
-        }
-        
-        if ([workoutName isEqualToString:@"Legs + Back & Ab Workout"]) {
-            summaryVC.exerciseNames = ((DataNavController *)self.parentViewController).legsBack;
-        }
-        
-        if ([workoutName isEqualToString:@"Chest + Shoulders + Tri & Ab Workout"]) {
-            summaryVC.exerciseNames = ((DataNavController *)self.parentViewController).chestShouldersTri;
-        }
-        
-        if ([workoutName isEqualToString:@"Back + Biceps & Ab Workout"]) {
-            summaryVC.exerciseNames = ((DataNavController *)self.parentViewController).backBiceps;
-        }
-    }
-     */
-}
 @end
