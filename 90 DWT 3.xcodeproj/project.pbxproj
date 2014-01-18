@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5817955A188AFB5800EF8A9B /* iPad_3_Agility_Upper.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 58179559188AFB5800EF8A9B /* iPad_3_Agility_Upper.storyboard */; };
+		5817955D188AFD6600EF8A9B /* iPad_4_Agility_Lower.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5817955C188AFD6600EF8A9B /* iPad_4_Agility_Lower.storyboard */; };
+		5817955F188AFD9400EF8A9B /* iPad_5_Devastator.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5817955E188AFD9400EF8A9B /* iPad_5_Devastator.storyboard */; };
+		58179561188AFDB500EF8A9B /* iPad_6_Complete_Fitness.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 58179560188AFDB500EF8A9B /* iPad_6_Complete_Fitness.storyboard */; };
+		58179563188AFDC900EF8A9B /* iPad_7_The_Goal.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 58179562188AFDC900EF8A9B /* iPad_7_The_Goal.storyboard */; };
 		583A2AB118834A5500C6FB9B /* 2-A-Days_1-3_TVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 583A2AB018834A5500C6FB9B /* 2-A-Days_1-3_TVC.m */; };
 		583A2AB518834A9600C6FB9B /* 2-A-Days_5-7_TVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 583A2AB418834A9600C6FB9B /* 2-A-Days_5-7_TVC.m */; };
 		583A2AB918834AF300C6FB9B /* 2-A-Days_9+11_TVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 583A2AB818834AF300C6FB9B /* 2-A-Days_9+11_TVC.m */; };
@@ -118,6 +123,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		58179559188AFB5800EF8A9B /* iPad_3_Agility_Upper.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = iPad_3_Agility_Upper.storyboard; sourceTree = "<group>"; };
+		5817955C188AFD6600EF8A9B /* iPad_4_Agility_Lower.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = iPad_4_Agility_Lower.storyboard; sourceTree = "<group>"; };
+		5817955E188AFD9400EF8A9B /* iPad_5_Devastator.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = iPad_5_Devastator.storyboard; sourceTree = "<group>"; };
+		58179560188AFDB500EF8A9B /* iPad_6_Complete_Fitness.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = iPad_6_Complete_Fitness.storyboard; sourceTree = "<group>"; };
+		58179562188AFDC900EF8A9B /* iPad_7_The_Goal.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = iPad_7_The_Goal.storyboard; sourceTree = "<group>"; };
 		583A2AAF18834A5500C6FB9B /* 2-A-Days_1-3_TVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "2-A-Days_1-3_TVC.h"; sourceTree = "<group>"; };
 		583A2AB018834A5500C6FB9B /* 2-A-Days_1-3_TVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "2-A-Days_1-3_TVC.m"; sourceTree = "<group>"; };
 		583A2AB318834A9600C6FB9B /* 2-A-Days_5-7_TVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "2-A-Days_5-7_TVC.h"; sourceTree = "<group>"; };
@@ -406,6 +416,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5817955B188AFB6000EF8A9B /* Test iPad Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				58179559188AFB5800EF8A9B /* iPad_3_Agility_Upper.storyboard */,
+				5817955C188AFD6600EF8A9B /* iPad_4_Agility_Lower.storyboard */,
+				5817955E188AFD9400EF8A9B /* iPad_5_Devastator.storyboard */,
+				58179560188AFDB500EF8A9B /* iPad_6_Complete_Fitness.storyboard */,
+				58179562188AFDC900EF8A9B /* iPad_7_The_Goal.storyboard */,
+			);
+			name = "Test iPad Storyboards";
+			sourceTree = "<group>";
+		};
 		583A2AB218834A6E00C6FB9B /* Light */ = {
 			isa = PBXGroup;
 			children = (
@@ -992,6 +1014,7 @@
 				A57206C6185F631B00638698 /* Supporting Files */,
 				A57206F4185F709100638698 /* MainStoryboard_iPhone.storyboard */,
 				A57206F6185F70B400638698 /* MainStoryboard_iPad.storyboard */,
+				5817955B188AFB6000EF8A9B /* Test iPad Storyboards */,
 			);
 			path = "90 DWT 3";
 			sourceTree = "<group>";
@@ -1191,10 +1214,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5817955A188AFB5800EF8A9B /* iPad_3_Agility_Upper.storyboard in Resources */,
 				A57206F7185F70B400638698 /* MainStoryboard_iPad.storyboard in Resources */,
+				5817955F188AFD9400EF8A9B /* iPad_5_Devastator.storyboard in Resources */,
+				58179563188AFDC900EF8A9B /* iPad_7_The_Goal.storyboard in Resources */,
+				58179561188AFDB500EF8A9B /* iPad_6_Complete_Fitness.storyboard in Resources */,
 				A57206F5185F709100638698 /* MainStoryboard_iPhone.storyboard in Resources */,
 				A57206CA185F631B00638698 /* InfoPlist.strings in Resources */,
 				A57206D5185F631B00638698 /* Images.xcassets in Resources */,
+				5817955D188AFD6600EF8A9B /* iPad_4_Agility_Lower.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
