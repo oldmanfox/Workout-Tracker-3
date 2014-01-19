@@ -27,38 +27,8 @@
 {
     [super viewDidLoad];
     
-    UIImage *backgroundImage;
-    UIColor *backgroundColor;
-    UIImage *cellbackgroundImage;
-    UIColor *cellbackgroundColor;
-    
-    [self.tableView setBackgroundView:nil];
-    [self.tableView setBackgroundView:[[UIView alloc] init]];
-    
-    [self.tableView setBackgroundColor:[UIColor clearColor]]; // this is for iPhone
-    
-    if ([[UIDevice currentDevice] userInterfaceIdiom] != UIUserInterfaceIdiomPhone) {
-        // iPad
-        backgroundImage = [UIImage imageNamed:@"background-iPad-chrome.png"];
-        backgroundColor = [UIColor colorWithPatternImage:backgroundImage];
-        
-        cellbackgroundImage = [UIImage imageNamed:@"tableviewcell-iPad-chrome.png"];
-        cellbackgroundColor = [UIColor colorWithPatternImage:cellbackgroundImage];
-        
-    }
-    else {
-        // iPhone
-        backgroundImage = [UIImage imageNamed:@"background-iPhone-chrome.png"];
-        backgroundColor = [UIColor colorWithPatternImage:backgroundImage];
-        
-        cellbackgroundImage = [UIImage imageNamed:@"tableviewcell-iPhone-chrome.png"];
-        cellbackgroundColor = [UIColor colorWithPatternImage:cellbackgroundImage];
-    }
-    
-    // TableView background color
-    self.tableView.backgroundColor = backgroundColor;
+    self.tableView.backgroundColor = [UIColor whiteColor];
 
-    
     self.title = @"Store";
     
     self.refreshControl = [[UIRefreshControl alloc] init];
