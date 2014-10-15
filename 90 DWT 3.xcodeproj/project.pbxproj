@@ -1401,7 +1401,6 @@
 				INFOPLIST_FILE = "90 DWT 3/90 DWT 3-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"/Users/jared.grant/Documents/Workout-Tracker-3/90\\ DWT\\ 3",
 					"/Users/jaredgrant/Documents/Workout-Tracker-3/90\\ DWT\\ 3",
 				);
 				ONLY_ACTIVE_ARCH = NO;
@@ -1425,7 +1424,6 @@
 				INFOPLIST_FILE = "90 DWT 3/90 DWT 3-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"/Users/jared.grant/Documents/Workout-Tracker-3/90\\ DWT\\ 3",
 					"/Users/jaredgrant/Documents/Workout-Tracker-3/90\\ DWT\\ 3",
 				);
 				ONLY_ACTIVE_ARCH = NO;
@@ -1453,8 +1451,10 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "90 DWT 3Tests/90 DWT 3Tests-Info.plist";
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
+				VALID_ARCHS = "armv7 armv7s";
 				WRAPPER_EXTENSION = xctest;
 			};
 			name = Debug;
@@ -1471,8 +1471,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "90 DWT 3/90 DWT 3-Prefix.pch";
 				INFOPLIST_FILE = "90 DWT 3Tests/90 DWT 3Tests-Info.plist";
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
+				VALID_ARCHS = "armv7 armv7s";
 				WRAPPER_EXTENSION = xctest;
 			};
 			name = Release;
