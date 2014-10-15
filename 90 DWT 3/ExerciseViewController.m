@@ -445,7 +445,16 @@
     self.currentWeight.keyboardAppearance = UIKeyboardAppearanceDark;
     self.currentNotes.keyboardAppearance = UIKeyboardAppearanceDark;
     
-    // iOS 7 Style
-    self.canDisplayBannerAds = YES;
+    // Show or Hide Ads
+    if ([[DWT3IAPHelper sharedInstance] productPurchased:@"com.grantsoftware.90DWT3.removeads"]) {
+        
+        // User purchased the Remove Ads in-app purchase so don't show any ads.
+        self.canDisplayBannerAds = NO;
+        
+    } else {
+        
+        // Show the Banner Ad
+        self.canDisplayBannerAds = YES;
+    }
 }
 @end

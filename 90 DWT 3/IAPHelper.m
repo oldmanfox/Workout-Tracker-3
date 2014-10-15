@@ -168,10 +168,10 @@ NSString *const IAPHelperProductPurchasedNotification = @"IAPHelperProductPurcha
     
     NSArray * skProducts = response.products;
     for (SKProduct * skProduct in skProducts) {
-        //NSLog(@"Found product: %@ %@ %0.2f",
-        //      skProduct.productIdentifier,
-        //      skProduct.localizedTitle,
-        //      skProduct.price.floatValue);
+        NSLog(@"Found product: %@ %@ %0.2f",
+              skProduct.productIdentifier,
+              skProduct.localizedTitle,
+              skProduct.price.floatValue);
     }
     
     _completionHandler(YES, skProducts);

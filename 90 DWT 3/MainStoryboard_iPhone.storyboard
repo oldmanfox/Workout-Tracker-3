@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="L9t-kp-GLG">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="L9t-kp-GLG">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
+        <deployment defaultVersion="1792" identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
     </dependencies>
     <scenes>
-        <!--WeekTVC - Normal-->
+        <!--Normal-->
         <scene sceneID="cmh-kp-sfP">
             <objects>
                 <tableViewController id="a0i-WG-TR3" customClass="WeekTVC" sceneMemberID="viewController">
@@ -594,7 +595,7 @@
             </objects>
             <point key="canvasLocation" x="1421" y="62"/>
         </scene>
-        <!--SettingsTVC - Settings-->
+        <!--Settings-->
         <scene sceneID="JJ1-cq-Ir5">
             <objects>
                 <tableViewController id="lY6-gg-oJE" customClass="SettingsTVC" sceneMemberID="viewController">
@@ -710,7 +711,7 @@
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="1.0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="G9j-t1-sBe">
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="1.1" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="G9j-t1-sBe">
                                                     <rect key="frame" x="281" y="11" width="24" height="21"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -791,7 +792,7 @@
             </objects>
             <point key="canvasLocation" x="1042" y="-1632"/>
         </scene>
-        <!--MeasurementsTVC - Measurements-->
+        <!--Measurements-->
         <scene sceneID="hl5-3e-3DI">
             <objects>
                 <tableViewController id="E2w-nW-IVQ" customClass="MeasurementsTVC" sceneMemberID="viewController">
@@ -1084,7 +1085,6 @@
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z88-jx-Mkz">
                                 <rect key="frame" x="242" y="81" width="46" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="3Aq-fg-dXZ"/>
                                     <constraint firstAttribute="width" constant="46" id="frE-FB-YRl"/>
@@ -1213,7 +1213,7 @@
             </objects>
             <point key="canvasLocation" x="1797" y="-1065"/>
         </scene>
-        <!--Measurements Nav Controller - Measure-->
+        <!--Measure-->
         <scene sceneID="ae0-a4-53t">
             <objects>
                 <navigationController definesPresentationContext="YES" id="Byb-U5-Hil" customClass="MeasurementsNavController" sceneMemberID="viewController">
@@ -1221,7 +1221,6 @@
                     <navigationItem key="navigationItem" id="0Jm-K2-UrM"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <navigationBar key="navigationBar" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="wwa-jJ-Mka">
-                        <rect key="frame" x="0.0" y="-44" width="0.0" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -1232,7 +1231,7 @@
             </objects>
             <point key="canvasLocation" x="668" y="-1065"/>
         </scene>
-        <!--PhotoTVC - Photos-->
+        <!--Photos-->
         <scene sceneID="jWd-T3-5Co">
             <objects>
                 <tableViewController id="isR-2Z-lFs" customClass="PhotoTVC" sceneMemberID="viewController">
@@ -1442,7 +1441,6 @@
                         <subviews>
                             <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="EFo-ps-oQh">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Hm7-5D-VDq">
                                     <size key="itemSize" width="152" height="204"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -1459,11 +1457,9 @@
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rc1-Le-Ppz">
                                                     <rect key="frame" x="0.0" y="0.0" width="152" height="184"/>
-                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 </imageView>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xhr-dC-Dzg">
                                                     <rect key="frame" x="0.0" y="183" width="152" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -1521,7 +1517,6 @@
                         <subviews>
                             <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="3cE-mg-pdA">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="hmV-wt-nrf">
                                     <size key="itemSize" width="152" height="204"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -1538,11 +1533,9 @@
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pnR-bb-PT5">
                                                     <rect key="frame" x="0.0" y="0.0" width="152" height="184"/>
-                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 </imageView>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6CC-kK-RTg">
                                                     <rect key="frame" x="0.0" y="183" width="152" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -1586,14 +1579,13 @@
             </objects>
             <point key="canvasLocation" x="1797" y="-503"/>
         </scene>
-        <!--Photo Nav Controller - Photos-->
+        <!--Photos-->
         <scene sceneID="INx-ls-eAx">
             <objects>
                 <navigationController definesPresentationContext="YES" id="a59-Go-HID" customClass="PhotoNavController" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Photos" image="icon-pics2.png" id="5ew-j0-zbd"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <navigationBar key="navigationBar" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="jr0-pE-hUD">
-                        <rect key="frame" x="0.0" y="-44" width="0.0" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -1604,7 +1596,7 @@
             </objects>
             <point key="canvasLocation" x="668" y="-503"/>
         </scene>
-        <!--Email View Controller - Default Email-->
+        <!--Default Email-->
         <scene sceneID="ATP-JE-xhz">
             <objects>
                 <viewController id="O30-Pn-PMY" customClass="EmailViewController" sceneMemberID="viewController">
@@ -1671,7 +1663,7 @@
             </objects>
             <point key="canvasLocation" x="1421" y="-1632"/>
         </scene>
-        <!--Website View Controller - Website-->
+        <!--Website-->
         <scene sceneID="D9r-yS-5mI">
             <objects>
                 <viewController id="leg-sP-dRZ" customClass="WebsiteViewController" sceneMemberID="viewController">
@@ -1705,14 +1697,13 @@
             </objects>
             <point key="canvasLocation" x="1797" y="-1632"/>
         </scene>
-        <!--Settings Nav Controller - Settings-->
+        <!--Settings-->
         <scene sceneID="ZQz-gb-dDt">
             <objects>
                 <navigationController definesPresentationContext="YES" id="yYi-ox-xP6" customClass="SettingsNavController" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Settings" image="icon-settings1.png" id="hH0-EZ-J4U"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <navigationBar key="navigationBar" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="051-OF-Ix2">
-                        <rect key="frame" x="0.0" y="-44" width="0.0" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -1723,14 +1714,13 @@
             </objects>
             <point key="canvasLocation" x="668" y="-1632"/>
         </scene>
-        <!--Data Nav Controller - Workouts-->
+        <!--Workouts-->
         <scene sceneID="OWf-mr-fK5">
             <objects>
                 <navigationController definesPresentationContext="YES" id="jpf-RI-1Hw" customClass="DataNavController" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Workouts" image="icon-workout.png" id="5Bx-rW-hBA"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <navigationBar key="navigationBar" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="Z2r-uW-aRt">
-                        <rect key="frame" x="0.0" y="-44" width="0.0" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -1921,12 +1911,13 @@
                                         </label>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="voC-yr-kQX">
                                             <rect key="frame" x="237" y="7" width="73" height="22"/>
+                                            <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="22" id="Gfp-VJ-W1G"/>
                                                 <constraint firstAttribute="width" constant="73" id="GgF-3z-gkI"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <state key="normal" title="Buy" backgroundImage="icon-button-blue-iPhone.png">
+                                            <state key="normal" title="Buy">
                                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
@@ -1965,7 +1956,7 @@
             </objects>
             <point key="canvasLocation" x="1042" y="638"/>
         </scene>
-        <!--Navigation Controller - Store-->
+        <!--Store-->
         <scene sceneID="Bla-Ik-wxR">
             <objects>
                 <navigationController id="dZg-7M-Ih9" sceneMemberID="viewController">
@@ -10637,18 +10628,6 @@
                                     <action selector="hideKeyboard:" destination="pyP-yi-yHf" eventType="touchUpInside" id="zrI-OE-7eP"/>
                                 </connections>
                             </button>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nWC-MH-2Ab">
-                                <rect key="frame" x="0.0" y="130" width="320" height="44"/>
-                                <items>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="zvc-x3-IHf"/>
-                                    <barButtonItem title="Save" systemItem="save" id="fQ1-Cf-JcE">
-                                        <connections>
-                                            <action selector="submitEntry:" destination="pyP-yi-yHf" id="8KC-hh-dUU"/>
-                                        </connections>
-                                    </barButtonItem>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="W96-VV-2ED"/>
-                                </items>
-                            </toolbar>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Notes" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="Snc-by-FIl">
                                 <rect key="frame" x="20" y="72" width="46" height="21"/>
                                 <constraints>
@@ -10689,6 +10668,18 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nWC-MH-2Ab">
+                                <rect key="frame" x="0.0" y="130" width="320" height="44"/>
+                                <items>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="zvc-x3-IHf"/>
+                                    <barButtonItem systemItem="save" id="fQ1-Cf-JcE">
+                                        <connections>
+                                            <action selector="submitEntry:" destination="pyP-yi-yHf" id="8KC-hh-dUU"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="W96-VV-2ED"/>
+                                </items>
+                            </toolbar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -10761,7 +10752,7 @@
                                 <rect key="frame" x="0.0" y="130" width="320" height="44"/>
                                 <items>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="GMe-oX-RLV"/>
-                                    <barButtonItem title="Save" systemItem="save" id="G7y-mc-RJf">
+                                    <barButtonItem systemItem="save" id="G7y-mc-RJf">
                                         <connections>
                                             <action selector="submitEntry:" destination="1k1-JS-uRE" id="n9U-DV-ajE"/>
                                         </connections>
@@ -10877,18 +10868,6 @@
                                     <action selector="hideKeyboard:" destination="Qx6-eR-YEC" eventType="touchUpInside" id="p5a-C6-bJ8"/>
                                 </connections>
                             </button>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KnD-od-Ypb">
-                                <rect key="frame" x="0.0" y="130" width="320" height="44"/>
-                                <items>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="19L-gv-agp"/>
-                                    <barButtonItem title="Save" systemItem="save" id="gHr-xK-FSZ">
-                                        <connections>
-                                            <action selector="submitEntry:" destination="Qx6-eR-YEC" id="LKr-CZ-Ar3"/>
-                                        </connections>
-                                    </barButtonItem>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="szi-iK-cHL"/>
-                                </items>
-                            </toolbar>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Notes" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="1as-7y-C83">
                                 <rect key="frame" x="20" y="72" width="46" height="21"/>
                                 <constraints>
@@ -10929,6 +10908,18 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KnD-od-Ypb">
+                                <rect key="frame" x="0.0" y="130" width="320" height="44"/>
+                                <items>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="19L-gv-agp"/>
+                                    <barButtonItem systemItem="save" id="gHr-xK-FSZ">
+                                        <connections>
+                                            <action selector="submitEntry:" destination="Qx6-eR-YEC" id="LKr-CZ-Ar3"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="szi-iK-cHL"/>
+                                </items>
+                            </toolbar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -10997,18 +10988,6 @@
                                     <action selector="hideKeyboard:" destination="goW-jZ-yGV" eventType="touchUpInside" id="cDj-6S-cy2"/>
                                 </connections>
                             </button>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1TH-TI-mpt">
-                                <rect key="frame" x="0.0" y="130" width="320" height="44"/>
-                                <items>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="jR1-7e-eWj"/>
-                                    <barButtonItem title="Save" systemItem="save" id="dZb-78-YvV">
-                                        <connections>
-                                            <action selector="submitEntry:" destination="goW-jZ-yGV" id="hwi-km-XN3"/>
-                                        </connections>
-                                    </barButtonItem>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="EEE-6z-v74"/>
-                                </items>
-                            </toolbar>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Notes" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="4S8-GF-r1p">
                                 <rect key="frame" x="20" y="72" width="46" height="21"/>
                                 <constraints>
@@ -11049,6 +11028,18 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1TH-TI-mpt">
+                                <rect key="frame" x="0.0" y="130" width="320" height="44"/>
+                                <items>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="jR1-7e-eWj"/>
+                                    <barButtonItem systemItem="save" id="dZb-78-YvV">
+                                        <connections>
+                                            <action selector="submitEntry:" destination="goW-jZ-yGV" id="hwi-km-XN3"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="EEE-6z-v74"/>
+                                </items>
+                            </toolbar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -11121,7 +11112,7 @@
                                 <rect key="frame" x="0.0" y="130" width="320" height="44"/>
                                 <items>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="oJS-b7-fhS"/>
-                                    <barButtonItem title="Save" systemItem="save" id="Mfg-if-hUd">
+                                    <barButtonItem systemItem="save" id="Mfg-if-hUd">
                                         <connections>
                                             <action selector="submitEntry:" destination="DgH-CC-dOc" id="pVc-sf-IrD"/>
                                         </connections>
@@ -11237,18 +11228,6 @@
                                     <action selector="hideKeyboard:" destination="ilA-mN-HzE" eventType="touchUpInside" id="3oq-Rz-XmV"/>
                                 </connections>
                             </button>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KQX-rH-Tuf">
-                                <rect key="frame" x="0.0" y="130" width="320" height="44"/>
-                                <items>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="nGE-UH-sNu"/>
-                                    <barButtonItem title="Save" systemItem="save" id="KaT-e8-2xk">
-                                        <connections>
-                                            <action selector="submitEntry:" destination="ilA-mN-HzE" id="vKA-26-939"/>
-                                        </connections>
-                                    </barButtonItem>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="8H0-HO-nC5"/>
-                                </items>
-                            </toolbar>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Notes" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="wad-5Y-zjh">
                                 <rect key="frame" x="20" y="72" width="46" height="21"/>
                                 <constraints>
@@ -11289,6 +11268,18 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KQX-rH-Tuf">
+                                <rect key="frame" x="0.0" y="130" width="320" height="44"/>
+                                <items>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="nGE-UH-sNu"/>
+                                    <barButtonItem systemItem="save" id="KaT-e8-2xk">
+                                        <connections>
+                                            <action selector="submitEntry:" destination="ilA-mN-HzE" id="vKA-26-939"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="8H0-HO-nC5"/>
+                                </items>
+                            </toolbar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -11361,7 +11352,7 @@
                                 <rect key="frame" x="0.0" y="130" width="320" height="44"/>
                                 <items>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="04z-BV-CAU"/>
-                                    <barButtonItem title="Save" systemItem="save" id="VcU-nB-ADM">
+                                    <barButtonItem systemItem="save" id="VcU-nB-ADM">
                                         <connections>
                                             <action selector="submitEntry:" destination="S1m-dV-bp0" id="O68-25-xBg"/>
                                         </connections>
@@ -11477,18 +11468,6 @@
                                     <action selector="hideKeyboard:" destination="ZpJ-Z3-vnf" eventType="touchUpInside" id="ckh-Hz-FM4"/>
                                 </connections>
                             </button>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9up-1o-fHK">
-                                <rect key="frame" x="0.0" y="130" width="320" height="44"/>
-                                <items>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="Qj4-la-0PF"/>
-                                    <barButtonItem title="Save" systemItem="save" id="dte-7Y-Icn">
-                                        <connections>
-                                            <action selector="submitEntry:" destination="ZpJ-Z3-vnf" id="986-CB-C8G"/>
-                                        </connections>
-                                    </barButtonItem>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="FFr-AH-WMz"/>
-                                </items>
-                            </toolbar>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Notes" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="KQ6-er-49q">
                                 <rect key="frame" x="20" y="72" width="46" height="21"/>
                                 <constraints>
@@ -11529,6 +11508,18 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9up-1o-fHK">
+                                <rect key="frame" x="0.0" y="130" width="320" height="44"/>
+                                <items>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="Qj4-la-0PF"/>
+                                    <barButtonItem systemItem="save" id="dte-7Y-Icn">
+                                        <connections>
+                                            <action selector="submitEntry:" destination="ZpJ-Z3-vnf" id="986-CB-C8G"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="FFr-AH-WMz"/>
+                                </items>
+                            </toolbar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -11601,7 +11592,7 @@
                                 <rect key="frame" x="0.0" y="130" width="320" height="44"/>
                                 <items>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="QKs-3b-ghh"/>
-                                    <barButtonItem title="Save" systemItem="save" id="FJP-4f-SXc">
+                                    <barButtonItem systemItem="save" id="FJP-4f-SXc">
                                         <connections>
                                             <action selector="submitEntry:" destination="QAR-fE-VI9" id="EF0-Xq-eQD"/>
                                         </connections>
@@ -11721,7 +11712,7 @@
                                 <rect key="frame" x="0.0" y="130" width="320" height="44"/>
                                 <items>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="7nl-Nu-col"/>
-                                    <barButtonItem title="Save" systemItem="save" id="qWY-s4-ayF">
+                                    <barButtonItem systemItem="save" id="qWY-s4-ayF">
                                         <connections>
                                             <action selector="submitEntry:" destination="8KJ-bk-nsL" id="LeC-85-7Pb"/>
                                         </connections>
@@ -11841,7 +11832,7 @@
                                 <rect key="frame" x="0.0" y="130" width="320" height="44"/>
                                 <items>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="UfL-xf-e8u"/>
-                                    <barButtonItem title="Save" systemItem="save" id="OHh-wx-MRk">
+                                    <barButtonItem systemItem="save" id="OHh-wx-MRk">
                                         <connections>
                                             <action selector="submitEntry:" destination="dA3-V7-rtY" id="kPJ-Az-1zB"/>
                                         </connections>
@@ -11957,18 +11948,6 @@
                                     <action selector="hideKeyboard:" destination="Ulp-FY-vj7" eventType="touchUpInside" id="ZQ2-hq-nhf"/>
                                 </connections>
                             </button>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cpr-IR-kZE">
-                                <rect key="frame" x="0.0" y="130" width="320" height="44"/>
-                                <items>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="xGs-dC-gAF"/>
-                                    <barButtonItem title="Save" systemItem="save" id="5cW-0g-dd2">
-                                        <connections>
-                                            <action selector="submitEntry:" destination="Ulp-FY-vj7" id="VMq-U1-ARa"/>
-                                        </connections>
-                                    </barButtonItem>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="TT2-he-nLm"/>
-                                </items>
-                            </toolbar>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Notes" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="cre-vx-thK">
                                 <rect key="frame" x="20" y="72" width="46" height="21"/>
                                 <constraints>
@@ -12009,6 +11988,18 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cpr-IR-kZE">
+                                <rect key="frame" x="0.0" y="130" width="320" height="44"/>
+                                <items>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="xGs-dC-gAF"/>
+                                    <barButtonItem systemItem="save" id="5cW-0g-dd2">
+                                        <connections>
+                                            <action selector="submitEntry:" destination="Ulp-FY-vj7" id="VMq-U1-ARa"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="TT2-he-nLm"/>
+                                </items>
+                            </toolbar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -37104,7 +37095,7 @@
             </objects>
             <point key="canvasLocation" x="10752" y="62"/>
         </scene>
-        <!--Results View Controller - Summary-->
+        <!--Summary-->
         <scene sceneID="z4X-OG-E85">
             <objects>
                 <viewController id="aTV-gG-ezn" customClass="ResultsViewController" sceneMemberID="viewController">
@@ -37149,7 +37140,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="icon-button-blue-iPhone.png" width="23" height="23"/>
         <image name="icon-cart.png" width="23" height="23"/>
         <image name="icon-pics2.png" width="23" height="23"/>
         <image name="icon-reveal.png" width="23" height="23"/>

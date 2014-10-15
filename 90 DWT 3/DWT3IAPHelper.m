@@ -16,7 +16,7 @@
     static DWT3IAPHelper * sharedInstance;
     
     dispatch_once(&once, ^{
-        NSSet * productIdentifiers = [NSSet setWithObjects: @"com.grantsoftware.90DWT3.slidergraph", nil];
+        NSSet * productIdentifiers = [NSSet setWithObjects: @"com.grantsoftware.90DWT3.slidergraph", @"com.grantsoftware.90DWT3.removeads", nil];
         sharedInstance = [[self alloc] initWithProductIdentifiers:productIdentifiers];
     });
     

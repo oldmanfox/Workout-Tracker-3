@@ -87,7 +87,6 @@
 		A57206FB185F735D00638698 /* photoCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A57206FA185F735D00638698 /* photoCollectionViewCell.m */; };
 		A572074E185F75ED00638698 /* StoreListTVCCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A572074D185F75ED00638698 /* StoreListTVCCell.m */; };
 		A5720752185F760000638698 /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = A5720751185F760000638698 /* NSData+Base64.m */; };
-		A5720756185F761600638698 /* VerificationController.m in Sources */ = {isa = PBXBuildFile; fileRef = A5720755185F761600638698 /* VerificationController.m */; };
 		A5720759185F764B00638698 /* IAPHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = A5720758185F764B00638698 /* IAPHelper.m */; };
 		A572075C185F792C00638698 /* DWT3IAPHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = A572075B185F792C00638698 /* DWT3IAPHelper.m */; };
 		A5720760185F7BFD00638698 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A572075F185F7BFD00638698 /* SWRevealViewController.m */; };
@@ -341,8 +340,6 @@
 		A572074D185F75ED00638698 /* StoreListTVCCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoreListTVCCell.m; sourceTree = "<group>"; };
 		A5720750185F760000638698 /* NSData+Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Base64.h"; sourceTree = "<group>"; };
 		A5720751185F760000638698 /* NSData+Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Base64.m"; sourceTree = "<group>"; };
-		A5720754185F761600638698 /* VerificationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VerificationController.h; sourceTree = "<group>"; };
-		A5720755185F761600638698 /* VerificationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VerificationController.m; sourceTree = "<group>"; };
 		A5720757185F764B00638698 /* IAPHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAPHelper.h; sourceTree = "<group>"; };
 		A5720758185F764B00638698 /* IAPHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAPHelper.m; sourceTree = "<group>"; };
 		A572075A185F792C00638698 /* DWT3IAPHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DWT3IAPHelper.h; sourceTree = "<group>"; };
@@ -1052,7 +1049,6 @@
 				A572075B185F792C00638698 /* DWT3IAPHelper.m */,
 				A5720757185F764B00638698 /* IAPHelper.h */,
 				A5720758185F764B00638698 /* IAPHelper.m */,
-				A5720753185F761600638698 /* VerificationController */,
 				A572074F185F760000638698 /* Base64 */,
 				A572074B185F75ED00638698 /* Cells */,
 			);
@@ -1075,15 +1071,6 @@
 				A5720751185F760000638698 /* NSData+Base64.m */,
 			);
 			path = Base64;
-			sourceTree = "<group>";
-		};
-		A5720753185F761600638698 /* VerificationController */ = {
-			isa = PBXGroup;
-			children = (
-				A5720754185F761600638698 /* VerificationController.h */,
-				A5720755185F761600638698 /* VerificationController.m */,
-			);
-			path = VerificationController;
 			sourceTree = "<group>";
 		};
 		A572075D185F7BFD00638698 /* SWRevealViewController */ = {
@@ -1154,7 +1141,7 @@
 		A57206B2185F631B00638698 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0500;
+				LastUpgradeCheck = 0600;
 				ORGANIZATIONNAME = "Grant, Jared";
 				TargetAttributes = {
 					A57206B9185F631B00638698 = {
@@ -1282,7 +1269,6 @@
 				5898AD911868E69C00FF2F58 /* MeasurementsViewController.m in Sources */,
 				5898AD7D1868E40300FF2F58 /* WebViewController.m in Sources */,
 				584F5FFF187A3D1500E8B166 /* Bulk_5-7_TVC.m in Sources */,
-				A5720756185F761600638698 /* VerificationController.m in Sources */,
 				584F5FD8187A14D600E8B166 /* Tone_1-3_TVC.m in Sources */,
 				5898AD8A1868E66100FF2F58 /* WebsiteViewController.m in Sources */,
 				5856E8901868DE3D00A095B2 /* SettingsNavController.m in Sources */,
@@ -1335,7 +1321,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -1375,7 +1360,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -1408,7 +1392,6 @@
 		A57206ED185F631B00638698 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -1421,9 +1404,11 @@
 					"/Users/jared.grant/Documents/Workout-Tracker-3/90\\ DWT\\ 3",
 					"/Users/jaredgrant/Documents/Workout-Tracker-3/90\\ DWT\\ 3",
 				);
+				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				VALID_ARCHS = "armv7 armv7s";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1431,7 +1416,6 @@
 		A57206EE185F631B00638698 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -1444,9 +1428,11 @@
 					"/Users/jared.grant/Documents/Workout-Tracker-3/90\\ DWT\\ 3",
 					"/Users/jaredgrant/Documents/Workout-Tracker-3/90\\ DWT\\ 3",
 				);
+				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				VALID_ARCHS = "armv7 armv7s";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -1454,7 +1440,6 @@
 		A57206F0185F631B00638698 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/90 DWT 3.app/90 DWT 3";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
@@ -1477,7 +1462,6 @@
 		A57206F1185F631B00638698 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/90 DWT 3.app/90 DWT 3";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
