@@ -259,7 +259,7 @@
     // Apply Keyboard Color
     
     // Show or Hide Ads
-    if ([[DWT3IAPHelper sharedInstance] productPurchased:@"com.grantsoftware.90DWT3.removeads"]) {
+    if ([[DWT3IAPHelper sharedInstance] productPurchased:@"com.grantsoftware.90DWT3.removeads1"]) {
         
         // User purchased the Remove Ads in-app purchase so don't show any ads.
         self.canDisplayBannerAds = NO;
