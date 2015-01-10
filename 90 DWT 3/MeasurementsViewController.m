@@ -206,7 +206,7 @@
 - (IBAction)actionSheet:(UIBarButtonItem *)sender {
     
     UIActionSheet *action = [[UIActionSheet alloc] initWithTitle:@"Share" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Email", @"Facebook", @"Twitter", nil];
-    [action showFromTabBar:self.tabBarController.tabBar];
+    [action showFromBarButtonItem:sender animated:YES];
 }
 
 - (IBAction)saveAction:(UIButton *)sender {

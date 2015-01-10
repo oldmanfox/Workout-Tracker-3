@@ -14,7 +14,7 @@
 #import "UIViewController+Social.h"
 #import "photoCollectionViewCell.h"
 
-@interface PresentPhotosViewController : UIViewController<UIImagePickerControllerDelegate, UINavigationControllerDelegate, MPMediaPickerControllerDelegate, UIActionSheetDelegate, MFMailComposeViewControllerDelegate, UICollectionViewDataSource, UICollectionViewDelegate>
+@interface PresentPhotosViewController : UIViewController<UIImagePickerControllerDelegate, UINavigationControllerDelegate, MPMediaPickerControllerDelegate, UIActionSheetDelegate, MFMailComposeViewControllerDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *shareActionButton;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
