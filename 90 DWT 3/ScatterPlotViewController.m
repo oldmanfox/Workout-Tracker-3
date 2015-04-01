@@ -49,16 +49,6 @@
 #pragma mark - Chart behavior
 -(void)initPlot {
     
-    //NSLog(@"Allow iPad Graph");
-    
-    self.matches = [self databaseMatches];
-    [self configureHost];
-    [self configureGraph];
-    [self configurePlots];
-    [self configureAxes];
-    [self configureLegend];
-    
-    /*
     if ([[DWT3IAPHelper sharedInstance] productPurchased:@"com.grantsoftware.90DWT3.slidergraph"]) {
     
         //NSLog(@"Allow iPad Graph");
@@ -81,7 +71,6 @@
 
         self.hostView.backgroundColor = [UIColor clearColor];
     }
-     */
 }
 
 -(void)configureHost {
