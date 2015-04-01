@@ -30,6 +30,13 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
+    //NSLog(@"Allow iPad Table");
+    
+    self.view.backgroundColor = [UIColor clearColor];
+    [self.htmlView loadHTMLString:[self createHTML] baseURL:nil];
+    self.htmlView.hidden = NO;
+
+    /*
     if ([[DWT3IAPHelper sharedInstance] productPurchased:@"com.grantsoftware.90DWT3.slidergraph"]) {
         
         //NSLog(@"Allow iPad Table");
@@ -49,6 +56,7 @@
         //self.view.backgroundColor = midGrey;
         self.htmlView.hidden = YES;
     }
+     */
 }
 
 - (void)viewDidAppear:(BOOL)animated {

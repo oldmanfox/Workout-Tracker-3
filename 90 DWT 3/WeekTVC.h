@@ -10,6 +10,7 @@
 #import "DataNavController.h"
 #import "WorkoutListRecoveryTVC.h"
 #import "UITableViewController+Design.h"
+#import <iAd/iAd.h>
 
 @interface WeekTVC : UITableViewController
 @property (weak, nonatomic) IBOutlet UITableViewCell *cell1;

@@ -27,6 +27,8 @@
 {
     [super viewDidLoad];
     
+    self.navigationController.tabBarItem.selectedImage = [UIImage imageNamed:@"ruler_selected"];
+    
     // Configure tableview.
     NSArray *tableCell = @[self.cell1,
                             self.cell2,

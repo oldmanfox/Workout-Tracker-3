@@ -48,7 +48,7 @@
     NSError *error;
     NSArray *objects = [context executeFetchRequest:request error:&error];
     
-    int workoutIndex = [((DataNavController *)self.parentViewController).index integerValue];
+    int workoutIndex = [((DataNavController *)self.parentViewController).index intValue];
     //NSLog(@"%@ index = %@", ((DataNavController *)self.parentViewController).workout, ((DataNavController *)self.parentViewController).index);
     
     // 1st time exercise is done only.

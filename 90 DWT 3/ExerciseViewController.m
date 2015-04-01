@@ -116,7 +116,7 @@
     NSError *error;
     NSArray *objects = [context executeFetchRequest:request error:&error];
     
-    int workoutIndex = [((DataNavController *)self.parentViewController).index integerValue];
+    int workoutIndex = [((DataNavController *)self.parentViewController).index doubleValue];
     //NSLog(@"Workout = %@ index = %@", ((DataNavController *)self.parentViewController).workout, ((DataNavController *)self.parentViewController).index);
     
     // 1st time exercise is done only.
@@ -245,6 +245,15 @@
 
 - (void)createSliderButton {
     
+    //NSLog(@"Allow Slider");
+    self.sliderButton.enabled = YES;
+    
+    // Slider Setup
+    [self.sliderButton setTarget: self.revealViewController];
+    [self.sliderButton setAction: @selector(revealToggle:)];
+    [self.toolbar addGestureRecognizer: self.revealViewController.panGestureRecognizer];
+    
+    /*
     if ([[DWT3IAPHelper sharedInstance] productPurchased:@"com.grantsoftware.90DWT3.slidergraph"]) {
         
         //NSLog(@"Allow Slider");
@@ -255,6 +264,7 @@
         [self.sliderButton setAction: @selector(revealToggle:)];
         [self.toolbar addGestureRecognizer: self.revealViewController.panGestureRecognizer];
     }
+     */
 }
 
 - (void)didReceiveMemoryWarning

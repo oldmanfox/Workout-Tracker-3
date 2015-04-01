@@ -7,6 +7,7 @@
 //
 
 #import "Normal_10+12_TVC.h"
+#import "DWT3IAPHelper.h"
 
 @interface Normal_10_12_TVC ()
 
@@ -26,6 +27,18 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
+    // Show or Hide Ads
+    if ([[DWT3IAPHelper sharedInstance] productPurchased:@"com.grantsoftware.90DWT3.removeads1"]) {
+        
+        // User purchased the Remove Ads in-app purchase so don't show any ads.
+        self.canDisplayBannerAds = NO;
+        
+    } else {
+        
+        // Show the Banner Ad
+        self.canDisplayBannerAds = YES;
+    }
 
     // Configure tableview.
     NSArray *tableCell = @[self.cell1,

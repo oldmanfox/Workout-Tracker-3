@@ -27,6 +27,8 @@
 {
     [super viewDidLoad];
     
+    self.navigationController.tabBarItem.selectedImage = [UIImage imageNamed:@"cogs_selected"];
+    
     // Configure tableview.
     NSArray *tableCell = @[self.cell1,  // email
                            self.cell2,  // version

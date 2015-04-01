@@ -27,6 +27,8 @@
 {
     [super viewDidLoad];
     
+    self.navigationController.tabBarItem.selectedImage = [UIImage imageNamed:@"pic_mountains_selected"];
+    
     // Configure tableview.
     NSArray *tableCell = @[self.cell1,
                             self.cell2,
@@ -106,65 +108,67 @@
     // View Photos
     PhotoNavController *photoNC = [[PhotoNavController alloc] init];
     NSMutableArray *monthPhotoAngle = [[NSMutableArray alloc] init];
+    NSMutableArray *foundMonthPhotoAngle = [[NSMutableArray alloc] init];
     NSArray *tempMonthPhotoAngle = [[NSArray alloc] init];
     
     // ALL
     if ([segue.identifier isEqualToString:@"All"]) {
         
         tempMonthPhotoAngle = @[@"Start Month 1 Front",
-        @"Start Month 1 Side",
-        @"Start Month 1 Back",
-        @"Start Month 2 Front",
-        @"Start Month 2 Side",
-        @"Start Month 2 Back",
-        @"Start Month 3 Front",
-        @"Start Month 3 Side",
-        @"Start Month 3 Back",
-        @"Final Front",
-        @"Final Side",
-        @"Final Back"];
+                                @"Start Month 1 Side",
+                                @"Start Month 1 Back",
+                                @"Start Month 2 Front",
+                                @"Start Month 2 Side",
+                                @"Start Month 2 Back",
+                                @"Start Month 3 Front",
+                                @"Start Month 3 Side",
+                                @"Start Month 3 Back",
+                                @"Final Front",
+                                @"Final Side",
+                                @"Final Back"];
     }
     
     // FRONT
     else if ([segue.identifier isEqualToString:@"Front"]) {
         
         tempMonthPhotoAngle = @[@"Start Month 1 Front",
-        @"Start Month 2 Front",
-        @"Start Month 3 Front",
-        @"Final Front"];
+                                @"Start Month 2 Front",
+                                @"Start Month 3 Front",
+                                @"Final Front"];
     }
     
     // SIDE
     else if ([segue.identifier isEqualToString:@"Side"]) {
         
         tempMonthPhotoAngle = @[@"Start Month 1 Side",
-        @"Start Month 2 Side",
-        @"Start Month 3 Side",
-        @"Final Side"];
+                                @"Start Month 2 Side",
+                                @"Start Month 3 Side",
+                                @"Final Side"];
     }
     
     // BACK
     else if ([segue.identifier isEqualToString:@"Back"]) {
         
         tempMonthPhotoAngle = @[@"Start Month 1 Back",
-        @"Start Month 2 Back",
-        @"Start Month 3 Back",
-        @"Final Back"];
+                                @"Start Month 2 Back",
+                                @"Start Month 3 Back",
+                                @"Final Back"];
     }
     
     if (tempMonthPhotoAngle.count != 0) {
-    
+        
         for (int i = 0; i < tempMonthPhotoAngle.count; i++) {
             
             if ([[NSFileManager defaultManager] fileExistsAtPath:[photoNC fileLocation:tempMonthPhotoAngle[i] ]]) {
                 
                 [monthPhotoAngle addObject:[photoNC loadImage:tempMonthPhotoAngle[i] ]];
+                [foundMonthPhotoAngle addObject:tempMonthPhotoAngle[i] ];
             }
         }
-    
+        
         // Convert the mutable array to a normal unmutable array.
         ppvc.arrayOfImages = [monthPhotoAngle copy];
-        ppvc.arrayOfImageTitles = tempMonthPhotoAngle;
+        ppvc.arrayOfImageTitles = foundMonthPhotoAngle;
     }
 }
 @end

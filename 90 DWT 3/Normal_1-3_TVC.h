@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "DataNavController.h"
 #import "UITableViewController+Design.h"
+#import <iAd/iAd.h>
 
 @interface Normal_1_3_TVC : UITableViewController
 
