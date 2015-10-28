@@ -9,9 +9,16 @@
 #import <UIKit/UIKit.h>
 #import "DataNavController.h"
 #import "UITableViewController+Design.h"
-#import <iAd/iAd.h>
+//#import <iAd/iAd.h>
+#import "MPAdView.h"
 
-@interface Normal_1_3_TVC : UITableViewController
+@interface Normal_1_3_TVC : UITableViewController <MPAdViewDelegate>
+
+@property (nonatomic) MPAdView *adView;
+
+@property (nonatomic, strong) UIView *headerView;
+
+@property CGSize bannerSize;
 
 @property (weak, nonatomic) IBOutlet UITableViewCell *cell1;
 @property (weak, nonatomic) IBOutlet UITableViewCell *cell2;

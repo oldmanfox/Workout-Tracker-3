@@ -168,7 +168,6 @@
                                        self.bannerSize.width, self.bannerSize.height);
         self.adView.hidden = NO;
     }
-
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
