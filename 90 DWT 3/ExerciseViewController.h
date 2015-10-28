@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <iAd/iAd.h>
+//#import <iAd/iAd.h>
 #import "DataNavController.h"
 #import "AppDelegate.h"
 #import "ResultsViewController.h"
@@ -15,7 +15,7 @@
 #import "ScatterPlotViewController.h"
 #import "DWT3IAPHelper.h"
 
-@interface ExerciseViewController : UIViewController <ADBannerViewDelegate>
+@interface ExerciseViewController : UIViewController
 
 // Current Labels
 @property (weak, nonatomic) IBOutlet UILabel *currentRepsLabel;

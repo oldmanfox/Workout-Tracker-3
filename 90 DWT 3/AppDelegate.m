@@ -56,7 +56,12 @@
     
     [[UITabBar appearance] setTintColor:orange];
     
-    [UIViewController prepareInterstitialAds];
+    //[UIViewController prepareInterstitialAds];
+    
+    if ([[DWT3IAPHelper sharedInstance] productPurchased:@"com.grantsoftware.90DWT3.removeads1"]) {
+        
+        self.purchasedAdRemoveBeforeAppLaunch = YES;
+    }
 
     return YES;
 }

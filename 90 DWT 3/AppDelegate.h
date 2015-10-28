@@ -24,6 +24,8 @@
 @property (strong, nonatomic) NSString *exerciseName;   // Full name of an individual exercise.
 @property (strong, nonatomic) NSString *exerciseRound;  // Round of an individual exercise (1 or 2).
 
+@property BOOL purchasedAdRemoveBeforeAppLaunch;
+
 - (void)saveContext;
 - (NSURL *)applicationDocumentsDirectory;
 

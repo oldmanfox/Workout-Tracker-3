@@ -7,6 +7,7 @@
 //
 
 #import "DataNavController.h"
+#import "AppDelegate.h"
 
 @interface DataNavController ()
 
@@ -29,6 +30,20 @@
         
         [self popToRootViewControllerAnimated:YES];
         ((MainTBC *)self.parentViewController).workoutChanged = NO;
+    }
+    
+    if ([[DWT3IAPHelper sharedInstance] productPurchased:@"com.grantsoftware.90DWT3.removeads1"]) {
+        
+        AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+        
+        if (appDelegate.purchasedAdRemoveBeforeAppLaunch) {
+            
+            // Do nothing.  No need to pop to root view controller.
+            
+        } else {
+            
+            [self popToRootViewControllerAnimated:YES];
+        }
     }
 }
 
