@@ -15,6 +15,6 @@
     #import <Foundation/Foundation.h>
     #import <CoreData/CoreData.h>
     #import "CorePlot-CocoaTouch.h"
-    #import <iAd/iAd.h>
+    //#import <iAd/iAd.h>
     #import "DWT3IAPHelper.h"
 #endif
