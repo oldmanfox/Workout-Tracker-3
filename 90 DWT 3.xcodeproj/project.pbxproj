@@ -955,6 +955,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				58109B9F1BE1876800C66B72 /* libCorePlot-CocoaTouch.a in Frameworks */,
+				58109D341BE1879100C66B72 /* MMAdSDK.framework in Frameworks */,
+				58109D2E1BE1879100C66B72 /* GoogleMobileAds.framework in Frameworks */,
 				58109DFD1BE1894C00C66B72 /* CoreBluetooth.framework in Frameworks */,
 				58109DFB1BE1894300C66B72 /* libxml2.tbd in Frameworks */,
 				58109DF81BE1890C00C66B72 /* EventKit.framework in Frameworks */,
@@ -976,10 +978,8 @@
 				58109DEB1BE1885800C66B72 /* AVFoundation.framework in Frameworks */,
 				A5720776185F82F500638698 /* AudioToolbox.framework in Frameworks */,
 				58109DE91BE1884500C66B72 /* AdSupport.framework in Frameworks */,
-				58109D2E1BE1879100C66B72 /* GoogleMobileAds.framework in Frameworks */,
 				A58EB9BB1ACC32E500503170 /* Accelerate.framework in Frameworks */,
 				A5720778185F830100638698 /* CoreImage.framework in Frameworks */,
-				58109D341BE1879100C66B72 /* MMAdSDK.framework in Frameworks */,
 				A5720770185F82C300638698 /* Security.framework in Frameworks */,
 				A57206C4185F631B00638698 /* CoreData.framework in Frameworks */,
 				A57206C2185F631B00638698 /* UIKit.framework in Frameworks */,
@@ -2773,7 +2773,6 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
 					"$(PROJECT_DIR)/MoPubSDK",
 					2/AdNetworkSupport/GoogleAdMob/SDK,
 					"$(PROJECT_DIR)/MoPubSDK",
@@ -2783,12 +2782,7 @@
 				GCC_PREFIX_HEADER = "90 DWT 3/90 DWT 3-Prefix.pch";
 				INFOPLIST_FILE = "90 DWT 3/90 DWT 3-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/90",
-					DWT,
-					3,
-				);
+				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/90 DWT 3";
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.g-rantsoftware.${PRODUCT_NAME:rfc1034identifier}";
@@ -2808,7 +2802,6 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
 					"$(PROJECT_DIR)/MoPubSDK",
 					2/AdNetworkSupport/GoogleAdMob/SDK,
 					"$(PROJECT_DIR)/MoPubSDK",
@@ -2818,12 +2811,7 @@
 				GCC_PREFIX_HEADER = "90 DWT 3/90 DWT 3-Prefix.pch";
 				INFOPLIST_FILE = "90 DWT 3/90 DWT 3-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/90",
-					DWT,
-					3,
-				);
+				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/90 DWT 3";
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.g-rantsoftware.${PRODUCT_NAME:rfc1034identifier}";

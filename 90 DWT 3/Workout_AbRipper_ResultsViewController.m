@@ -167,7 +167,7 @@
     [super viewDidAppear:animated];
     
     // Show or Hide Ads
-    if ([[DWT3IAPHelper sharedInstance] productPurchased:@"com.grantsoftware.90DWT3.slidergraph"]) {
+    if ([[DWT3IAPHelper sharedInstance] productPurchased:@"com.grantsoftware.90DWT3.removeads1"]) {
         
         // Don't show ads.
         self.adView.delegate = nil;
