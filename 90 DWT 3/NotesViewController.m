@@ -118,6 +118,43 @@
             self.previousNotes.text = @"No record for the last workout";
         }
     }
+    
+    // Show or Hide Ads
+    if ([[DWT3IAPHelper sharedInstance] productPurchased:@"com.grantsoftware.90DWT3.removeads1"]) {
+        
+        // User purchased the Remove Ads in-app purchase so don't show any ads.
+        //self.canDisplayBannerAds = NO;
+        
+    } else {
+        
+        // Show the Banner Ad
+        //self.canDisplayBannerAds = YES;
+        
+        if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
+            
+            // iPhone
+            self.adView = [[MPAdView alloc] initWithAdUnitId:@"ec3e53b6f4b14bca87772951a23139f8"
+                                                        size:MOPUB_BANNER_SIZE];
+            self.bannerSize = MOPUB_BANNER_SIZE;
+            
+        } else {
+            
+            // iPad
+            self.adView = [[MPAdView alloc] initWithAdUnitId:@"9041ef410d53400bbcaa965b3cd4ab86"
+                                                        size:MOPUB_LEADERBOARD_SIZE];
+            self.bannerSize = MOPUB_LEADERBOARD_SIZE;
+            
+        }
+        
+        self.adView.delegate = self;
+        self.adView.frame = CGRectMake((self.view.bounds.size.width - self.bannerSize.width) / 2,
+                                       self.view.bounds.size.height - self.bannerSize.height - self.tabBarController.tabBar.bounds.size.height,
+                                       self.bannerSize.width, self.bannerSize.height);
+        
+        [self.view addSubview:self.adView];
+        
+        [self.adView loadAd];
+    }
 }
 
 - (void)textViewDidBeginEditing:(UITextView *)textView
@@ -133,11 +170,47 @@
 
 -(void)viewWillAppear:(BOOL)animated 
 {
+    [super viewWillAppear:YES];
     
+    // Show or Hide Ads
+    if ([[DWT3IAPHelper sharedInstance] productPurchased:@"com.grantsoftware.90DWT3.removeads1"]) {
+        
+        // User purchased the Remove Ads in-app purchase so don't show any ads.
+        //self.canDisplayBannerAds = NO;
+        self.adView.delegate = nil;
+        self.adView = nil;
+        [self.adView removeFromSuperview];
+        
+    } else {
+        
+        // Show the Banner Ad
+        //self.canDisplayBannerAds = YES;
+        
+        self.adView.hidden = YES;
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [self viewDidLoad];
+    
+    [super viewDidAppear:animated];
+    
+    // Show or Hide Ads
+    if ([[DWT3IAPHelper sharedInstance] productPurchased:@"com.grantsoftware.90DWT3.slidergraph"]) {
+        
+        // Don't show ads.
+        self.adView.delegate = nil;
+        self.adView = nil;
+        [self.adView removeFromSuperview];
+        
+    } else {
+        
+        // Show ads
+        self.adView.frame = CGRectMake((self.view.bounds.size.width - self.bannerSize.width) / 2,
+                                       self.view.bounds.size.height - self.bannerSize.height - self.tabBarController.tabBar.bounds.size.height,
+                                       self.bannerSize.width, self.bannerSize.height);
+        self.adView.hidden = NO;
+    }
 }
 
 -(void)viewWillDisappear:(BOOL)animated
@@ -266,18 +339,6 @@
     
     // Apply Keyboard Color
     self.currentNotes.keyboardAppearance = UIKeyboardAppearanceDark;
-    
-    // Show or Hide Ads
-    if ([[DWT3IAPHelper sharedInstance] productPurchased:@"com.grantsoftware.90DWT3.removeads1"]) {
-        
-        // User purchased the Remove Ads in-app purchase so don't show any ads.
-        self.canDisplayBannerAds = NO;
-        
-    } else {
-        
-        // Show the Banner Ad
-        self.canDisplayBannerAds = YES;
-    }
 }
 
 - (void)emailResults
@@ -362,5 +423,33 @@
 - (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error
 {
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+#pragma mark - <MPAdViewDelegate>
+- (UIViewController *)viewControllerForPresentingModalView {
+    return self;
+}
+
+- (void)adViewDidLoadAd:(MPAdView *)view
+{
+    CGSize size = [view adContentViewSize];
+    CGFloat centeredX = (self.view.bounds.size.width - size.width) / 2;
+    CGFloat bottomAlignedY = self.view.bounds.size.height - size.height - self.tabBarController.tabBar.bounds.size.height;
+    view.frame = CGRectMake(centeredX, bottomAlignedY, size.width, size.height);
+}
+
+- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
+                                duration:(NSTimeInterval)duration {
+    self.adView.hidden = YES;
+    [self.adView rotateToOrientation:toInterfaceOrientation];
+}
+
+- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
+    CGSize size = [self.adView adContentViewSize];
+    CGFloat centeredX = (self.view.bounds.size.width - size.width) / 2;
+    CGFloat bottomAlignedY = self.view.bounds.size.height - size.height - self.tabBarController.tabBar.bounds.size.height;
+    self.adView.frame = CGRectMake(centeredX, bottomAlignedY, size.width, size.height);
+    
+    self.adView.hidden = NO;
 }
 @end
