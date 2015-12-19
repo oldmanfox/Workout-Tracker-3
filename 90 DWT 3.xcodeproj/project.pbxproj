@@ -59,6 +59,7 @@
 		5856E8901868DE3D00A095B2 /* SettingsNavController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5856E88F1868DE3D00A095B2 /* SettingsNavController.m */; };
 		5856E8941868DEA400A095B2 /* MainTBC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5856E8931868DEA400A095B2 /* MainTBC.m */; };
 		5856E8971868DEC500A095B2 /* ScrollViewContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 5856E8961868DEC500A095B2 /* ScrollViewContainer.m */; };
+		5889CAE91C25F0BB006D1756 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 5889CAE81C25F0BB006D1756 /* Settings.bundle */; };
 		5898AD6A1868E31000FF2F58 /* StoreListTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5898AD691868E31000FF2F58 /* StoreListTVC.m */; };
 		5898AD731868E35A00FF2F58 /* MeasurementsTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5898AD6C1868E35A00FF2F58 /* MeasurementsTVC.m */; };
 		5898AD741868E35A00FF2F58 /* PhotoTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5898AD6E1868E35A00FF2F58 /* PhotoTVC.m */; };
@@ -300,6 +301,7 @@
 		5856E8931868DEA400A095B2 /* MainTBC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainTBC.m; sourceTree = "<group>"; };
 		5856E8951868DEC500A095B2 /* ScrollViewContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScrollViewContainer.h; sourceTree = "<group>"; };
 		5856E8961868DEC500A095B2 /* ScrollViewContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScrollViewContainer.m; sourceTree = "<group>"; };
+		5889CAE81C25F0BB006D1756 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		5898AD681868E31000FF2F58 /* StoreListTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoreListTVC.h; sourceTree = "<group>"; };
 		5898AD691868E31000FF2F58 /* StoreListTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoreListTVC.m; sourceTree = "<group>"; };
 		5898AD6B1868E35A00FF2F58 /* MeasurementsTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeasurementsTVC.h; sourceTree = "<group>"; };
@@ -1257,6 +1259,7 @@
 				A57206C6185F631B00638698 /* Supporting Files */,
 				A57206F4185F709100638698 /* MainStoryboard_iPhone.storyboard */,
 				A57206F6185F70B400638698 /* MainStoryboard_iPad.storyboard */,
+				5889CAE81C25F0BB006D1756 /* Settings.bundle */,
 			);
 			path = "90 DWT 3";
 			sourceTree = "<group>";
@@ -1451,6 +1454,7 @@
 			files = (
 				A57206F7185F70B400638698 /* MainStoryboard_iPad.storyboard in Resources */,
 				A57206F5185F709100638698 /* MainStoryboard_iPhone.storyboard in Resources */,
+				5889CAE91C25F0BB006D1756 /* Settings.bundle in Resources */,
 				A57206CA185F631B00638698 /* InfoPlist.strings in Resources */,
 				A57206D5185F631B00638698 /* Images.xcassets in Resources */,
 			);
