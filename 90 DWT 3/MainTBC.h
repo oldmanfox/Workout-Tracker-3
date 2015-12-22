@@ -12,5 +12,4 @@
 @property BOOL workoutChanged;
 @property (strong, nonatomic) NSString *bandSetting;  // Set weight fields to alphanumeric or numberpad.  Default = (Off) numberpad.
 
-
 @end

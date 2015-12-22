@@ -8,6 +8,7 @@
 
 #import "Workout_AbRipper_ResultsViewController.h"
 #import "DWT3IAPHelper.h"
+#import "CoreDataHelper.h"
 
 @interface Workout_AbRipper_ResultsViewController ()
 
@@ -24,69 +25,78 @@
     return self;
 }
 
+- (void)queryDatabase {
+    
+    // Get the objects for the current session
+    NSManagedObjectContext *context = [[CoreDataHelper sharedHelper] context];
+    AppDelegate *mainAppDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    
+    // Fetch current session data.
+    NSString *currentSessionString = [mainAppDelegate getCurrentSession];
+    
+    // Get workout data with current session
+    NSEntityDescription *entityDesc = [NSEntityDescription entityForName:@"Workout" inManagedObjectContext:context];
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    [request setEntity:entityDesc];
+    
+    NSMutableString *writeString = [NSMutableString stringWithCapacity:0];
+    
+    for (int x = 0; x < [self.exerciseNames count]; x++) {
+        
+        NSString *arrayExerciseNameRound = self.exerciseNames[x];
+        
+        NSString *currentExercise = [arrayExerciseNameRound substringToIndex:[arrayExerciseNameRound length] - 8];
+        NSString *currentRound = [arrayExerciseNameRound substringFromIndex:[arrayExerciseNameRound length] - 7];
+        
+        NSPredicate *pred = [NSPredicate predicateWithFormat:@"(session = %@) AND (routine = %@) AND (workout = %@) AND (exercise = %@) AND (round = %@) AND (index = %d)",
+                             currentSessionString,
+                             ((DataNavController *)self.parentViewController).routine,
+                             ((DataNavController *)self.parentViewController).workout,
+                             currentExercise,
+                             currentRound,
+                             [((DataNavController *)self.parentViewController).index integerValue]];
+        
+        //NSLog(@"Routine = %@", ((DataNavController *)self.parentViewController).routine);
+        //NSLog(@"Workout = %@", ((DataNavController *)self.parentViewController).workout);
+        //NSLog(@"Index = %@", ((DataNavController *)self.parentViewController).index);
+        
+        [request setPredicate:pred];
+        NSManagedObject *matches = nil;
+        NSError *error;
+        NSArray *objects = [context executeFetchRequest:request error:&error];
+        
+        if ([objects count] != 0)
+        {
+            matches = objects[[objects count] -1];
+            NSString *exercise = [matches valueForKey:@"exercise"];
+            NSString *reps = [matches valueForKey:@"reps"];
+            NSString *weight = [matches valueForKey:@"weight"];
+            NSString *notes = [matches valueForKey:@"notes"];
+            
+            [writeString appendString:[NSString stringWithFormat:@"%@ \n  Reps: %@  Wt: %@ \n  Notes: %@ \n\n", exercise, reps, weight, notes]];
+            
+        } else {
+            
+            [writeString appendString:[NSString stringWithFormat:@"%@ \n  Reps:    Wt:   \n  Notes: \n\n", currentExercise]];
+        }
+    }
+    
+    self.workoutSummary.text = writeString;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
     [self configureViewForIOSVersion];
+    [self queryDatabase];
     
-    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    NSManagedObjectContext *context = [appDelegate managedObjectContext];
-    NSEntityDescription *entityDesc = [NSEntityDescription entityForName:@"Workout" inManagedObjectContext:context];
-    NSFetchRequest *request = [[NSFetchRequest alloc] init];
-    [request setEntity:entityDesc];
-    NSPredicate *pred = [NSPredicate predicateWithFormat:@"(routine = %@) AND (workout = %@) AND (index = %d)",
-                         ((DataNavController *)self.parentViewController).routine,
-                         ((DataNavController *)self.parentViewController).workout,
-                         [((DataNavController *)self.parentViewController).index integerValue]];
-    
-    //NSLog(@"Routine = %@", ((DataNavController *)self.parentViewController).routine);
-    //NSLog(@"Workout = %@", ((DataNavController *)self.parentViewController).workout);
-    //NSLog(@"Index = %@", ((DataNavController *)self.parentViewController).index);
-    
-    [request setPredicate:pred];
-    NSManagedObject *matches = nil;
-    NSError *error;
-    NSArray *objects = [context executeFetchRequest:request error:&error];
-    NSMutableString *writeString = [NSMutableString stringWithCapacity:0];
-    
-    if ([objects count] != 0)
-    {
-        for (int a = 0; a < [self.exerciseNames count]; a++) 
-        {
-            BOOL matchFound = false;
-            NSString *arrayExerciseNameRound = self.exerciseNames[a];
-            NSString *exerciseNameClean = [arrayExerciseNameRound substringToIndex:[arrayExerciseNameRound length] - 8];
-            
-            for (int i = 0; i < [objects count]; i++) 
-            {
-                matches = objects[i];
-                NSString *exercise = [matches valueForKey:@"exercise"];
-                NSString *reps = [matches valueForKey:@"reps"];
-                NSString *weight = [matches valueForKey:@"weight"];
-                NSString *notes = [matches valueForKey:@"notes"];
-                NSString *round = [matches valueForKey:@"round"];
-                
-                
-                NSString *combinedExerciseNameRound = [exercise stringByAppendingString:@" "];
-                combinedExerciseNameRound = [combinedExerciseNameRound stringByAppendingString:round];
-                
-                if ([arrayExerciseNameRound isEqualToString:combinedExerciseNameRound]) 
-                {
-                    [writeString appendString:[NSString stringWithFormat:@"%@ \n  Reps: %@  Wt: %@ \n  Notes: %@ \n\n",
-                                               exercise, reps, weight, notes]];
-                    matchFound = true;
-                }
-            }
-            
-            if (!matchFound) 
-            {
-                [writeString appendString:[NSString stringWithFormat:@"%@ \n  Reps:    Wt:   \n  Notes: \n\n", exerciseNameClean]]; 
-            }
-        }
-    }
-    self.workoutSummary.text = writeString;
+    // Respond to changes in underlying store
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(updateUI)
+                                                 name:@"SomethingChanged"
+                                               object:nil];
     
     // Show or Hide Ads
     if ([[DWT3IAPHelper sharedInstance] productPurchased:@"com.grantsoftware.90DWT3.removeads1"]) {
@@ -201,35 +211,58 @@
 
 - (void)emailResults
 {
-    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    NSManagedObjectContext *context = [appDelegate managedObjectContext];
-    NSEntityDescription *entityDesc = [NSEntityDescription entityForName:@"Workout" inManagedObjectContext:context];
-    NSFetchRequest *request = [[NSFetchRequest alloc] init];
-    [request setEntity:entityDesc];
-    NSPredicate *pred = [NSPredicate predicateWithFormat:@"(routine = %@) AND (workout = %@) AND (index = %d)",
-                         ((DataNavController *)self.parentViewController).routine,
-                         ((DataNavController *)self.parentViewController).workout,
-                         [((DataNavController *)self.parentViewController).index integerValue]];
-    [request setPredicate:pred];
-    NSManagedObject *matches = nil;
-    NSError *error;
-    NSArray *objects = [context executeFetchRequest:request error:&error];
-    NSMutableString *writeString = [NSMutableString stringWithCapacity:0];
+    // Create MailComposerViewController object.
+    MFMailComposeViewController *mailComposer;
+    mailComposer = [[MFMailComposeViewController alloc] init];
+    mailComposer.mailComposeDelegate = self;
+    mailComposer.navigationBar.tintColor = [UIColor whiteColor];
     
-    if ([objects count] != 0)
-    {
-        [writeString appendString:[NSString stringWithFormat:@"Routine,Month,Week,Workout,Round,Exercise,Reps,Weight,Notes,Date\n"]];
-        for (int a = 0; a < [self.exerciseNames count]; a++) 
-        {
-            BOOL matchFound = false;
-            NSString *arrayExerciseNameRound = self.exerciseNames[a];
+    // Check to see if the device has at least 1 email account configured
+    if ([MFMailComposeViewController canSendMail]) {
+        
+        // Get the objects for the current session
+        NSManagedObjectContext *context = [[CoreDataHelper sharedHelper] context];
+        AppDelegate *mainAppDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+        
+        // Fetch current session data.
+        NSString *currentSessionString = [mainAppDelegate getCurrentSession];
+        
+        // Get workout data with the current session
+        NSEntityDescription *entityDesc = [NSEntityDescription entityForName:@"Workout" inManagedObjectContext:context];
+        NSFetchRequest *request = [[NSFetchRequest alloc] init];
+        [request setEntity:entityDesc];
+        
+        NSMutableString *writeString = [NSMutableString stringWithCapacity:0];
+        [writeString appendString:[NSString stringWithFormat:@"Session,Routine,Month,Week,Workout,Round,Exercise,Reps,Weight,Notes,Date\n"]];
+        
+        for (int x = 0; x < [self.exerciseNames count]; x++) {
             
-            // Remove the (Round #) at the end of the exercise name.
-            NSString *exerciseNameClean = [arrayExerciseNameRound substringToIndex:[arrayExerciseNameRound length] - 8];
+            NSString *arrayExerciseNameRound = self.exerciseNames[x];
             
-            for (int i = 0; i < [objects count]; i++) 
+            NSString *currentExercise = [arrayExerciseNameRound substringToIndex:[arrayExerciseNameRound length] - 8];
+            NSString *currentRound = [arrayExerciseNameRound substringFromIndex:[arrayExerciseNameRound length] - 7];
+            
+            NSPredicate *pred = [NSPredicate predicateWithFormat:@"(session = %@) AND (routine = %@) AND (workout = %@) AND (exercise = %@) AND (round = %@) AND (index = %d)",
+                                 currentSessionString,
+                                 ((DataNavController *)self.parentViewController).routine,
+                                 ((DataNavController *)self.parentViewController).workout,
+                                 currentExercise,
+                                 currentRound,
+                                 [((DataNavController *)self.parentViewController).index integerValue]];
+            
+            //NSLog(@"Routine = %@", ((DataNavController *)self.parentViewController).routine);
+            //NSLog(@"Workout = %@", ((DataNavController *)self.parentViewController).workout);
+            //NSLog(@"Index = %@", ((DataNavController *)self.parentViewController).index);
+            
+            [request setPredicate:pred];
+            NSManagedObject *matches = nil;
+            NSError *error;
+            NSArray *objects = [context executeFetchRequest:request error:&error];
+            
+            if ([objects count] != 0)
             {
-                matches = objects[i];
+                matches = objects[[objects count] -1];
+                NSString *session =     [matches valueForKey:@"session"];
                 NSString *routine =     [matches valueForKey:@"routine"];
                 NSString *month =       [matches valueForKey:@"month"];
                 NSString *week  =       [matches valueForKey:@"week"];
@@ -241,69 +274,59 @@
                 NSString *notes =       [matches valueForKey:@"notes"];
                 NSString *date =        [matches valueForKey:@"date"];
                 
-                NSString *combinedExerciseNameRound = [exercise stringByAppendingString:@" "];
-                combinedExerciseNameRound = [combinedExerciseNameRound stringByAppendingString:round];
+                [writeString appendString:[NSString stringWithFormat:@"%@,%@,%@,%@,%@,%@,%@,%@,%@,%@,%@\n",
+                                           session, routine, month, week, workout, round, exercise, reps, weight, notes, date]];
                 
-                if ([arrayExerciseNameRound isEqualToString:combinedExerciseNameRound]) 
-                {
-                    [writeString appendString:[NSString stringWithFormat:@"%@,%@,%@,%@,%@,%@,%@,%@,%@,%@\n",
-                                               routine, month, week, workout, round, exercise, reps, weight, notes, date]];
-                    matchFound = true;
-                }
-            }
-            
-            if (!matchFound) 
-            {
-                [writeString appendString:[NSString stringWithFormat:@"%@,%@,%@,%@,,%@,,,,\n",
+            } else {
+                
+                [writeString appendString:[NSString stringWithFormat:@"%@,%@,%@,%@,%@,,%@,,,,\n",
+                                           currentSessionString,
                                            ((DataNavController *)self.parentViewController).routine,
                                            ((DataNavController *)self.parentViewController).month,
                                            ((DataNavController *)self.parentViewController).week,
                                            ((DataNavController *)self.parentViewController).workout,
-                                           exerciseNameClean]];
+                                           currentExercise]];
             }
         }
-    }
-    
-    // Send email
-    
-    NSData *csvData = [writeString dataUsingEncoding:NSASCIIStringEncoding];
-    NSString *workoutName = ((DataNavController *)self.parentViewController).workout;
-    workoutName = [workoutName stringByAppendingString:@".csv"];
-    
-    // Create MailComposerViewController object.
-    MFMailComposeViewController *mailComposer;
-    mailComposer = [[MFMailComposeViewController alloc] init];
-    mailComposer.mailComposeDelegate = self;
-    mailComposer.navigationBar.tintColor = [UIColor whiteColor];
-    
-    // Array to store the default email address.
-    NSArray *emailAddresses; 
-    
-    // Get path to documents directory to get default email address.
-    NSString *docDir = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
-    NSString *defaultEmailFile = nil;
-    defaultEmailFile = [docDir stringByAppendingPathComponent:@"Default Email.out"];
-    
-    if ([[NSFileManager defaultManager] fileExistsAtPath:defaultEmailFile]) {
-        NSFileHandle *fileHandle = [NSFileHandle fileHandleForReadingAtPath:defaultEmailFile];
         
-        NSString *defaultEmail = [[NSString alloc] initWithData:[fileHandle availableData] encoding:NSUTF8StringEncoding];
-        [fileHandle closeFile];
+        // Send email
         
-        // There is a default email address.
-        emailAddresses = @[defaultEmail];
+        NSData *csvData = [writeString dataUsingEncoding:NSASCIIStringEncoding];
+        NSString *workoutName = ((DataNavController *)self.parentViewController).workout;
+        workoutName = [workoutName stringByAppendingString:@".csv"];
+        
+        // Fetch defaultEmail data.
+        NSEntityDescription *entityDescEmail = [NSEntityDescription entityForName:@"Email" inManagedObjectContext:context];
+        NSFetchRequest *requestEmail = [[NSFetchRequest alloc] init];
+        [requestEmail setEntity:entityDescEmail];
+        NSManagedObject *matches = nil;
+        NSError *error = nil;
+        NSArray *objects = [context executeFetchRequest:requestEmail error:&error];
+        
+        // Array to store the default email address.
+        NSArray *emailAddresses;
+        
+        if ([objects count] != 0) {
+            
+            matches = objects[[objects count] - 1];
+            
+            // There is a default email address.
+            emailAddresses = @[[matches valueForKey:@"defaultEmail"]];
+        }
+        else {
+            
+            // There is NOT a default email address.  Put an empty email address in the arrary.
+            emailAddresses = @[@""];
+        }
+        
+        [mailComposer setToRecipients:emailAddresses];
+        
+        [mailComposer setSubject:@"90 DWT 3 Workout Data"];
+        [mailComposer addAttachmentData:csvData mimeType:@"text/csv" fileName:workoutName];
+        [self presentViewController:mailComposer animated:YES completion:^{
+            [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+        }];
     }
-    else {
-        // There is NOT a default email address.  Put an empty email address in the arrary.
-        emailAddresses = @[@""];
-    }
-    
-    [mailComposer setToRecipients:emailAddresses];
-    [mailComposer setSubject:@"90 DWT 3 Workout Data"];
-    [mailComposer addAttachmentData:csvData mimeType:@"text/csv" fileName:workoutName];
-    [self presentViewController:mailComposer animated:YES completion:^{
-        [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
-    }];
 }
 
 - (IBAction)shareActionSheet:(UIBarButtonItem *)sender {
@@ -371,5 +394,12 @@
     self.adView.frame = CGRectMake(centeredX, bottomAlignedY, size.width, size.height);
     
     self.adView.hidden = NO;
+}
+
+- (void)updateUI {
+    
+    if ([CoreDataHelper sharedHelper].iCloudStore) {
+        [self queryDatabase];
+    }
 }
 @end

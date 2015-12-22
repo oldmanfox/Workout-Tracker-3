@@ -289,6 +289,16 @@
 		A56225541C2867A00026B141 /* MPRewardedVideoCustomEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = A56224961C28679F0026B141 /* MPRewardedVideoCustomEvent.m */; };
 		A56225551C2867A00026B141 /* MPRewardedVideoError.m in Sources */ = {isa = PBXBuildFile; fileRef = A56224981C28679F0026B141 /* MPRewardedVideoError.m */; };
 		A56225561C2867A00026B141 /* MPRewardedVideoReward.m in Sources */ = {isa = PBXBuildFile; fileRef = A562249A1C28679F0026B141 /* MPRewardedVideoReward.m */; };
+		A56225661C2869F30026B141 /* CoreDataHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = A56225591C2869F30026B141 /* CoreDataHelper.m */; };
+		A56225671C2869F30026B141 /* CoreDataImporter.m in Sources */ = {isa = PBXBuildFile; fileRef = A562255B1C2869F30026B141 /* CoreDataImporter.m */; };
+		A56225681C2869F30026B141 /* CoreDataPickerTF.m in Sources */ = {isa = PBXBuildFile; fileRef = A562255D1C2869F30026B141 /* CoreDataPickerTF.m */; };
+		A56225691C2869F30026B141 /* CoreDataTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = A562255F1C2869F30026B141 /* CoreDataTVC.m */; };
+		A562256A1C2869F30026B141 /* Deduplicator.m in Sources */ = {isa = PBXBuildFile; fileRef = A56225611C2869F30026B141 /* Deduplicator.m */; };
+		A562256B1C2869F30026B141 /* Faulter.m in Sources */ = {isa = PBXBuildFile; fileRef = A56225631C2869F30026B141 /* Faulter.m */; };
+		A562256C1C2869F30026B141 /* Thumbnailer.m in Sources */ = {isa = PBXBuildFile; fileRef = A56225651C2869F30026B141 /* Thumbnailer.m */; };
+		A56225701C2872D00026B141 /* UITableViewController+ConvertAllToCoreData.m in Sources */ = {isa = PBXBuildFile; fileRef = A562256F1C2872D00026B141 /* UITableViewController+ConvertAllToCoreData.m */; };
+		A562257B1C2875630026B141 /* Workout+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = A56225781C2875630026B141 /* Workout+CoreDataProperties.m */; };
+		A562257C1C2875630026B141 /* Workout.m in Sources */ = {isa = PBXBuildFile; fileRef = A562257A1C2875630026B141 /* Workout.m */; };
 		A57206BE185F631B00638698 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A57206BD185F631B00638698 /* Foundation.framework */; };
 		A57206C0185F631B00638698 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A57206BF185F631B00638698 /* CoreGraphics.framework */; };
 		A57206C2185F631B00638698 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A57206C1185F631B00638698 /* UIKit.framework */; };
@@ -945,6 +955,27 @@
 		A56224981C28679F0026B141 /* MPRewardedVideoError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPRewardedVideoError.m; sourceTree = "<group>"; };
 		A56224991C28679F0026B141 /* MPRewardedVideoReward.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPRewardedVideoReward.h; sourceTree = "<group>"; };
 		A562249A1C28679F0026B141 /* MPRewardedVideoReward.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPRewardedVideoReward.m; sourceTree = "<group>"; };
+		A56225581C2869F30026B141 /* CoreDataHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataHelper.h; sourceTree = "<group>"; };
+		A56225591C2869F30026B141 /* CoreDataHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataHelper.m; sourceTree = "<group>"; };
+		A562255A1C2869F30026B141 /* CoreDataImporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataImporter.h; sourceTree = "<group>"; };
+		A562255B1C2869F30026B141 /* CoreDataImporter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataImporter.m; sourceTree = "<group>"; };
+		A562255C1C2869F30026B141 /* CoreDataPickerTF.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataPickerTF.h; sourceTree = "<group>"; };
+		A562255D1C2869F30026B141 /* CoreDataPickerTF.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataPickerTF.m; sourceTree = "<group>"; };
+		A562255E1C2869F30026B141 /* CoreDataTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataTVC.h; sourceTree = "<group>"; };
+		A562255F1C2869F30026B141 /* CoreDataTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataTVC.m; sourceTree = "<group>"; };
+		A56225601C2869F30026B141 /* Deduplicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Deduplicator.h; sourceTree = "<group>"; };
+		A56225611C2869F30026B141 /* Deduplicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Deduplicator.m; sourceTree = "<group>"; };
+		A56225621C2869F30026B141 /* Faulter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Faulter.h; sourceTree = "<group>"; };
+		A56225631C2869F30026B141 /* Faulter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Faulter.m; sourceTree = "<group>"; };
+		A56225641C2869F30026B141 /* Thumbnailer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Thumbnailer.h; sourceTree = "<group>"; };
+		A56225651C2869F30026B141 /* Thumbnailer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Thumbnailer.m; sourceTree = "<group>"; };
+		A562256D1C286C850026B141 /* _0_DWT_ 3_v2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "_0_DWT_ 3_v2.xcdatamodel"; sourceTree = "<group>"; };
+		A562256E1C2872D00026B141 /* UITableViewController+ConvertAllToCoreData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableViewController+ConvertAllToCoreData.h"; sourceTree = "<group>"; };
+		A562256F1C2872D00026B141 /* UITableViewController+ConvertAllToCoreData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableViewController+ConvertAllToCoreData.m"; sourceTree = "<group>"; };
+		A56225771C2875630026B141 /* Workout+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Workout+CoreDataProperties.h"; sourceTree = "<group>"; };
+		A56225781C2875630026B141 /* Workout+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Workout+CoreDataProperties.m"; sourceTree = "<group>"; };
+		A56225791C2875630026B141 /* Workout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Workout.h; sourceTree = "<group>"; };
+		A562257A1C2875630026B141 /* Workout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Workout.m; sourceTree = "<group>"; };
 		A57206BA185F631B00638698 /* 90 DWT 3.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "90 DWT 3.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A57206BD185F631B00638698 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		A57206BF185F631B00638698 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -1004,18 +1035,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				58109B9F1BE1876800C66B72 /* libCorePlot-CocoaTouch.a in Frameworks */,
+				A56224A31C2867A00026B141 /* MMAdSDK.framework in Frameworks */,
+				A562249D1C28679F0026B141 /* GoogleMobileAds.framework in Frameworks */,
 				58109DFD1BE1894C00C66B72 /* CoreBluetooth.framework in Frameworks */,
 				58109DFB1BE1894300C66B72 /* libxml2.tbd in Frameworks */,
 				58109DF81BE1890C00C66B72 /* EventKit.framework in Frameworks */,
 				58109DF91BE1890C00C66B72 /* EventKitUI.framework in Frameworks */,
 				58109DF51BE188FC00C66B72 /* CoreMedia.framework in Frameworks */,
-				A562249D1C28679F0026B141 /* GoogleMobileAds.framework in Frameworks */,
 				A5720780185F835D00638698 /* Twitter.framework in Frameworks */,
 				A572077E185F834D00638698 /* SystemConfiguration.framework in Frameworks */,
 				58F0792B188C579800638658 /* StoreKit.framework in Frameworks */,
 				A5720774185F82E500638698 /* Social.framework in Frameworks */,
 				A5720772185F82D600638698 /* QuartzCore.framework in Frameworks */,
-				A56224A31C2867A00026B141 /* MMAdSDK.framework in Frameworks */,
 				58109DF31BE1889F00C66B72 /* PassKit.framework in Frameworks */,
 				58109DF11BE1889600C66B72 /* MobileCoreServices.framework in Frameworks */,
 				A572077C185F833500638698 /* MessageUI.framework in Frameworks */,
@@ -1513,16 +1544,16 @@
 		5898AD7A1868E38200FF2F58 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				5898AD991868E6FF00FF2F58 /* Summary's */,
-				5898AD921868E6AF00FF2F58 /* Photos */,
-				5898AD8B1868E66900FF2F58 /* Measure */,
-				5898AD841868E4B400FF2F58 /* Settings */,
-				5898AD811868E44900FF2F58 /* ExerciseViewController.h */,
-				5898AD821868E44900FF2F58 /* ExerciseViewController.m */,
-				5898AD7E1868E43600FF2F58 /* ScatterPlotViewController.h */,
-				5898AD7F1868E43600FF2F58 /* ScatterPlotViewController.m */,
 				5898AD7B1868E40300FF2F58 /* WebViewController.h */,
 				5898AD7C1868E40300FF2F58 /* WebViewController.m */,
+				5898AD7E1868E43600FF2F58 /* ScatterPlotViewController.h */,
+				5898AD7F1868E43600FF2F58 /* ScatterPlotViewController.m */,
+				5898AD811868E44900FF2F58 /* ExerciseViewController.h */,
+				5898AD821868E44900FF2F58 /* ExerciseViewController.m */,
+				5898AD841868E4B400FF2F58 /* Settings */,
+				5898AD8B1868E66900FF2F58 /* Measure */,
+				5898AD921868E6AF00FF2F58 /* Photos */,
+				5898AD991868E6FF00FF2F58 /* Summary's */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -1541,10 +1572,10 @@
 		5898AD8B1868E66900FF2F58 /* Measure */ = {
 			isa = PBXGroup;
 			children = (
-				5898AD8C1868E69B00FF2F58 /* MeasurementsReportViewController.h */,
-				5898AD8D1868E69B00FF2F58 /* MeasurementsReportViewController.m */,
 				5898AD8E1868E69B00FF2F58 /* MeasurementsViewController.h */,
 				5898AD8F1868E69C00FF2F58 /* MeasurementsViewController.m */,
+				5898AD8C1868E69B00FF2F58 /* MeasurementsReportViewController.h */,
+				5898AD8D1868E69B00FF2F58 /* MeasurementsReportViewController.m */,
 			);
 			name = Measure;
 			sourceTree = "<group>";
@@ -2224,10 +2255,36 @@
 			path = Internal;
 			sourceTree = "<group>";
 		};
+		A56225571C2869F30026B141 /* Generic Core Data Classes */ = {
+			isa = PBXGroup;
+			children = (
+				A56225581C2869F30026B141 /* CoreDataHelper.h */,
+				A56225591C2869F30026B141 /* CoreDataHelper.m */,
+				A562255A1C2869F30026B141 /* CoreDataImporter.h */,
+				A562255B1C2869F30026B141 /* CoreDataImporter.m */,
+				A562255C1C2869F30026B141 /* CoreDataPickerTF.h */,
+				A562255D1C2869F30026B141 /* CoreDataPickerTF.m */,
+				A562255E1C2869F30026B141 /* CoreDataTVC.h */,
+				A562255F1C2869F30026B141 /* CoreDataTVC.m */,
+				A56225601C2869F30026B141 /* Deduplicator.h */,
+				A56225611C2869F30026B141 /* Deduplicator.m */,
+				A56225621C2869F30026B141 /* Faulter.h */,
+				A56225631C2869F30026B141 /* Faulter.m */,
+				A56225641C2869F30026B141 /* Thumbnailer.h */,
+				A56225651C2869F30026B141 /* Thumbnailer.m */,
+			);
+			path = "Generic Core Data Classes";
+			sourceTree = "<group>";
+		};
 		A57206B1185F631B00638698 = {
 			isa = PBXGroup;
 			children = (
 				A562230B1C28679F0026B141 /* MoPubSDK */,
+				A56225771C2875630026B141 /* Workout+CoreDataProperties.h */,
+				A56225781C2875630026B141 /* Workout+CoreDataProperties.m */,
+				A56225791C2875630026B141 /* Workout.h */,
+				A562257A1C2875630026B141 /* Workout.m */,
+				A56225571C2869F30026B141 /* Generic Core Data Classes */,
 				A57206C5185F631B00638698 /* 90 DWT 3 */,
 				A57206E2185F631B00638698 /* 90 DWT 3Tests */,
 				A57206BC185F631B00638698 /* Frameworks */,
@@ -2282,26 +2339,26 @@
 		A57206C5185F631B00638698 /* 90 DWT 3 */ = {
 			isa = PBXGroup;
 			children = (
-				A530AE871C25FCDC006B583C /* Storyboards */,
-				58F73FFC188C4339001CCE57 /* 90 DWT 3.entitlements */,
-				5898AD7A1868E38200FF2F58 /* ViewControllers */,
-				5856E8951868DEC500A095B2 /* ScrollViewContainer.h */,
-				5856E8961868DEC500A095B2 /* ScrollViewContainer.m */,
-				5856E8921868DEA400A095B2 /* MainTBC.h */,
-				5856E8931868DEA400A095B2 /* MainTBC.m */,
-				5856E8911868DE6300A095B2 /* TVC's */,
-				5856E8841868DDBD00A095B2 /* NavControllers */,
-				A5720765185F7CB800638698 /* Categories */,
-				A572075D185F7BFD00638698 /* SWRevealViewController */,
-				A572074A185F755100638698 /* In-App Purchases */,
-				A57206FC185F74EA00638698 /* CorePlot */,
 				A57206F8185F721000638698 /* Layout */,
+				A57206FC185F74EA00638698 /* CorePlot */,
+				A572074A185F755100638698 /* In-App Purchases */,
+				58F73FFC188C4339001CCE57 /* 90 DWT 3.entitlements */,
+				5889CAE81C25F0BB006D1756 /* Settings.bundle */,
 				A57206CE185F631B00638698 /* AppDelegate.h */,
 				A57206CF185F631B00638698 /* AppDelegate.m */,
-				A57206D4185F631B00638698 /* Images.xcassets */,
+				A530AE871C25FCDC006B583C /* Storyboards */,
+				5856E8921868DEA400A095B2 /* MainTBC.h */,
+				5856E8931868DEA400A095B2 /* MainTBC.m */,
+				5856E8951868DEC500A095B2 /* ScrollViewContainer.h */,
+				5856E8961868DEC500A095B2 /* ScrollViewContainer.m */,
 				A57206D1185F631B00638698 /* _0_DWT_3.xcdatamodeld */,
+				A572075D185F7BFD00638698 /* SWRevealViewController */,
+				A5720765185F7CB800638698 /* Categories */,
+				5856E8841868DDBD00A095B2 /* NavControllers */,
+				5856E8911868DE6300A095B2 /* TVC's */,
+				5898AD7A1868E38200FF2F58 /* ViewControllers */,
+				A57206D4185F631B00638698 /* Images.xcassets */,
 				A57206C6185F631B00638698 /* Supporting Files */,
-				5889CAE81C25F0BB006D1756 /* Settings.bundle */,
 			);
 			path = "90 DWT 3";
 			sourceTree = "<group>";
@@ -2404,6 +2461,8 @@
 				A5720767185F7D0600638698 /* UIViewController+Social.m */,
 				A5720762185F7C9800638698 /* UITableViewController+Design.h */,
 				A5720763185F7C9800638698 /* UITableViewController+Design.m */,
+				A562256E1C2872D00026B141 /* UITableViewController+ConvertAllToCoreData.h */,
+				A562256F1C2872D00026B141 /* UITableViewController+ConvertAllToCoreData.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -2463,6 +2522,9 @@
 							};
 							com.apple.Keychain = {
 								enabled = 0;
+							};
+							com.apple.iCloud = {
+								enabled = 1;
 							};
 						};
 					};
@@ -2567,6 +2629,7 @@
 				A56224E81C2867A00026B141 /* MPAnalyticsTracker.m in Sources */,
 				584F600D187A3DB900E8B166 /* Bulk_13_Light_TVC.m in Sources */,
 				A562250C1C2867A00026B141 /* MPAdPlacerInvocation.m in Sources */,
+				A562256B1C2869F30026B141 /* Faulter.m in Sources */,
 				5856E8971868DEC500A095B2 /* ScrollViewContainer.m in Sources */,
 				A56225521C2867A00026B141 /* MPRewardedVideoAdManager.m in Sources */,
 				A56224D71C2867A00026B141 /* MRCommand.m in Sources */,
@@ -2600,6 +2663,7 @@
 				A56224B91C2867A00026B141 /* MPURLActionInfo.m in Sources */,
 				A56224CE1C2867A00026B141 /* MPInstanceProvider.m in Sources */,
 				583A2AB118834A5500C6FB9B /* 2-A-Days_1-3_TVC.m in Sources */,
+				A562257C1C2875630026B141 /* Workout.m in Sources */,
 				5898AD831868E44900FF2F58 /* ExerciseViewController.m in Sources */,
 				A56224DF1C2867A00026B141 /* MRProperty.m in Sources */,
 				A56225331C2867A00026B141 /* MOPUBFullscreenPlayerViewController.m in Sources */,
@@ -2626,6 +2690,7 @@
 				584F5FBB1878A1F200E8B166 /* Normal_5-7_TVC.m in Sources */,
 				A562252A1C2867A00026B141 /* MPServerAdPositioning.m in Sources */,
 				A562250A1C2867A00026B141 /* MPInterstitialAdController.m in Sources */,
+				A562256C1C2869F30026B141 /* Thumbnailer.m in Sources */,
 				584F5FC11878A24400E8B166 /* Normal_10+12_TVC.m in Sources */,
 				A56225131C2867A00026B141 /* MPNativeAdRendererImageHandler.m in Sources */,
 				A56224F51C2867A00026B141 /* MPVASTAd.m in Sources */,
@@ -2641,6 +2706,7 @@
 				A56224CB1C2867A00026B141 /* MPInterstitialCustomEventAdapter.m in Sources */,
 				A56224B71C2867A00026B141 /* MPLastResortDelegate.m in Sources */,
 				A562252C1C2867A00026B141 /* MPStaticNativeAdRendererSettings.m in Sources */,
+				A56225701C2872D00026B141 /* UITableViewController+ConvertAllToCoreData.m in Sources */,
 				A56224CC1C2867A00026B141 /* MPInterstitialViewController.m in Sources */,
 				A56225511C2867A00026B141 /* MPRewardedVideoAdapter.m in Sources */,
 				A57206D0185F631B00638698 /* AppDelegate.m in Sources */,
@@ -2656,6 +2722,7 @@
 				A56224B51C2867A00026B141 /* MPFacebookKeywordProvider.m in Sources */,
 				584F6003187A3D3C00E8B166 /* Bulk_8_Light_TVC.m in Sources */,
 				A56224A21C2867A00026B141 /* MPMillennialInterstitialCustomEvent.m in Sources */,
+				A562257B1C2875630026B141 /* Workout+CoreDataProperties.m in Sources */,
 				A57206CC185F631B00638698 /* main.m in Sources */,
 				A56224CF1C2867A00026B141 /* MPVASTTracking.m in Sources */,
 				A56224A41C2867A00026B141 /* README.md in Sources */,
@@ -2682,6 +2749,7 @@
 				5898AD801868E43600FF2F58 /* ScatterPlotViewController.m in Sources */,
 				A562253C1C2867A00026B141 /* MOPUBNativeVideoAdRenderer.m in Sources */,
 				A56224E71C2867A00026B141 /* UIWebView+MPAdditions.m in Sources */,
+				A56225671C2869F30026B141 /* CoreDataImporter.m in Sources */,
 				A56225321C2867A00026B141 /* MOPUBAVPlayerView.m in Sources */,
 				584F5FCE1878EFA800E8B166 /* Normal_13_Light_TVC.m in Sources */,
 				A56224C91C2867A00026B141 /* MPBaseInterstitialAdapter.m in Sources */,
@@ -2695,6 +2763,7 @@
 				A562251F1C2867A00026B141 /* MPCollectionViewAdPlacer.m in Sources */,
 				5898AD981868E6E700FF2F58 /* PresentPhotosViewController.m in Sources */,
 				584F5FDF187A153800E8B166 /* Tone_5-7_TVC.m in Sources */,
+				A56225691C2869F30026B141 /* CoreDataTVC.m in Sources */,
 				A56225211C2867A00026B141 /* MPNativeAdConstants.m in Sources */,
 				A56224F01C2867A00026B141 /* MPReachability.m in Sources */,
 				584F5FFC187A3CEE00E8B166 /* Bulk_4_Light_TVC.m in Sources */,
@@ -2730,6 +2799,7 @@
 				A5720760185F7BFD00638698 /* SWRevealViewController.m in Sources */,
 				A56224F91C2867A00026B141 /* MPVASTIndustryIcon.m in Sources */,
 				A56224E41C2867A00026B141 /* UIButton+MPAdditions.m in Sources */,
+				A562256A1C2869F30026B141 /* Deduplicator.m in Sources */,
 				A56225191C2867A00026B141 /* MPNativeView.m in Sources */,
 				A562253D1C2867A00026B141 /* MOPUBNativeVideoAdRendererSettings.m in Sources */,
 				A56224E21C2867A00026B141 /* NSJSONSerialization+MPAdditions.m in Sources */,
@@ -2739,6 +2809,7 @@
 				5898ADA21868E72800FF2F58 /* Workout_AbRipper_ResultsViewController.m in Sources */,
 				583A2AB918834AF300C6FB9B /* 2-A-Days_9+11_TVC.m in Sources */,
 				A56225351C2867A00026B141 /* MOPUBNativeVideoAdConfigValues.m in Sources */,
+				A56225681C2869F30026B141 /* CoreDataPickerTF.m in Sources */,
 				584F5FF7187A3CAB00E8B166 /* Bulk_1-3_TVC.m in Sources */,
 				A572075C185F792C00638698 /* DWT3IAPHelper.m in Sources */,
 				A562250E1C2867A00026B141 /* MPDiskLRUCache.m in Sources */,
@@ -2755,6 +2826,7 @@
 				584F5FFF187A3D1500E8B166 /* Bulk_5-7_TVC.m in Sources */,
 				A56225361C2867A00026B141 /* MOPUBNativeVideoCustomEvent.m in Sources */,
 				A56224FD1C2867A00026B141 /* MPVASTManager.m in Sources */,
+				A56225661C2869F30026B141 /* CoreDataHelper.m in Sources */,
 				A562249E1C28679F0026B141 /* README.md in Sources */,
 				A56224EF1C2867A00026B141 /* MPLogProvider.m in Sources */,
 				A56224CA1C2867A00026B141 /* MPInterstitialAdManager.m in Sources */,
@@ -2915,15 +2987,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = "90 DWT 3/90 DWT 3.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/MoPubSDK",
-					2/AdNetworkSupport/GoogleAdMob/SDK,
-					"$(PROJECT_DIR)/MoPubSDK",
-					2/AdNetworkSupport/Millennial/SDK,
 					"$(PROJECT_DIR)/MoPubSDK/AdNetworkSupport/GoogleAdMob/SDK",
 					"$(PROJECT_DIR)/MoPubSDK/AdNetworkSupport/Millennial/SDK",
 				);
@@ -2931,12 +2999,7 @@
 				GCC_PREFIX_HEADER = "90 DWT 3/90 DWT 3-Prefix.pch";
 				INFOPLIST_FILE = "90 DWT 3/90 DWT 3-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/90",
-					DWT,
-					3,
-				);
+				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/90 DWT 3";
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.g-rantsoftware.${PRODUCT_NAME:rfc1034identifier}";
@@ -2952,15 +3015,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = "90 DWT 3/90 DWT 3.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/MoPubSDK",
-					2/AdNetworkSupport/GoogleAdMob/SDK,
-					"$(PROJECT_DIR)/MoPubSDK",
-					2/AdNetworkSupport/Millennial/SDK,
 					"$(PROJECT_DIR)/MoPubSDK/AdNetworkSupport/GoogleAdMob/SDK",
 					"$(PROJECT_DIR)/MoPubSDK/AdNetworkSupport/Millennial/SDK",
 				);
@@ -2968,12 +3027,7 @@
 				GCC_PREFIX_HEADER = "90 DWT 3/90 DWT 3-Prefix.pch";
 				INFOPLIST_FILE = "90 DWT 3/90 DWT 3-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/90",
-					DWT,
-					3,
-				);
+				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/90 DWT 3";
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.g-rantsoftware.${PRODUCT_NAME:rfc1034identifier}";
@@ -3066,9 +3120,10 @@
 		A57206D1185F631B00638698 /* _0_DWT_3.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				A562256D1C286C850026B141 /* _0_DWT_ 3_v2.xcdatamodel */,
 				A57206D2185F631B00638698 /* _0_DWT_3.xcdatamodel */,
 			);
-			currentVersion = A57206D2185F631B00638698 /* _0_DWT_3.xcdatamodel */;
+			currentVersion = A562256D1C286C850026B141 /* _0_DWT_ 3_v2.xcdatamodel */;
 			path = _0_DWT_3.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

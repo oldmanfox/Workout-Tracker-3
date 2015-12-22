@@ -7,6 +7,7 @@
 //
 
 #import "MeasurementsReportViewController.h"
+#import "AppDelegate.h"
 
 @interface MeasurementsReportViewController ()
 
@@ -27,10 +28,17 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    
+    // Respond to changes in underlying store
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(updateUI)
+                                                 name:@"SomethingChanged"
+                                               object:nil];
+
     UIColor *lightGrey = [UIColor colorWithRed:234/255.0f green:234/255.0f blue:234/255.0f alpha:1.0f];
     self.view.backgroundColor = lightGrey;
     
-    [self loadDictionary];
+    [self loadMeasurements];
     [self.htmlView loadHTMLString:[self createHTML] baseURL:nil];
     self.htmlView.backgroundColor = [UIColor clearColor];
     self.htmlView.opaque = NO;
@@ -42,30 +50,6 @@
 }
 
 - (void)emailSummary {
-    // Send email
-    
-    // Create an array of measurements to iterate thru when building the table rows.
-    NSArray *measurementsArray = @[self.month1Dict, self.month2Dict, self.month3Dict, self.finalDict];
-    NSArray *measurementsMonth = @[@"Start Month 1", @"Start Month 2", @"Start Month 3", @"Final"];
-    
-    NSMutableString *writeString = [NSMutableString stringWithCapacity:0];
-    [writeString appendString:[NSString stringWithFormat:@"Month,Weight,Chest,Left Arm,Right Arm,Waist,Hips,Left Thigh,Right Thigh\n"]];
-    
-    for (int i = 0; i < measurementsMonth.count; i++) {
-        [writeString appendString:[NSString stringWithFormat:@"%@,%@,%@,%@,%@,%@,%@,%@,%@\n",
-                                   measurementsMonth[i],
-                                   measurementsArray[i][@"Weight"],
-                                   measurementsArray[i][@"Chest"], 
-                                   measurementsArray[i][@"Left Arm"], 
-                                   measurementsArray[i][@"Right Arm"], 
-                                   measurementsArray[i][@"Waist"], 
-                                   measurementsArray[i][@"Hips"],
-                                   measurementsArray[i][@"Left Thigh"], 
-                                   measurementsArray[i][@"Right Thigh"]]];
-    }
-    
-    NSData *csvData = [writeString dataUsingEncoding:NSASCIIStringEncoding];
-    NSString *fileName = [self.navigationItem.title stringByAppendingString:@" Measurements.csv"];
     
     // Create MailComposerViewController object.
     MFMailComposeViewController *mailComposer;
@@ -73,37 +57,69 @@
     mailComposer.mailComposeDelegate = self;
     mailComposer.navigationBar.tintColor = [UIColor whiteColor];
     
-    // Array to store the default email address.
-    NSArray *emailAddresses; 
-    
-    // Get path to documents directory to get default email address.
-    NSString *docDir = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
-    NSString *defaultEmailFile = nil;
-    defaultEmailFile = [docDir stringByAppendingPathComponent:@"Default Email.out"];
-    
-    if ([[NSFileManager defaultManager] fileExistsAtPath:defaultEmailFile]) {
-        NSFileHandle *fileHandle = [NSFileHandle fileHandleForReadingAtPath:defaultEmailFile];
+    // Check to see if the device has at least 1 email account configured
+    if ([MFMailComposeViewController canSendMail]) {
         
-        NSString *defaultEmail = [[NSString alloc] initWithData:[fileHandle availableData] encoding:NSUTF8StringEncoding];
-        [fileHandle closeFile];
+        AppDelegate *mainAppDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
         
-        // There is a default email address.
-        emailAddresses = @[defaultEmail];
+        // Create an array of measurements to iterate thru when building the table rows.
+        NSArray *measurementsArray = @[self.month1Array, self.month2Array, self.month3Array, self.finalArray];
+        NSArray *measurementsMonth = @[@"Start Month 1", @"Start Month 2", @"Start Month 3", @"Final"];
+        
+        NSMutableString *writeString = [NSMutableString stringWithCapacity:0];
+        [writeString appendString:[NSString stringWithFormat:@"Session,Month,Weight,Chest,Left Arm,Right Arm,Waist,Hips,Left Thigh,Right Thigh\n"]];
+        
+        for (int i = 0; i < measurementsMonth.count; i++) {
+            
+            [writeString appendString:[NSString stringWithFormat:@"%@,%@", [mainAppDelegate getCurrentSession], measurementsMonth[i]]];
+            
+            for (int j = 0; j < self.month1Array.count; j++) {
+                
+                [writeString appendString:[NSString stringWithFormat:@",%@", measurementsArray[i][j]]];
+            }
+            
+            [writeString appendString:@"\n"];
+        }
+        
+        NSData *csvData = [writeString dataUsingEncoding:NSASCIIStringEncoding];
+        NSString *fileName = [self.navigationItem.title stringByAppendingFormat:@" Measurements - Session %@.csv", [mainAppDelegate getCurrentSession]];
+        
+        // Fetch defaultEmail data.
+        NSManagedObjectContext *context = [[CoreDataHelper sharedHelper] context];
+        
+        NSEntityDescription *entityDesc = [NSEntityDescription entityForName:@"Email" inManagedObjectContext:context];
+        NSFetchRequest *request = [[NSFetchRequest alloc] init];
+        [request setEntity:entityDesc];
+        NSManagedObject *matches = nil;
+        NSError *error = nil;
+        NSArray *objects = [context executeFetchRequest:request error:&error];
+        
+        // Array to store the default email address.
+        NSArray *emailAddresses;
+        
+        if ([objects count] != 0) {
+            
+            matches = objects[[objects count] - 1];
+            
+            // There is a default email address.
+            emailAddresses = @[[matches valueForKey:@"defaultEmail"]];
+        }
+        else {
+            
+            // There is NOT a default email address.  Put an empty email address in the arrary.
+            emailAddresses = @[@""];
+        }
+        
+        [mailComposer setToRecipients:emailAddresses];
+        
+        NSString *subject = @"90 DWT 3";
+        subject = [subject stringByAppendingFormat:@" %@ Measurements - Session %@", self.navigationItem.title, [mainAppDelegate getCurrentSession]];
+        [mailComposer setSubject:subject];
+        [mailComposer addAttachmentData:csvData mimeType:@"text/csv" fileName:fileName];
+        [self presentViewController:mailComposer animated:YES completion:^{
+            [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+        }];
     }
-    else {
-        // There is NOT a default email address.  Put an empty email address in the arrary.
-        emailAddresses = @[@""];
-    }
-    
-    [mailComposer setToRecipients:emailAddresses];
-    
-    NSString *subject = @"90 DWT 3";
-    subject = [subject stringByAppendingFormat:@" %@ Measurements", self.navigationItem.title];
-    [mailComposer setSubject:subject];
-    [mailComposer addAttachmentData:csvData mimeType:@"text/csv" fileName:fileName];
-    [self presentViewController:mailComposer animated:YES completion:^{
-        [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
-    }];
 }
 
 - (IBAction)actionSheet:(id)sender {
@@ -131,78 +147,334 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-- (void)loadDictionary {
-    // Get path to documents directory
-    NSString *docDir = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
-    NSString *dictionaryFile = nil;
+- (void)loadMeasurements {
     
-    // Month 1
-    dictionaryFile = [docDir stringByAppendingPathComponent:@"Start Month 1 Measurements.out"];
-    if ([[NSFileManager defaultManager] fileExistsAtPath:dictionaryFile]) {
-        self.month1Dict = [NSDictionary dictionaryWithContentsOfFile:dictionaryFile];
-    }
-    else {
-        self.month1Dict = @{@"Weight": @"0",
-                      @"Chest": @"0",
-                      @"Left Arm": @"0",
-                      @"Right Arm": @"0",
-                      @"Waist": @"0",
-                      @"Hips": @"0",
-                      @"Left Thigh": @"0",
-                      @"Right Thigh": @"0"};
-    }
+    AppDelegate *mainAppDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    NSManagedObjectContext *context = [[CoreDataHelper sharedHelper] context];
     
-    // Month 2
-    dictionaryFile = [docDir stringByAppendingPathComponent:@"Start Month 2 Measurements.out"];
-    if ([[NSFileManager defaultManager] fileExistsAtPath:dictionaryFile]) {
-        self.month2Dict = [NSDictionary dictionaryWithContentsOfFile:dictionaryFile];
-    }
-    else {
-        self.month2Dict = @{@"Weight": @"0",
-                      @"Chest": @"0",
-                      @"Left Arm": @"0",
-                      @"Right Arm": @"0",
-                      @"Waist": @"0",
-                      @"Hips": @"0",
-                      @"Left Thigh": @"0",
-                      @"Right Thigh": @"0"};
-    }
+    NSString *currentSessionString = [mainAppDelegate getCurrentSession];
     
-    // Month 3
-    dictionaryFile = [docDir stringByAppendingPathComponent:@"Start Month 3 Measurements.out"];
-    if ([[NSFileManager defaultManager] fileExistsAtPath:dictionaryFile]) {
-        self.month3Dict = [NSDictionary dictionaryWithContentsOfFile:dictionaryFile];
-    }
-    else {
-        self.month3Dict = @{@"Weight": @"0",
-                      @"Chest": @"0",
-                      @"Left Arm": @"0",
-                      @"Right Arm": @"0",
-                      @"Waist": @"0",
-                      @"Hips": @"0",
-                      @"Left Thigh": @"0",
-                      @"Right Thigh": @"0"};
-    }
+    NSArray *monthArray = @[@"1",
+                            @"2",
+                            @"3",
+                            @"4"];
     
-    // Final
-    dictionaryFile = [docDir stringByAppendingPathComponent:@"Final Measurements.out"];
-    if ([[NSFileManager defaultManager] fileExistsAtPath:dictionaryFile]) {
-        self.finalDict = [NSDictionary dictionaryWithContentsOfFile:dictionaryFile];
+    self.month1Array = [[NSMutableArray alloc] init];
+    self.month2Array = [[NSMutableArray alloc] init];
+    self.month3Array = [[NSMutableArray alloc] init];
+    self.finalArray = [[NSMutableArray alloc] init];
+    
+    // Get workout data with the current session
+    NSEntityDescription *entityDesc = [NSEntityDescription entityForName:@"Measurement" inManagedObjectContext:context];
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    [request setEntity:entityDesc];
+    
+    for (int i = 0 ; i < monthArray.count; i++) {
+        
+        NSPredicate *pred = [NSPredicate predicateWithFormat:@"(session = %@) AND (month = %@)", currentSessionString, monthArray[i]];
+        [request setPredicate:pred];
+        NSManagedObject *matches = nil;
+        NSError *error = nil;
+        NSArray *objects = [context executeFetchRequest:request error:&error];
+        
+        if ([objects count] >= 1) {
+            matches = objects[[objects count]-1];
+            
+            if ([monthArray[i] isEqualToString:@"1"]) {
+                
+                // Weight
+                if ([[matches valueForKey:@"weight"] isEqualToString:@""]) {
+                    [self.month1Array addObject:@"0"];
+                } else {
+                    [self.month1Array addObject:[matches valueForKey:@"weight"]];
+                }
+                
+                // Chest
+                if ([[matches valueForKey:@"chest"] isEqualToString:@""]) {
+                    [self.month1Array addObject:@"0"];
+                } else {
+                    [self.month1Array addObject:[matches valueForKey:@"chest"]];
+                }
+                
+                // Left Arm
+                if ([[matches valueForKey:@"leftArm"] isEqualToString:@""]) {
+                    [self.month1Array addObject:@"0"];
+                } else {
+                    [self.month1Array addObject:[matches valueForKey:@"leftArm"]];
+                }
+                
+                // Right Arm
+                if ([[matches valueForKey:@"rightArm"] isEqualToString:@""]) {
+                    [self.month1Array addObject:@"0"];
+                } else {
+                    [self.month1Array addObject:[matches valueForKey:@"rightArm"]];
+                }
+                
+                // Waist
+                if ([[matches valueForKey:@"waist"] isEqualToString:@""]) {
+                    [self.month1Array addObject:@"0"];
+                } else {
+                    [self.month1Array addObject:[matches valueForKey:@"waist"]];
+                }
+                
+                // Hips
+                if ([[matches valueForKey:@"hips"] isEqualToString:@""]) {
+                    [self.month1Array addObject:@"0"];
+                } else {
+                    [self.month1Array addObject:[matches valueForKey:@"hips"]];
+                }
+                
+                // Left Thigh
+                if ([[matches valueForKey:@"leftThigh"] isEqualToString:@""]) {
+                    [self.month1Array addObject:@"0"];
+                } else {
+                    [self.month1Array addObject:[matches valueForKey:@"leftThigh"]];
+                }
+                
+                // Right Thigh
+                if ([[matches valueForKey:@"rightThigh"] isEqualToString:@""]) {
+                    [self.month1Array addObject:@"0"];
+                } else {
+                    [self.month1Array addObject:[matches valueForKey:@"rightThigh"]];
+                }
+            }
+            
+            if ([monthArray[i] isEqualToString:@"2"]) {
+                
+                // Weight
+                if ([[matches valueForKey:@"weight"] isEqualToString:@""]) {
+                    [self.month2Array addObject:@"0"];
+                } else {
+                    [self.month2Array addObject:[matches valueForKey:@"weight"]];
+                }
+                
+                // Chest
+                if ([[matches valueForKey:@"chest"] isEqualToString:@""]) {
+                    [self.month2Array addObject:@"0"];
+                } else {
+                    [self.month2Array addObject:[matches valueForKey:@"chest"]];
+                }
+                
+                // Left Arm
+                if ([[matches valueForKey:@"leftArm"] isEqualToString:@""]) {
+                    [self.month2Array addObject:@"0"];
+                } else {
+                    [self.month2Array addObject:[matches valueForKey:@"leftArm"]];
+                }
+                
+                // Right Arm
+                if ([[matches valueForKey:@"rightArm"] isEqualToString:@""]) {
+                    [self.month2Array addObject:@"0"];
+                } else {
+                    [self.month2Array addObject:[matches valueForKey:@"rightArm"]];
+                }
+                
+                // Waist
+                if ([[matches valueForKey:@"waist"] isEqualToString:@""]) {
+                    [self.month2Array addObject:@"0"];
+                } else {
+                    [self.month2Array addObject:[matches valueForKey:@"waist"]];
+                }
+                
+                // Hips
+                if ([[matches valueForKey:@"hips"] isEqualToString:@""]) {
+                    [self.month2Array addObject:@"0"];
+                } else {
+                    [self.month2Array addObject:[matches valueForKey:@"hips"]];
+                }
+                
+                // Left Thigh
+                if ([[matches valueForKey:@"leftThigh"] isEqualToString:@""]) {
+                    [self.month2Array addObject:@"0"];
+                } else {
+                    [self.month2Array addObject:[matches valueForKey:@"leftThigh"]];
+                }
+                
+                // Right Thigh
+                if ([[matches valueForKey:@"rightThigh"] isEqualToString:@""]) {
+                    [self.month2Array addObject:@"0"];
+                } else {
+                    [self.month2Array addObject:[matches valueForKey:@"rightThigh"]];
+                }
+            }
+            
+            if ([monthArray[i] isEqualToString:@"3"]) {
+                
+                // Weight
+                if ([[matches valueForKey:@"weight"] isEqualToString:@""]) {
+                    [self.month3Array addObject:@"0"];
+                } else {
+                    [self.month3Array addObject:[matches valueForKey:@"weight"]];
+                }
+                
+                // Chest
+                if ([[matches valueForKey:@"chest"] isEqualToString:@""]) {
+                    [self.month3Array addObject:@"0"];
+                } else {
+                    [self.month3Array addObject:[matches valueForKey:@"chest"]];
+                }
+                
+                // Left Arm
+                if ([[matches valueForKey:@"leftArm"] isEqualToString:@""]) {
+                    [self.month3Array addObject:@"0"];
+                } else {
+                    [self.month3Array addObject:[matches valueForKey:@"leftArm"]];
+                }
+                
+                // Right Arm
+                if ([[matches valueForKey:@"rightArm"] isEqualToString:@""]) {
+                    [self.month3Array addObject:@"0"];
+                } else {
+                    [self.month3Array addObject:[matches valueForKey:@"rightArm"]];
+                }
+                
+                // Waist
+                if ([[matches valueForKey:@"waist"] isEqualToString:@""]) {
+                    [self.month3Array addObject:@"0"];
+                } else {
+                    [self.month3Array addObject:[matches valueForKey:@"waist"]];
+                }
+                
+                // Hips
+                if ([[matches valueForKey:@"hips"] isEqualToString:@""]) {
+                    [self.month3Array addObject:@"0"];
+                } else {
+                    [self.month3Array addObject:[matches valueForKey:@"hips"]];
+                }
+                
+                // Left Thigh
+                if ([[matches valueForKey:@"leftThigh"] isEqualToString:@""]) {
+                    [self.month3Array addObject:@"0"];
+                } else {
+                    [self.month3Array addObject:[matches valueForKey:@"leftThigh"]];
+                }
+                
+                // Right Thigh
+                if ([[matches valueForKey:@"rightThigh"] isEqualToString:@""]) {
+                    [self.month3Array addObject:@"0"];
+                } else {
+                    [self.month3Array addObject:[matches valueForKey:@"rightThigh"]];
+                }
+            }
+            
+            if ([monthArray[i] isEqualToString:@"4"]) {
+                
+                // Weight
+                if ([[matches valueForKey:@"weight"] isEqualToString:@""]) {
+                    [self.finalArray addObject:@"0"];
+                } else {
+                    [self.finalArray addObject:[matches valueForKey:@"weight"]];
+                }
+                
+                // Chest
+                if ([[matches valueForKey:@"chest"] isEqualToString:@""]) {
+                    [self.finalArray addObject:@"0"];
+                } else {
+                    [self.finalArray addObject:[matches valueForKey:@"chest"]];
+                }
+                
+                // Left Arm
+                if ([[matches valueForKey:@"leftArm"] isEqualToString:@""]) {
+                    [self.finalArray addObject:@"0"];
+                } else {
+                    [self.finalArray addObject:[matches valueForKey:@"leftArm"]];
+                }
+                
+                // Right Arm
+                if ([[matches valueForKey:@"rightArm"] isEqualToString:@""]) {
+                    [self.finalArray addObject:@"0"];
+                } else {
+                    [self.finalArray addObject:[matches valueForKey:@"rightArm"]];
+                }
+                
+                // Waist
+                if ([[matches valueForKey:@"waist"] isEqualToString:@""]) {
+                    [self.finalArray addObject:@"0"];
+                } else {
+                    [self.finalArray addObject:[matches valueForKey:@"waist"]];
+                }
+                
+                // Hips
+                if ([[matches valueForKey:@"hips"] isEqualToString:@""]) {
+                    [self.finalArray addObject:@"0"];
+                } else {
+                    [self.finalArray addObject:[matches valueForKey:@"hips"]];
+                }
+                
+                // Left Thigh
+                if ([[matches valueForKey:@"leftThigh"] isEqualToString:@""]) {
+                    [self.finalArray addObject:@"0"];
+                } else {
+                    [self.finalArray addObject:[matches valueForKey:@"leftThigh"]];
+                }
+                
+                // Right Thigh
+                if ([[matches valueForKey:@"rightThigh"] isEqualToString:@""]) {
+                    [self.finalArray addObject:@"0"];
+                } else {
+                    [self.finalArray addObject:[matches valueForKey:@"rightThigh"]];
+                }
+            }
+        }
+        else {
+            
+            if ([monthArray[i] isEqualToString:@"1"]) {
+                
+                [self.month1Array addObject:@"0"];
+                [self.month1Array addObject:@"0"];
+                [self.month1Array addObject:@"0"];
+                [self.month1Array addObject:@"0"];
+                [self.month1Array addObject:@"0"];
+                [self.month1Array addObject:@"0"];
+                [self.month1Array addObject:@"0"];
+                [self.month1Array addObject:@"0"];
+            }
+            
+            if ([monthArray[i] isEqualToString:@"2"]) {
+                
+                [self.month2Array addObject:@"0"];
+                [self.month2Array addObject:@"0"];
+                [self.month2Array addObject:@"0"];
+                [self.month2Array addObject:@"0"];
+                [self.month2Array addObject:@"0"];
+                [self.month2Array addObject:@"0"];
+                [self.month2Array addObject:@"0"];
+                [self.month2Array addObject:@"0"];
+            }
+            
+            if ([monthArray[i] isEqualToString:@"3"]) {
+                
+                [self.month3Array addObject:@"0"];
+                [self.month3Array addObject:@"0"];
+                [self.month3Array addObject:@"0"];
+                [self.month3Array addObject:@"0"];
+                [self.month3Array addObject:@"0"];
+                [self.month3Array addObject:@"0"];
+                [self.month3Array addObject:@"0"];
+                [self.month3Array addObject:@"0"];
+            }
+            
+            if ([monthArray[i] isEqualToString:@"4"]) {
+                
+                [self.finalArray addObject:@"0"];
+                [self.finalArray addObject:@"0"];
+                [self.finalArray addObject:@"0"];
+                [self.finalArray addObject:@"0"];
+                [self.finalArray addObject:@"0"];
+                [self.finalArray addObject:@"0"];
+                [self.finalArray addObject:@"0"];
+                [self.finalArray addObject:@"0"];
+            }
+        }
     }
-    else {
-        self.finalDict = @{@"Weight": @"0",
-                     @"Chest": @"0",
-                     @"Left Arm": @"0",
-                     @"Right Arm": @"0",
-                     @"Waist": @"0",
-                     @"Hips": @"0",
-                     @"Left Thigh": @"0",
-                     @"Right Thigh": @"0"};    }
 }
 
 - (NSString*)createHTML {
+    
+    AppDelegate *mainAppDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    
     // Create an array of measurements to iterate thru when building the table rows.
-    NSArray *measurementsArray = @[self.month1Dict, self.month2Dict, self.month3Dict, self.finalDict];
+    NSArray *measurementsArray = @[self.month1Array, self.month2Array, self.month3Array, self.finalArray];
     NSArray *measurementsNameArray = @[@"Weight", @"Chest", @"Left Arm", @"Right Arm", @"Waist", @"Hips", @"Left Thigh", @"Right Thigh"];
     
     NSString *myHTML = @"<html><head>";
@@ -211,7 +483,7 @@
     myHTML = [myHTML stringByAppendingFormat:@"<STYLE TYPE='text/css'><!--TD{font-family: Arial; font-size: 12pt;}TH{font-family: Arial; font-size: 14pt;}---></STYLE></head><body><table border='1' bordercolor='#3399FF' style='background-color:#CCCCCC' width='%f' cellpadding='2' cellspacing='1'>", (self.htmlView.frame.size.width - 15)];
     
     // Table Headers
-    myHTML = [myHTML stringByAppendingString:@"<tr><th style='background-color:#999999'></th><th style='background-color:#999999'>1</th><th style='background-color:#999999'>2</th><th style='background-color:#999999'>3</th><th style='background-color:#999999'>Final</th></tr>"];
+    myHTML = [myHTML stringByAppendingFormat:@"<tr><th style='background-color:#999999'>Session %@</th><th style='background-color:#999999'>1</th><th style='background-color:#999999'>2</th><th style='background-color:#999999'>3</th><th style='background-color:#999999'>Final</th></tr>", [mainAppDelegate getCurrentSession]];
     
     // Table Data
     for (int i = 0; i < measurementsNameArray.count; i++) {
@@ -219,7 +491,7 @@
         
         for (int a = 0; a < measurementsArray.count; a++) {
             myHTML = [myHTML stringByAppendingFormat:@"<td>%@</td>",
-                      measurementsArray[a][measurementsNameArray[i]]];
+                      measurementsArray[a][i]];
         }
         
         myHTML = [myHTML stringByAppendingString:@"</tr>"];
@@ -229,5 +501,14 @@
     myHTML = [myHTML stringByAppendingString:@"</table></body></html>"];
     
     return myHTML;
+}
+
+- (void)updateUI {
+    
+    if ([CoreDataHelper sharedHelper].iCloudStore) {
+        
+        [self loadMeasurements];
+        [self.htmlView loadHTMLString:[self createHTML] baseURL:nil];
+    }
 }
 @end

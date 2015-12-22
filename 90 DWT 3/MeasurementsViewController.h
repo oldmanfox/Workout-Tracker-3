@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import <MessageUI/MessageUI.h>
 #import "UIViewController+Social.h"
+#import "CoreDataHelper.h"
+#import "MeasurementsNavController.h"
 
 @interface MeasurementsViewController : UIViewController<MFMailComposeViewControllerDelegate, UIActionSheetDelegate>
 

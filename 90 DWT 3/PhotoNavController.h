@@ -11,6 +11,7 @@
 @interface PhotoNavController : UINavigationController
 
 @property (strong, nonatomic) NSString *month; // Current month for pictures.
+@property (strong, nonatomic) NSString *photoMonthSelected; // Month for pictures to save/load.
 
 - (void)saveImage:(UIImage*)image imageName:(NSString*)imageName;
 - (UIImage*)loadImage:(NSString*)imageName;

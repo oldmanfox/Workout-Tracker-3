@@ -12,6 +12,8 @@
 #import "MainTBC.h"
 #import "EmailViewController.h"
 #import "UITableViewController+Design.h"
+#import "CoreDataHelper.h"
+#import "AppDelegate.h"
 
 @interface SettingsTVC : UITableViewController
 @property (weak, nonatomic) IBOutlet UITableViewCell *cell1; // Email.  Default is youremail@abc.com.
@@ -20,11 +22,30 @@
 @property (weak, nonatomic) IBOutlet UITableViewCell *cell4; // Website
 @property (weak, nonatomic) IBOutlet UITableViewCell *cell5; // Bands
 @property (weak, nonatomic) IBOutlet UITableViewCell *cell6; // Workout level
+@property (weak, nonatomic) IBOutlet UITableViewCell *cell7; // Current Session
+@property (weak, nonatomic) IBOutlet UITableViewCell *cell8; // Disable AutoLock
+@property (weak, nonatomic) IBOutlet UITableViewCell *cell9; // Reset
+@property (weak, nonatomic) IBOutlet UITableViewCell *cell10; // iCloud Account status
+@property (weak, nonatomic) IBOutlet UITableViewCell *cell11; // iCould App status
+
 @property (weak, nonatomic) IBOutlet UILabel *emailDetail;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *defaultWorkout; // Normal, Tone, Bulk, or 2-A-Days.  Default is Normal.
-- (IBAction)selectDefaultWorkout:(id)sender;
 @property (weak, nonatomic) IBOutlet UISwitch *bandsSwitch; // Using bands instead of free weights?
+@property (weak, nonatomic) IBOutlet UISwitch *autoLockSwitch; // Disable sutolock while using the app.
+@property (weak, nonatomic) IBOutlet UILabel *currentSessionLabel;
+@property (weak, nonatomic) IBOutlet UIButton *resetAllDataButton;
+@property (weak, nonatomic) IBOutlet UIButton *resetCurrentSessionDataButton;
+@property (weak, nonatomic) IBOutlet UIButton *decreaseSessionButton;
+@property (weak, nonatomic) IBOutlet UIButton *increaseSessionButton;
+@property (weak, nonatomic) IBOutlet UILabel *iCloudAccountStatusLabel;
+@property (weak, nonatomic) IBOutlet UILabel *iCloudAppStatusLabel;
 
+- (IBAction)selectDefaultWorkout:(id)sender;
 - (IBAction)toggleBands:(id)sender;
+- (IBAction)decreaseSession:(id)sender;
+- (IBAction)increaseSession:(id)sender;
+- (IBAction)resetAllData:(id)sender;
+- (IBAction)resetCurrentSessionData:(id)sender;
+- (IBAction)toggleAutoLock:(id)sender;
 
 @end

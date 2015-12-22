@@ -15,6 +15,7 @@
 #import "UIViewController+Social.h"
 #import "UIImage+Resizing.h"
 #import "photoCollectionViewCell.h"
+#import "CoreDataHelper.h"
 
 @interface PhotoScrollerViewController : UIViewController<UIImagePickerControllerDelegate, UINavigationControllerDelegate, MPMediaPickerControllerDelegate, UIPopoverControllerDelegate, MFMailComposeViewControllerDelegate, UIActionSheetDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
 

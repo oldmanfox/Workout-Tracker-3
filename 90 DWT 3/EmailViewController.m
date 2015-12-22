@@ -7,6 +7,7 @@
 //
 
 #import "EmailViewController.h"
+#import "CoreDataHelper.h"
 
 @interface EmailViewController ()
 
@@ -29,7 +30,13 @@
 	// Do any additional setup after loading the view.
     
     [self configureViewForIOSVersion];
-    self.defaultEmail.text = ((SettingsNavController *)self.parentViewController).emailAddress;
+    [self queryDatabase];
+    
+    // Respond to changes in underlying store
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(updateUI)
+                                                 name:@"SomethingChanged"
+                                               object:nil];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -42,18 +49,34 @@
 }
 
 - (IBAction)saveEmail:(id)sender {
-    // Get path to documents directory
-    NSString *docDir = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
-    NSString *defaultEmailFile = nil;
-    defaultEmailFile = [docDir stringByAppendingPathComponent:@"Default Email.out"];
     
-    // Create the file
-    [[NSFileManager defaultManager] createFileAtPath:defaultEmailFile contents:nil attributes:nil];
+    NSDate *todaysDate = [NSDate date];
     
-    // Write file to documents directory
-    NSFileHandle *fileHandle = [NSFileHandle fileHandleForWritingAtPath:defaultEmailFile];
-    [fileHandle writeData:[self.defaultEmail.text dataUsingEncoding:NSUTF8StringEncoding]];
-    [fileHandle closeFile];
+    NSManagedObjectContext *context = [[CoreDataHelper sharedHelper] context];
+    
+    // Save defaultEmail data.
+    NSEntityDescription *entityDescSession = [NSEntityDescription entityForName:@"Email" inManagedObjectContext:context];
+    NSFetchRequest *requestSession = [[NSFetchRequest alloc] init];
+    [requestSession setEntity:entityDescSession];
+    NSManagedObject *matches = nil;
+    NSError *error = nil;
+    NSArray *objects = [context executeFetchRequest:requestSession error:&error];
+    
+    if ([objects count] != 0) {
+        
+        matches = objects[[objects count] - 1];
+        [matches setValue:self.defaultEmail.text forKey:@"defaultEmail"];
+        [matches setValue:todaysDate forKey:@"date"];
+    }
+    else {
+        
+        NSManagedObject *newDefaultEmail;
+        newDefaultEmail = [NSEntityDescription insertNewObjectForEntityForName:@"Email" inManagedObjectContext:context];
+        [newDefaultEmail setValue:self.defaultEmail.text forKey:@"defaultEmail"];
+        [newDefaultEmail setValue:todaysDate forKey:@"date"];
+    }
+    
+    [[CoreDataHelper sharedHelper] backgroundSaveContext];
     
     ((SettingsNavController *)self.parentViewController).emailAddress = self.defaultEmail.text;
     
@@ -76,5 +99,35 @@
     
     // Apply Keyboard Color
     self.defaultEmail.keyboardAppearance = UIKeyboardAppearanceDark;
+}
+
+- (void)queryDatabase {
+    
+    NSManagedObjectContext *context = [[CoreDataHelper sharedHelper] context];
+    
+    // Fetch defaultEmail data.
+    NSEntityDescription *entityDescSession = [NSEntityDescription entityForName:@"Email" inManagedObjectContext:context];
+    NSFetchRequest *requestSession = [[NSFetchRequest alloc] init];
+    [requestSession setEntity:entityDescSession];
+    NSManagedObject *matches = nil;
+    NSError *error = nil;
+    NSArray *objects = [context executeFetchRequest:requestSession error:&error];
+    
+    if ([objects count] != 0) {
+        
+        matches = objects[[objects count] - 1];
+        self.defaultEmail.text = [matches valueForKey:@"defaultEmail"];
+    }
+    else {
+        
+        self.defaultEmail.placeholder = ((SettingsNavController *)self.parentViewController).emailAddress;
+    }
+}
+
+- (void)updateUI {
+    
+    if ([CoreDataHelper sharedHelper].iCloudStore) {
+        [self queryDatabase];
+    }
 }
 @end
