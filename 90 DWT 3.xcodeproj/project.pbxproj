@@ -267,7 +267,6 @@
 		A521A1EF1CB442E0007292C3 /* MPRewardedVideoCustomEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = A521A1301CB442DF007292C3 /* MPRewardedVideoCustomEvent.m */; };
 		A521A1F01CB442E0007292C3 /* MPRewardedVideoError.m in Sources */ = {isa = PBXBuildFile; fileRef = A521A1321CB442DF007292C3 /* MPRewardedVideoError.m */; };
 		A521A1F11CB442E0007292C3 /* MPRewardedVideoReward.m in Sources */ = {isa = PBXBuildFile; fileRef = A521A1341CB442DF007292C3 /* MPRewardedVideoReward.m */; };
-		A521A1F21CB4430A007292C3 /* libCorePlot-CocoaTouch.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 58109B9E1BE1876800C66B72 /* libCorePlot-CocoaTouch.a */; };
 		A530AE8D1C25FEC8006B583C /* iPad_Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A530AE8C1C25FEC8006B583C /* iPad_Settings.storyboard */; };
 		A530AE8F1C25FFBF006B583C /* iPad_Measurements.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A530AE8E1C25FFBF006B583C /* iPad_Measurements.storyboard */; };
 		A530AE911C260061006B583C /* iPad_Photos.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A530AE901C260061006B583C /* iPad_Photos.storyboard */; };
@@ -338,6 +337,7 @@
 		A5720780185F835D00638698 /* Twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A572077F185F835D00638698 /* Twitter.framework */; };
 		A5720782185F836A00638698 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5720781185F836A00638698 /* MediaPlayer.framework */; };
 		A58EB9BB1ACC32E500503170 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A58EB9BA1ACC32E500503170 /* Accelerate.framework */; };
+		A5FF2CF11CB4484300B7D7BD /* libCorePlot-CocoaTouch.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 58109B9E1BE1876800C66B72 /* libCorePlot-CocoaTouch.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1038,7 +1038,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A521A1F21CB4430A007292C3 /* libCorePlot-CocoaTouch.a in Frameworks */,
+				A5FF2CF11CB4484300B7D7BD /* libCorePlot-CocoaTouch.a in Frameworks */,
 				A521A13D1CB442DF007292C3 /* MMAdSDK.framework in Frameworks */,
 				A521A1371CB442DF007292C3 /* GoogleMobileAds.framework in Frameworks */,
 				58109DFD1BE1894C00C66B72 /* CoreBluetooth.framework in Frameworks */,
