@@ -394,10 +394,10 @@ class MonthTVC: UITableViewController, UIPopoverPresentationControllerDelegate, 
                              [Week.week9, Week.week10, Week.week11, Week.week12, Week.week13],
                              [Week.week14, Week.week15, Week.week16, Week.week17]]
             
-            weekOfMonthColorList = [[Color.one, Color.one, Color.one, Color.one],
-                                    [Color.two, Color.two, Color.two, Color.two],
-                                    [Color.three, Color.four, Color.three, Color.four, Color.one],
-                                    [Color.five, Color.five, Color.five, Color.five]]
+            weekOfMonthColorList = [[Color.one, Color.one, Color.one, Color.orange],
+                                    [Color.two, Color.two, Color.two, Color.orange],
+                                    [Color.three, Color.four, Color.three, Color.four, Color.orange],
+                                    [Color.five, Color.five, Color.five, Color.orange]]
             
             lightWorkoutList = [[false, false, false, true], [false, false, false, true], [false, false, false, false, true],
                                 [false, false, false, true]]
@@ -408,10 +408,10 @@ class MonthTVC: UITableViewController, UIPopoverPresentationControllerDelegate, 
                              [Week.week9, Week.week10, Week.week11, Week.week12, Week.week13],
                              [Week.week14, Week.week15, Week.week16, Week.week17]]
             
-            weekOfMonthColorList = [[Color.one, Color.one, Color.one, Color.one],
-                                    [Color.two, Color.two, Color.two, Color.two],
-                                    [Color.three, Color.four, Color.three, Color.four, Color.one],
-                                    [Color.five, Color.five, Color.five, Color.five]]
+            weekOfMonthColorList = [[Color.one, Color.one, Color.one, Color.orange],
+                                    [Color.two, Color.two, Color.two, Color.orange],
+                                    [Color.three, Color.four, Color.three, Color.four, Color.orange],
+                                    [Color.five, Color.five, Color.five, Color.orange]]
             
             lightWorkoutList = [[false, false, false, true], [false, false, false, true], [false, false, false, false, true],
                                 [false, false, false, true]]
@@ -421,9 +421,9 @@ class MonthTVC: UITableViewController, UIPopoverPresentationControllerDelegate, 
                              [Week.week5, Week.week6, Week.week7, Week.week8],
                              [Week.week9, Week.week10, Week.week11, Week.week12, Week.week13]]
             
-            weekOfMonthColorList = [[Color.one, Color.one, Color.one, Color.one],
-                                    [Color.two, Color.two, Color.two, Color.two],
-                                    [Color.three, Color.four, Color.three, Color.four, Color.one]]
+            weekOfMonthColorList = [[Color.one, Color.one, Color.one, Color.orange],
+                                    [Color.two, Color.two, Color.two, Color.orange],
+                                    [Color.three, Color.four, Color.three, Color.four, Color.orange]]
             
             lightWorkoutList = [[false, false, false, true], [false, false, false, true], [false, false, false, false, true]]
             
