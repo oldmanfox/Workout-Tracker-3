@@ -20,6 +20,7 @@
 		58109DFD1BE1894C00C66B72 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58109DFC1BE1894C00C66B72 /* CoreBluetooth.framework */; };
 		5889CAE91C25F0BB006D1756 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 5889CAE81C25F0BB006D1756 /* Settings.bundle */; };
 		58F0792B188C579800638658 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58F0792A188C579800638658 /* StoreKit.framework */; };
+		A522F1961E674C4D00C92A57 /* WorkoutTVC_Workout5Round__Rep_TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A522F1951E674C4D00C92A57 /* WorkoutTVC_Workout5Round__Rep_TableViewCell.swift */; };
 		A57206BE185F631B00638698 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A57206BD185F631B00638698 /* Foundation.framework */; };
 		A57206C0185F631B00638698 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A57206BF185F631B00638698 /* CoreGraphics.framework */; };
 		A57206C2185F631B00638698 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A57206C1185F631B00638698 /* UIKit.framework */; };
@@ -42,6 +43,7 @@
 		A572077E185F834D00638698 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A572077D185F834D00638698 /* SystemConfiguration.framework */; };
 		A5720780185F835D00638698 /* Twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A572077F185F835D00638698 /* Twitter.framework */; };
 		A5720782185F836A00638698 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5720781185F836A00638698 /* MediaPlayer.framework */; };
+		A5853A2B1E6E0C65007E1E7E /* WorkoutTVC_Workout5Round_Weight_TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5853A2A1E6E0C65007E1E7E /* WorkoutTVC_Workout5Round_Weight_TableViewCell.swift */; };
 		A5B641C91E5C950400A747BA /* AutoLock+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B641B71E5C950400A747BA /* AutoLock+CoreDataClass.swift */; };
 		A5B641CA1E5C950400A747BA /* AutoLock+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B641B81E5C950400A747BA /* AutoLock+CoreDataProperties.swift */; };
 		A5B641CB1E5C950400A747BA /* Workout+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B641B91E5C950400A747BA /* Workout+CoreDataClass.swift */; };
@@ -262,7 +264,6 @@
 		A5B644F71E5C97E000A747BA /* WeekTVC_TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B644EF1E5C97E000A747BA /* WeekTVC_TableViewCell.swift */; };
 		A5B644F81E5C97E000A747BA /* WorkoutTVC_WorkoutTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B644F01E5C97E000A747BA /* WorkoutTVC_WorkoutTableViewCell.swift */; };
 		A5B644F91E5C97E000A747BA /* WorkoutTVC_CompletionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B644F11E5C97E000A747BA /* WorkoutTVC_CompletionTableViewCell.swift */; };
-		A5B644FA1E5C97E000A747BA /* WorkoutTVC_ShuffleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B644F21E5C97E000A747BA /* WorkoutTVC_ShuffleTableViewCell.swift */; };
 		A5B644FB1E5C97E000A747BA /* PhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B644F31E5C97E000A747BA /* PhotoCollectionViewCell.swift */; };
 		A5B644FC1E5C97E000A747BA /* PhotoCollectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B644F41E5C97E000A747BA /* PhotoCollectionHeaderView.swift */; };
 		A5B644FD1E5C97E000A747BA /* StoreRewardVideoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B644F51E5C97E000A747BA /* StoreRewardVideoTableViewCell.swift */; };
@@ -323,6 +324,7 @@
 		5889CAE81C25F0BB006D1756 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		58F0792A188C579800638658 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		58F73FFC188C4339001CCE57 /* 90 DWT 3.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "90 DWT 3.entitlements"; sourceTree = "<group>"; };
+		A522F1951E674C4D00C92A57 /* WorkoutTVC_Workout5Round__Rep_TableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkoutTVC_Workout5Round__Rep_TableViewCell.swift; sourceTree = "<group>"; };
 		A562256D1C286C850026B141 /* _0_DWT_ 3_v2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "_0_DWT_ 3_v2.xcdatamodel"; sourceTree = "<group>"; };
 		A57206BA185F631B00638698 /* 90 DWT 3.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "90 DWT 3.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A57206BD185F631B00638698 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -348,6 +350,7 @@
 		A572077D185F834D00638698 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		A572077F185F835D00638698 /* Twitter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Twitter.framework; path = System/Library/Frameworks/Twitter.framework; sourceTree = SDKROOT; };
 		A5720781185F836A00638698 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		A5853A2A1E6E0C65007E1E7E /* WorkoutTVC_Workout5Round_Weight_TableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkoutTVC_Workout5Round_Weight_TableViewCell.swift; sourceTree = "<group>"; };
 		A5B641B51E5C93C500A747BA /* _0_DWT_ 3_v3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "_0_DWT_ 3_v3.xcdatamodel"; sourceTree = "<group>"; };
 		A5B641B61E5C950300A747BA /* 90 DWT 3-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "90 DWT 3-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
 		A5B641B71E5C950400A747BA /* AutoLock+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AutoLock+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -926,7 +929,6 @@
 		A5B644EF1E5C97E000A747BA /* WeekTVC_TableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeekTVC_TableViewCell.swift; sourceTree = "<group>"; };
 		A5B644F01E5C97E000A747BA /* WorkoutTVC_WorkoutTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkoutTVC_WorkoutTableViewCell.swift; sourceTree = "<group>"; };
 		A5B644F11E5C97E000A747BA /* WorkoutTVC_CompletionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkoutTVC_CompletionTableViewCell.swift; sourceTree = "<group>"; };
-		A5B644F21E5C97E000A747BA /* WorkoutTVC_ShuffleTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkoutTVC_ShuffleTableViewCell.swift; sourceTree = "<group>"; };
 		A5B644F31E5C97E000A747BA /* PhotoCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoCollectionViewCell.swift; sourceTree = "<group>"; };
 		A5B644F41E5C97E000A747BA /* PhotoCollectionHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoCollectionHeaderView.swift; sourceTree = "<group>"; };
 		A5B644F51E5C97E000A747BA /* StoreRewardVideoTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreRewardVideoTableViewCell.swift; sourceTree = "<group>"; };
@@ -1674,6 +1676,7 @@
 			isa = PBXGroup;
 			children = (
 				A5B6440E1E5C962200A747BA /* Headers */,
+				A5B644C11E5C964700A747BA /* ExerciseChartViewController.swift */,
 			);
 			name = ShinobiControls;
 			sourceTree = "<group>";
@@ -1685,7 +1688,6 @@
 				A5B644BA1E5C963B00A747BA /* Modules */,
 				A5B644BC1E5C963B00A747BA /* PrivateHeaders */,
 				A5B644BF1E5C963B00A747BA /* ShinobiCharts */,
-				A5B644C11E5C964700A747BA /* ExerciseChartViewController.swift */,
 			);
 			name = Headers;
 			sourceTree = "<group>";
@@ -1955,8 +1957,9 @@
 				A5B644EE1E5C97E000A747BA /* MonthTVC_TableViewCell.swift */,
 				A5B644EF1E5C97E000A747BA /* WeekTVC_TableViewCell.swift */,
 				A5B644F01E5C97E000A747BA /* WorkoutTVC_WorkoutTableViewCell.swift */,
+				A522F1951E674C4D00C92A57 /* WorkoutTVC_Workout5Round__Rep_TableViewCell.swift */,
+				A5853A2A1E6E0C65007E1E7E /* WorkoutTVC_Workout5Round_Weight_TableViewCell.swift */,
 				A5B644F11E5C97E000A747BA /* WorkoutTVC_CompletionTableViewCell.swift */,
-				A5B644F21E5C97E000A747BA /* WorkoutTVC_ShuffleTableViewCell.swift */,
 				A5B644F31E5C97E000A747BA /* PhotoCollectionViewCell.swift */,
 				A5B644F41E5C97E000A747BA /* PhotoCollectionHeaderView.swift */,
 				A5B644F51E5C97E000A747BA /* StoreRewardVideoTableViewCell.swift */,
@@ -2245,6 +2248,7 @@
 				A5B643B71E5C95D100A747BA /* MPAdView.m in Sources */,
 				A5B643951E5C95D100A747BA /* UIColor+MPAdditions.m in Sources */,
 				A5B643A21E5C95D100A747BA /* MPStoreKitProvider.m in Sources */,
+				A5853A2B1E6E0C65007E1E7E /* WorkoutTVC_Workout5Round_Weight_TableViewCell.swift in Sources */,
 				A5B643AD1E5C95D100A747BA /* MPVASTManager.m in Sources */,
 				A5B643C21E5C95D100A747BA /* MPNativeAd+Internal.m in Sources */,
 				A57206D3185F631B00638698 /* _0_DWT_3.xcdatamodeld in Sources */,
@@ -2324,6 +2328,7 @@
 				A5B644EB1E5C970100A747BA /* ProductCell.swift in Sources */,
 				A5B643941E5C95D100A747BA /* UIButton+MPAdditions.m in Sources */,
 				A5B643E31E5C95D100A747BA /* MOPUBFullscreenPlayerViewController.m in Sources */,
+				A522F1961E674C4D00C92A57 /* WorkoutTVC_Workout5Round__Rep_TableViewCell.swift in Sources */,
 				A5B643A11E5C95D100A747BA /* MPSessionTracker.m in Sources */,
 				A5B643E81E5C95D100A747BA /* MOPUBPlayerManager.m in Sources */,
 				A5B643D21E5C95D100A747BA /* MPNativeAdData.m in Sources */,
@@ -2356,7 +2361,6 @@
 				A5B643C41E5C95D100A747BA /* MPNativeAdSourceQueue.m in Sources */,
 				A5B643DE1E5C95D100A747BA /* MPStreamAdPlacer.m in Sources */,
 				A5B643DF1E5C95D100A747BA /* MPTableViewAdPlacer.m in Sources */,
-				A5B644FA1E5C97E000A747BA /* WorkoutTVC_ShuffleTableViewCell.swift in Sources */,
 				A5B6436D1E5C95D100A747BA /* MPVideoConfig.m in Sources */,
 				A5B6435C1E5C95D100A747BA /* MPActivityViewControllerHelper+TweetShare.m in Sources */,
 				A5B6438E1E5C95D100A747BA /* MRProperty.m in Sources */,

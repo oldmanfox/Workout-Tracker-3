@@ -35,11 +35,20 @@ class WeekTVC: UITableViewController, UIPopoverPresentationControllerDelegate, U
     var request = ""
     
     fileprivate struct Color {
-        static let light = "Light"
-        static let dark = "Dark"
-        static let red = "Red"
-        static let purple = "Purple"
-        static let tan = "Tan"
+        static let regular_One = "Regular 1"
+        static let regular_two = "Regular 2"
+        static let regular_three = "Regular 3"
+        static let regular_four = "Regular 4"
+        static let regular_five = "Regular 5"
+        
+        static let light_One = "Light 1"
+        static let light_two = "Light 2"
+        static let light_three = "Light 3"
+        static let light_four = "Light 4"
+        static let light_five = "Light 5"
+        static let light_six = "Light 6"
+        static let light_seven = "Light 7"
+        static let orange = "Orange"
         static let white = "White"
     }
     
@@ -441,7 +450,7 @@ class WeekTVC: UITableViewController, UIPopoverPresentationControllerDelegate, U
             
             // Update TableViewCell Accessory Icon - Checkmark
             let cell = self.tableView.cellForRow(at: self.indexPath) as! WeekTVC_TableViewCell
-            let tempAccessoryView:UIImageView = UIImageView (image: UIImage (named: "RED_White_CheckMark"))
+            let tempAccessoryView:UIImageView = UIImageView (image: UIImage (named: "Colored_White_CheckMark"))
             cell.accessoryView = tempAccessoryView
         }
     }
@@ -610,7 +619,7 @@ class WeekTVC: UITableViewController, UIPopoverPresentationControllerDelegate, U
         if workoutCompletedObjects.count != 0 {
             
             // Workout completed so put a checkmark as the accessoryview icon
-            let tempAccessoryView:UIImageView = UIImageView (image: UIImage (named: "RED_White_CheckMark"))
+            let tempAccessoryView:UIImageView = UIImageView (image: UIImage (named: "Colored_White_CheckMark"))
             cell.accessoryView = tempAccessoryView
         }
         else {
@@ -621,25 +630,57 @@ class WeekTVC: UITableViewController, UIPopoverPresentationControllerDelegate, U
         }
         
         switch daysOfWeekColorList[indexPath.section][indexPath.row] as! String {
-        case "Light":
-            cell.dayOfWeekTextField.backgroundColor = UIColor(red: 86/255, green: 145/255, blue: 254/255, alpha: 1.0)
+        case "Regular 1":
+            cell.dayOfWeekTextField.backgroundColor = UIColor(red: 0/255, green: 125/255, blue: 191/255, alpha: 1.0)
             cell.dayOfWeekTextField.textColor = UIColor.white
             
-        case "Dark":
-            cell.dayOfWeekTextField.backgroundColor = UIColor(red: 43/255, green: 72/255, blue: 127/255, alpha: 1.0)
+        case "Regular 2":
+            cell.dayOfWeekTextField.backgroundColor = UIColor(red: 0/255, green: 104/255, blue: 159/255, alpha: 1.0)
             cell.dayOfWeekTextField.textColor = UIColor.white
             
-        case "Red":
-            cell.dayOfWeekTextField.backgroundColor = UIColor(red: 203/255, green: 116/255, blue: 49/255, alpha: 1.0)
+        case "Regular 3":
+            cell.dayOfWeekTextField.backgroundColor = UIColor(red: 0/255, green: 84/255, blue: 127/255, alpha: 1.0)
             cell.dayOfWeekTextField.textColor = UIColor.white
             
-        case "Purple":
-            cell.dayOfWeekTextField.backgroundColor = UIColor(red: 119/255, green: 112/255, blue: 152/255, alpha: 1.0)
+        case "Regular 4":
+            cell.dayOfWeekTextField.backgroundColor = UIColor(red: 0/255, green: 63/255, blue: 95/255, alpha: 1.0)
             cell.dayOfWeekTextField.textColor = UIColor.white
             
-        case "Tan":
-            cell.dayOfWeekTextField.backgroundColor = UIColor(red: 254/255, green: 211/255, blue: 150/255, alpha: 1.0)
-            cell.dayOfWeekTextField.textColor = UIColor.black
+        case "Regular 5":
+            cell.dayOfWeekTextField.backgroundColor = UIColor(red: 0/255, green: 42/255, blue: 63/255, alpha: 1.0)
+            cell.dayOfWeekTextField.textColor = UIColor.white
+            
+        case "Light 1":
+            cell.dayOfWeekTextField.backgroundColor = UIColor(red: 0/255, green: 125/255, blue: 191/255, alpha: 1.0)
+            cell.dayOfWeekTextField.textColor = UIColor.white
+            
+        case "Light 2":
+            cell.dayOfWeekTextField.backgroundColor = UIColor(red: 0/255, green: 111/255, blue: 170/255, alpha: 1.0)
+            cell.dayOfWeekTextField.textColor = UIColor.white
+            
+        case "Light 3":
+            cell.dayOfWeekTextField.backgroundColor = UIColor(red: 0/255, green: 97/255, blue: 148/255, alpha: 1.0)
+            cell.dayOfWeekTextField.textColor = UIColor.white
+            
+        case "Light 4":
+            cell.dayOfWeekTextField.backgroundColor = UIColor(red: 0/255, green: 84/255, blue: 127/255, alpha: 1.0)
+            cell.dayOfWeekTextField.textColor = UIColor.white
+            
+        case "Light 5":
+            cell.dayOfWeekTextField.backgroundColor = UIColor(red: 0/255, green: 70/255, blue: 106/255, alpha: 1.0)
+            cell.dayOfWeekTextField.textColor = UIColor.white
+            
+        case "Light 6":
+            cell.dayOfWeekTextField.backgroundColor = UIColor(red: 0/255, green: 56/255, blue: 84/255, alpha: 1.0)
+            cell.dayOfWeekTextField.textColor = UIColor.white
+            
+        case "Light 7":
+            cell.dayOfWeekTextField.backgroundColor = UIColor(red: 0/255, green: 42/255, blue: 63/255, alpha: 1.0)
+            cell.dayOfWeekTextField.textColor = UIColor.white
+            
+        case "Orange":
+            cell.dayOfWeekTextField.backgroundColor = UIColor (red: 242/255, green: 83/255, blue: 24/255, alpha: 1.0)
+            cell.dayOfWeekTextField.textColor = UIColor.white
             
         case "White":
             cell.dayOfWeekTextField.backgroundColor = UIColor.white
@@ -825,8 +866,8 @@ class WeekTVC: UITableViewController, UIPopoverPresentationControllerDelegate, U
                 daysOfWeekNumberList = [["1", "2", "3", "4", "5", "6"],
                                         ["7", "7"]]
                 
-                daysOfWeekColorList = [[Color.light, Color.light, Color.light, Color.light, Color.light, Color.light],
-                                       [Color.light, Color.white]]
+                daysOfWeekColorList = [[Color.regular_One, Color.regular_One, Color.regular_One, Color.regular_One, Color.regular_One, Color.regular_One],
+                                       [Color.regular_One, Color.white]]
                 
                 optionalWorkoutList = [[false, false, false, false, false, false],
                                        [true, true]]
@@ -841,8 +882,8 @@ class WeekTVC: UITableViewController, UIPopoverPresentationControllerDelegate, U
                 daysOfWeekNumberList = [["1", "2", "3", "4", "5", "6"],
                                         ["7", "7"]]
                 
-                daysOfWeekColorList = [[Color.light, Color.light, Color.light, Color.light, Color.light, Color.light],
-                                       [Color.light, Color.white]]
+                daysOfWeekColorList = [[Color.regular_One, Color.regular_One, Color.regular_One, Color.regular_One, Color.regular_One, Color.regular_One],
+                                       [Color.regular_One, Color.white]]
                 
                 optionalWorkoutList = [[false, false, false, false, false, false],
                                        [true, true]]
@@ -857,8 +898,8 @@ class WeekTVC: UITableViewController, UIPopoverPresentationControllerDelegate, U
                 daysOfWeekNumberList = [["1", "2", "3", "4", "5", "6"],
                                         ["7", "7"]]
                 
-                daysOfWeekColorList = [[Color.light, Color.light, Color.light, Color.light, Color.light, Color.light],
-                                       [Color.light, Color.white]]
+                daysOfWeekColorList = [[Color.regular_One, Color.regular_One, Color.regular_One, Color.regular_One, Color.regular_One, Color.regular_One],
+                                       [Color.regular_One, Color.white]]
                 
                 optionalWorkoutList = [[false, false, false, false, false, false],
                                        [true, true]]
@@ -873,8 +914,8 @@ class WeekTVC: UITableViewController, UIPopoverPresentationControllerDelegate, U
                 daysOfWeekNumberList = [["1", "2", "3", "4", "5", "6"],
                                         ["7", "7"]]
                 
-                daysOfWeekColorList = [[Color.light, Color.light, Color.light, Color.light, Color.light, Color.light],
-                                       [Color.light, Color.white]]
+                daysOfWeekColorList = [[Color.light_One, Color.light_two, Color.light_three, Color.light_four, Color.light_five, Color.light_six],
+                                       [Color.light_seven, Color.white]]
                 
                 optionalWorkoutList = [[false, false, false, false, false, false],
                                        [true, true]]
@@ -889,8 +930,8 @@ class WeekTVC: UITableViewController, UIPopoverPresentationControllerDelegate, U
                 daysOfWeekNumberList = [["1", "2", "3", "4", "5", "6"],
                                         ["7", "7"]]
                 
-                daysOfWeekColorList = [[Color.light, Color.light, Color.light, Color.light, Color.light, Color.light],
-                                       [Color.light, Color.white]]
+                daysOfWeekColorList = [[Color.regular_two, Color.regular_two, Color.regular_two, Color.regular_two, Color.regular_two, Color.regular_two],
+                                       [Color.regular_two, Color.white]]
                 
                 optionalWorkoutList = [[false, false, false, false, false, false],
                                        [true, true]]
@@ -905,8 +946,8 @@ class WeekTVC: UITableViewController, UIPopoverPresentationControllerDelegate, U
                 daysOfWeekNumberList = [["1", "2", "3", "4", "5", "6"],
                                         ["7", "7"]]
                 
-                daysOfWeekColorList = [[Color.light, Color.light, Color.light, Color.light, Color.light, Color.light],
-                                       [Color.light, Color.white]]
+                daysOfWeekColorList = [[Color.regular_two, Color.regular_two, Color.regular_two, Color.regular_two, Color.regular_two, Color.regular_two],
+                                       [Color.regular_two, Color.white]]
                 
                 optionalWorkoutList = [[false, false, false, false, false, false],
                                        [true, true]]
@@ -921,8 +962,8 @@ class WeekTVC: UITableViewController, UIPopoverPresentationControllerDelegate, U
                 daysOfWeekNumberList = [["1", "2", "3", "4", "5", "6"],
                                         ["7", "7"]]
                 
-                daysOfWeekColorList = [[Color.light, Color.light, Color.light, Color.light, Color.light, Color.light],
-                                       [Color.light, Color.white]]
+                daysOfWeekColorList = [[Color.regular_two, Color.regular_two, Color.regular_two, Color.regular_two, Color.regular_two, Color.regular_two],
+                                       [Color.regular_two, Color.white]]
                 
                 optionalWorkoutList = [[false, false, false, false, false, false],
                                        [true, true]]
@@ -937,8 +978,8 @@ class WeekTVC: UITableViewController, UIPopoverPresentationControllerDelegate, U
                 daysOfWeekNumberList = [["1", "2", "3", "4", "5", "6"],
                                         ["7", "7"]]
                 
-                daysOfWeekColorList = [[Color.light, Color.light, Color.light, Color.light, Color.light, Color.light],
-                                       [Color.light, Color.white]]
+                daysOfWeekColorList = [[Color.light_One, Color.light_two, Color.light_three, Color.light_four, Color.light_five, Color.light_six],
+                                       [Color.light_seven, Color.white]]
                 
                 optionalWorkoutList = [[false, false, false, false, false, false],
                                        [true, true]]
@@ -959,11 +1000,11 @@ class WeekTVC: UITableViewController, UIPopoverPresentationControllerDelegate, U
                                         ["6", "6"],
                                         ["7", "7"]]
                 
-                daysOfWeekColorList = [[Color.light, Color.light],
-                                       [Color.light, Color.light],
-                                       [Color.light, Color.light],
-                                       [Color.light, Color.light],
-                                       [Color.light, Color.white]]
+                daysOfWeekColorList = [[Color.regular_three, Color.regular_three],
+                                       [Color.regular_three, Color.regular_three],
+                                       [Color.regular_three, Color.regular_three],
+                                       [Color.regular_three, Color.regular_three],
+                                       [Color.regular_three, Color.regular_three]]
                 
                 optionalWorkoutList = [[false, false],
                                        [true, true],
@@ -984,8 +1025,8 @@ class WeekTVC: UITableViewController, UIPopoverPresentationControllerDelegate, U
                 daysOfWeekNumberList = [["1", "2", "3", "4", "5", "6"],
                                         ["7", "7"]]
                 
-                daysOfWeekColorList = [[Color.light, Color.light, Color.light, Color.light, Color.light, Color.light],
-                                       [Color.light, Color.white]]
+                daysOfWeekColorList = [[Color.regular_four, Color.regular_four, Color.regular_four, Color.regular_four, Color.regular_four, Color.regular_four],
+                                       [Color.regular_four, Color.white]]
                 
                 optionalWorkoutList = [[false, false, false, false, false, false],
                                        [true, true]]
@@ -1006,11 +1047,11 @@ class WeekTVC: UITableViewController, UIPopoverPresentationControllerDelegate, U
                                         ["6", "6"],
                                         ["7", "7"]]
                 
-                daysOfWeekColorList = [[Color.light, Color.light],
-                                       [Color.light, Color.light],
-                                       [Color.light, Color.light],
-                                       [Color.light, Color.light],
-                                       [Color.light, Color.white]]
+                daysOfWeekColorList = [[Color.regular_three, Color.regular_three],
+                                       [Color.regular_three, Color.regular_three],
+                                       [Color.regular_three, Color.regular_three],
+                                       [Color.regular_three, Color.regular_three],
+                                       [Color.regular_three, Color.regular_three]]
                 
                 optionalWorkoutList = [[false, false],
                                        [true, true],
@@ -1031,8 +1072,8 @@ class WeekTVC: UITableViewController, UIPopoverPresentationControllerDelegate, U
                 daysOfWeekNumberList = [["1", "2", "3", "4", "5", "6"],
                                         ["7", "7"]]
                 
-                daysOfWeekColorList = [[Color.light, Color.light, Color.light, Color.light, Color.light, Color.light],
-                                       [Color.light, Color.white]]
+                daysOfWeekColorList = [[Color.regular_four, Color.regular_four, Color.regular_four, Color.regular_four, Color.regular_four, Color.regular_four],
+                                       [Color.regular_four, Color.white]]
                 
                 optionalWorkoutList = [[false, false, false, false, false, false],
                                        [true, true]]
@@ -1049,8 +1090,8 @@ class WeekTVC: UITableViewController, UIPopoverPresentationControllerDelegate, U
                                         ["6", "6"],
                                         ["7"]]
                 
-                daysOfWeekColorList = [[Color.light, Color.light, Color.light, Color.light, Color.light],
-                                       [Color.light, Color.white],
+                daysOfWeekColorList = [[Color.light_One, Color.light_two, Color.light_three, Color.light_four, Color.light_five, Color.light_six],
+                                       [Color.light_seven, Color.white],
                                        [Color.white]]
                 
                 optionalWorkoutList = [[false, false, false, false, false],
@@ -1075,11 +1116,11 @@ class WeekTVC: UITableViewController, UIPopoverPresentationControllerDelegate, U
                                         ["5", "6"],
                                         ["7", "7"]]
                 
-                daysOfWeekColorList = [[Color.light, Color.light],
-                                       [Color.light, Color.light],
-                                       [Color.light, Color.light],
-                                       [Color.light, Color.light],
-                                       [Color.light, Color.white]]
+                daysOfWeekColorList = [[Color.regular_five, Color.regular_five],
+                                       [Color.regular_five, Color.regular_five],
+                                       [Color.regular_five, Color.regular_five],
+                                       [Color.regular_five, Color.regular_five],
+                                       [Color.regular_five, Color.white]]
                 
                 optionalWorkoutList = [[false, false],
                                        [false, false],
@@ -1106,11 +1147,11 @@ class WeekTVC: UITableViewController, UIPopoverPresentationControllerDelegate, U
                                         ["5", "6"],
                                         ["7", "7"]]
                 
-                daysOfWeekColorList = [[Color.light, Color.light],
-                                       [Color.light, Color.light],
-                                       [Color.light, Color.light],
-                                       [Color.light, Color.light],
-                                       [Color.light, Color.white]]
+                daysOfWeekColorList = [[Color.regular_five, Color.regular_five],
+                                       [Color.regular_five, Color.regular_five],
+                                       [Color.regular_five, Color.regular_five],
+                                       [Color.regular_five, Color.regular_five],
+                                       [Color.regular_five, Color.white]]
                 
                 optionalWorkoutList = [[false, false],
                                        [false, false],
@@ -1137,11 +1178,11 @@ class WeekTVC: UITableViewController, UIPopoverPresentationControllerDelegate, U
                                         ["5", "6"],
                                         ["7", "7"]]
                 
-                daysOfWeekColorList = [[Color.light, Color.light],
-                                       [Color.light, Color.light],
-                                       [Color.light, Color.light],
-                                       [Color.light, Color.light],
-                                       [Color.light, Color.white]]
+                daysOfWeekColorList = [[Color.regular_five, Color.regular_five],
+                                       [Color.regular_five, Color.regular_five],
+                                       [Color.regular_five, Color.regular_five],
+                                       [Color.regular_five, Color.regular_five],
+                                       [Color.regular_five, Color.white]]
                 
                 optionalWorkoutList = [[false, false],
                                        [false, false],
@@ -1164,8 +1205,8 @@ class WeekTVC: UITableViewController, UIPopoverPresentationControllerDelegate, U
                                         ["6", "6"],
                                         ["7"]]
                 
-                daysOfWeekColorList = [[Color.light, Color.light, Color.light, Color.light, Color.light],
-                                       [Color.light, Color.white],
+                daysOfWeekColorList = [[Color.light_One, Color.light_two, Color.light_three, Color.light_four, Color.light_five, Color.light_six],
+                                       [Color.light_seven, Color.white],
                                        [Color.white]]
                 
                 optionalWorkoutList = [[false, false, false, false, false],
@@ -1191,8 +1232,8 @@ class WeekTVC: UITableViewController, UIPopoverPresentationControllerDelegate, U
                 daysOfWeekNumberList = [["1", "2", "3", "4", "5", "6"],
                                         ["7", "7"]]
                 
-                daysOfWeekColorList = [[Color.light, Color.light, Color.light, Color.light, Color.light, Color.light],
-                                       [Color.light, Color.white]]
+                daysOfWeekColorList = [[Color.regular_One, Color.regular_One, Color.regular_One, Color.regular_One, Color.regular_One, Color.regular_One],
+                                       [Color.regular_One, Color.white]]
                 
                 optionalWorkoutList = [[false, false, false, false, false, false],
                                        [true, true]]
@@ -1207,8 +1248,8 @@ class WeekTVC: UITableViewController, UIPopoverPresentationControllerDelegate, U
                 daysOfWeekNumberList = [["1", "2", "3", "4", "5", "6"],
                                         ["7", "7"]]
                 
-                daysOfWeekColorList = [[Color.light, Color.light, Color.light, Color.light, Color.light, Color.light],
-                                       [Color.light, Color.white]]
+                daysOfWeekColorList = [[Color.regular_One, Color.regular_One, Color.regular_One, Color.regular_One, Color.regular_One, Color.regular_One],
+                                       [Color.regular_One, Color.white]]
                 
                 optionalWorkoutList = [[false, false, false, false, false, false],
                                        [true, true]]
@@ -1223,8 +1264,8 @@ class WeekTVC: UITableViewController, UIPopoverPresentationControllerDelegate, U
                 daysOfWeekNumberList = [["1", "2", "3", "4", "5", "6"],
                                         ["7", "7"]]
                 
-                daysOfWeekColorList = [[Color.light, Color.light, Color.light, Color.light, Color.light, Color.light],
-                                       [Color.light, Color.white]]
+                daysOfWeekColorList = [[Color.regular_One, Color.regular_One, Color.regular_One, Color.regular_One, Color.regular_One, Color.regular_One],
+                                       [Color.regular_One, Color.white]]
                 
                 optionalWorkoutList = [[false, false, false, false, false, false],
                                        [true, true]]
@@ -1239,8 +1280,8 @@ class WeekTVC: UITableViewController, UIPopoverPresentationControllerDelegate, U
                 daysOfWeekNumberList = [["1", "2", "3", "4", "5", "6"],
                                         ["7", "7"]]
                 
-                daysOfWeekColorList = [[Color.light, Color.light, Color.light, Color.light, Color.light, Color.light],
-                                       [Color.light, Color.white]]
+                daysOfWeekColorList = [[Color.light_One, Color.light_two, Color.light_three, Color.light_four, Color.light_five, Color.light_six],
+                                       [Color.light_seven, Color.white]]
                 
                 optionalWorkoutList = [[false, false, false, false, false, false],
                                        [true, true]]
@@ -1255,8 +1296,8 @@ class WeekTVC: UITableViewController, UIPopoverPresentationControllerDelegate, U
                 daysOfWeekNumberList = [["1", "2", "3", "4", "5", "6"],
                                         ["7", "7"]]
                 
-                daysOfWeekColorList = [[Color.light, Color.light, Color.light, Color.light, Color.light, Color.light],
-                                       [Color.light, Color.white]]
+                daysOfWeekColorList = [[Color.regular_two, Color.regular_two, Color.regular_two, Color.regular_two, Color.regular_two, Color.regular_two],
+                                       [Color.regular_two, Color.white]]
                 
                 optionalWorkoutList = [[false, false, false, false, false, false],
                                        [true, true]]
@@ -1271,8 +1312,8 @@ class WeekTVC: UITableViewController, UIPopoverPresentationControllerDelegate, U
                 daysOfWeekNumberList = [["1", "2", "3", "4", "5", "6"],
                                         ["7", "7"]]
                 
-                daysOfWeekColorList = [[Color.light, Color.light, Color.light, Color.light, Color.light, Color.light],
-                                       [Color.light, Color.white]]
+                daysOfWeekColorList = [[Color.regular_two, Color.regular_two, Color.regular_two, Color.regular_two, Color.regular_two, Color.regular_two],
+                                       [Color.regular_two, Color.white]]
                 
                 optionalWorkoutList = [[false, false, false, false, false, false],
                                        [true, true]]
@@ -1287,8 +1328,8 @@ class WeekTVC: UITableViewController, UIPopoverPresentationControllerDelegate, U
                 daysOfWeekNumberList = [["1", "2", "3", "4", "5", "6"],
                                         ["7", "7"]]
                 
-                daysOfWeekColorList = [[Color.light, Color.light, Color.light, Color.light, Color.light, Color.light],
-                                       [Color.light, Color.white]]
+                daysOfWeekColorList = [[Color.regular_two, Color.regular_two, Color.regular_two, Color.regular_two, Color.regular_two, Color.regular_two],
+                                       [Color.regular_two, Color.white]]
                 
                 optionalWorkoutList = [[false, false, false, false, false, false],
                                        [true, true]]
@@ -1303,8 +1344,8 @@ class WeekTVC: UITableViewController, UIPopoverPresentationControllerDelegate, U
                 daysOfWeekNumberList = [["1", "2", "3", "4", "5", "6"],
                                         ["7", "7"]]
                 
-                daysOfWeekColorList = [[Color.light, Color.light, Color.light, Color.light, Color.light, Color.light],
-                                       [Color.light, Color.white]]
+                daysOfWeekColorList = [[Color.light_One, Color.light_two, Color.light_three, Color.light_four, Color.light_five, Color.light_six],
+                                       [Color.light_seven, Color.white]]
                 
                 optionalWorkoutList = [[false, false, false, false, false, false],
                                        [true, true]]
@@ -1325,11 +1366,11 @@ class WeekTVC: UITableViewController, UIPopoverPresentationControllerDelegate, U
                                         ["6", "6"],
                                         ["7", "7"]]
                 
-                daysOfWeekColorList = [[Color.light, Color.light],
-                                       [Color.light, Color.light],
-                                       [Color.light, Color.light],
-                                       [Color.light, Color.light],
-                                       [Color.light, Color.white]]
+                daysOfWeekColorList = [[Color.regular_three, Color.regular_three],
+                                       [Color.regular_three, Color.regular_three],
+                                       [Color.regular_three, Color.regular_three],
+                                       [Color.regular_three, Color.regular_three],
+                                       [Color.regular_three, Color.white]]
                 
                 optionalWorkoutList = [[false, false],
                                        [true, true],
@@ -1350,8 +1391,8 @@ class WeekTVC: UITableViewController, UIPopoverPresentationControllerDelegate, U
                 daysOfWeekNumberList = [["1", "2", "3", "4", "5", "6"],
                                         ["7", "7"]]
                 
-                daysOfWeekColorList = [[Color.light, Color.light, Color.light, Color.light, Color.light, Color.light],
-                                       [Color.light, Color.white]]
+                daysOfWeekColorList = [[Color.regular_four, Color.regular_four, Color.regular_four, Color.regular_four, Color.regular_four, Color.regular_four],
+                                       [Color.regular_four, Color.white]]
                 
                 optionalWorkoutList = [[false, false, false, false, false, false],
                                        [true, true]]
@@ -1372,11 +1413,11 @@ class WeekTVC: UITableViewController, UIPopoverPresentationControllerDelegate, U
                                         ["6", "6"],
                                         ["7", "7"]]
                 
-                daysOfWeekColorList = [[Color.light, Color.light],
-                                       [Color.light, Color.light],
-                                       [Color.light, Color.light],
-                                       [Color.light, Color.light],
-                                       [Color.light, Color.white]]
+                daysOfWeekColorList = [[Color.regular_three, Color.regular_three],
+                                       [Color.regular_three, Color.regular_three],
+                                       [Color.regular_three, Color.regular_three],
+                                       [Color.regular_three, Color.regular_three],
+                                       [Color.regular_three, Color.white]]
                 
                 optionalWorkoutList = [[false, false],
                                        [true, true],
@@ -1397,8 +1438,8 @@ class WeekTVC: UITableViewController, UIPopoverPresentationControllerDelegate, U
                 daysOfWeekNumberList = [["1", "2", "3", "4", "5", "6"],
                                         ["7", "7"]]
                 
-                daysOfWeekColorList = [[Color.light, Color.light, Color.light, Color.light, Color.light, Color.light],
-                                       [Color.light, Color.white]]
+                daysOfWeekColorList = [[Color.regular_four, Color.regular_four, Color.regular_four, Color.regular_four, Color.regular_four, Color.regular_four],
+                                       [Color.regular_four, Color.white]]
                 
                 optionalWorkoutList = [[false, false, false, false, false, false],
                                        [true, true]]
@@ -1415,8 +1456,8 @@ class WeekTVC: UITableViewController, UIPopoverPresentationControllerDelegate, U
                                         ["6", "6"],
                                         ["7"]]
                 
-                daysOfWeekColorList = [[Color.light, Color.light, Color.light, Color.light, Color.light],
-                                       [Color.light, Color.white],
+                daysOfWeekColorList = [[Color.light_One, Color.light_two, Color.light_three, Color.light_four, Color.light_five],
+                                       [Color.light_six, Color.white],
                                        [Color.white]]
                 
                 optionalWorkoutList = [[false, false, false, false, false],
@@ -1441,11 +1482,11 @@ class WeekTVC: UITableViewController, UIPopoverPresentationControllerDelegate, U
                                         ["5", "6"],
                                         ["7", "7"]]
                 
-                daysOfWeekColorList = [[Color.light, Color.light],
-                                       [Color.light, Color.light],
-                                       [Color.light, Color.light],
-                                       [Color.light, Color.light],
-                                       [Color.light, Color.white]]
+                daysOfWeekColorList = [[Color.regular_five, Color.regular_five],
+                                       [Color.regular_five, Color.regular_five],
+                                       [Color.regular_five, Color.regular_five],
+                                       [Color.regular_five, Color.regular_five],
+                                       [Color.regular_five, Color.white]]
                 
                 optionalWorkoutList = [[false, false],
                                        [false, false],
@@ -1472,11 +1513,11 @@ class WeekTVC: UITableViewController, UIPopoverPresentationControllerDelegate, U
                                         ["5", "6"],
                                         ["7", "7"]]
                 
-                daysOfWeekColorList = [[Color.light, Color.light],
-                                       [Color.light, Color.light],
-                                       [Color.light, Color.light],
-                                       [Color.light, Color.light],
-                                       [Color.light, Color.white]]
+                daysOfWeekColorList = [[Color.regular_five, Color.regular_five],
+                                       [Color.regular_five, Color.regular_five],
+                                       [Color.regular_five, Color.regular_five],
+                                       [Color.regular_five, Color.regular_five],
+                                       [Color.regular_five, Color.white]]
                 
                 optionalWorkoutList = [[false, false],
                                        [false, false],
@@ -1503,11 +1544,11 @@ class WeekTVC: UITableViewController, UIPopoverPresentationControllerDelegate, U
                                         ["5", "6"],
                                         ["7", "7"]]
                 
-                daysOfWeekColorList = [[Color.light, Color.light],
-                                       [Color.light, Color.light],
-                                       [Color.light, Color.light],
-                                       [Color.light, Color.light],
-                                       [Color.light, Color.white]]
+                daysOfWeekColorList = [[Color.regular_five, Color.regular_five],
+                                       [Color.regular_five, Color.regular_five],
+                                       [Color.regular_five, Color.regular_five],
+                                       [Color.regular_five, Color.regular_five],
+                                       [Color.regular_five, Color.white]]
                 
                 optionalWorkoutList = [[false, false],
                                        [false, false],
@@ -1530,8 +1571,8 @@ class WeekTVC: UITableViewController, UIPopoverPresentationControllerDelegate, U
                                         ["6", "6"],
                                         ["7"]]
                 
-                daysOfWeekColorList = [[Color.light, Color.light, Color.light, Color.light, Color.light],
-                                       [Color.light, Color.white],
+                daysOfWeekColorList = [[Color.light_One, Color.light_two, Color.light_three, Color.light_four, Color.light_five],
+                                       [Color.light_six, Color.white],
                                        [Color.white]]
                 
                 optionalWorkoutList = [[false, false, false, false, false],
@@ -1567,13 +1608,13 @@ class WeekTVC: UITableViewController, UIPopoverPresentationControllerDelegate, U
                                         ["6"],
                                         ["7", "7"]]
                 
-                daysOfWeekColorList = [[Color.light, Color.light],
-                                       [Color.light, Color.light],
-                                       [Color.light],
-                                       [Color.light, Color.light],
-                                       [Color.light, Color.light],
-                                       [Color.light],
-                                       [Color.light, Color.white]]
+                daysOfWeekColorList = [[Color.regular_One, Color.regular_One],
+                                       [Color.regular_One, Color.regular_One],
+                                       [Color.regular_One],
+                                       [Color.regular_One, Color.regular_One],
+                                       [Color.regular_One, Color.regular_One],
+                                       [Color.regular_One],
+                                       [Color.regular_One, Color.white]]
                 
                 optionalWorkoutList = [[false, false],
                                        [false, false],
@@ -1608,13 +1649,13 @@ class WeekTVC: UITableViewController, UIPopoverPresentationControllerDelegate, U
                                         ["6"],
                                         ["7", "7"]]
                 
-                daysOfWeekColorList = [[Color.light, Color.light],
-                                       [Color.light, Color.light],
-                                       [Color.light],
-                                       [Color.light, Color.light],
-                                       [Color.light, Color.light],
-                                       [Color.light],
-                                       [Color.light, Color.white]]
+                daysOfWeekColorList = [[Color.regular_One, Color.regular_One],
+                                       [Color.regular_One, Color.regular_One],
+                                       [Color.regular_One],
+                                       [Color.regular_One, Color.regular_One],
+                                       [Color.regular_One, Color.regular_One],
+                                       [Color.regular_One],
+                                       [Color.regular_One, Color.white]]
                 
                 optionalWorkoutList = [[false, false],
                                        [false, false],
@@ -1649,13 +1690,13 @@ class WeekTVC: UITableViewController, UIPopoverPresentationControllerDelegate, U
                                         ["6"],
                                         ["7", "7"]]
                 
-                daysOfWeekColorList = [[Color.light, Color.light],
-                                       [Color.light, Color.light],
-                                       [Color.light],
-                                       [Color.light, Color.light],
-                                       [Color.light, Color.light],
-                                       [Color.light],
-                                       [Color.light, Color.white]]
+                daysOfWeekColorList = [[Color.regular_One, Color.regular_One],
+                                       [Color.regular_One, Color.regular_One],
+                                       [Color.regular_One],
+                                       [Color.regular_One, Color.regular_One],
+                                       [Color.regular_One, Color.regular_One],
+                                       [Color.regular_One],
+                                       [Color.regular_One, Color.white]]
                 
                 optionalWorkoutList = [[false, false],
                                        [false, false],
@@ -1680,8 +1721,8 @@ class WeekTVC: UITableViewController, UIPopoverPresentationControllerDelegate, U
                 daysOfWeekNumberList = [["1", "2", "3", "4", "5", "6"],
                                         ["7", "7"]]
                 
-                daysOfWeekColorList = [[Color.light, Color.light, Color.light, Color.light, Color.light, Color.light],
-                                       [Color.light, Color.white]]
+                daysOfWeekColorList = [[Color.light_One, Color.light_two, Color.light_three, Color.light_four, Color.light_five, Color.light_six],
+                                       [Color.light_seven, Color.white]]
                 
                 optionalWorkoutList = [[false, false, false, false, false, false],
                                        [true, true]]
@@ -1706,13 +1747,13 @@ class WeekTVC: UITableViewController, UIPopoverPresentationControllerDelegate, U
                                         ["6A", "6B"],
                                         ["7", "7"]]
                 
-                daysOfWeekColorList = [[Color.light, Color.light],
-                                       [Color.light, Color.light],
-                                       [Color.light],
-                                       [Color.light, Color.light],
-                                       [Color.light, Color.light],
-                                       [Color.light, Color.light],
-                                       [Color.light, Color.white]]
+                daysOfWeekColorList = [[Color.regular_two, Color.regular_two],
+                                       [Color.regular_two, Color.regular_two],
+                                       [Color.regular_two],
+                                       [Color.regular_two, Color.regular_two],
+                                       [Color.regular_two, Color.regular_two],
+                                       [Color.regular_two, Color.regular_two],
+                                       [Color.regular_two, Color.white]]
                 
                 optionalWorkoutList = [[false, false],
                                        [false, false],
@@ -1747,13 +1788,13 @@ class WeekTVC: UITableViewController, UIPopoverPresentationControllerDelegate, U
                                         ["6A", "6B"],
                                         ["7", "7"]]
                 
-                daysOfWeekColorList = [[Color.light, Color.light],
-                                       [Color.light, Color.light],
-                                       [Color.light],
-                                       [Color.light, Color.light],
-                                       [Color.light, Color.light],
-                                       [Color.light, Color.light],
-                                       [Color.light, Color.white]]
+                daysOfWeekColorList = [[Color.regular_two, Color.regular_two],
+                                       [Color.regular_two, Color.regular_two],
+                                       [Color.regular_two],
+                                       [Color.regular_two, Color.regular_two],
+                                       [Color.regular_two, Color.regular_two],
+                                       [Color.regular_two, Color.regular_two],
+                                       [Color.regular_two, Color.white]]
                 
                 optionalWorkoutList = [[false, false],
                                        [false, false],
@@ -1788,13 +1829,13 @@ class WeekTVC: UITableViewController, UIPopoverPresentationControllerDelegate, U
                                         ["6A", "6B"],
                                         ["7", "7"]]
                 
-                daysOfWeekColorList = [[Color.light, Color.light],
-                                       [Color.light, Color.light],
-                                       [Color.light],
-                                       [Color.light, Color.light],
-                                       [Color.light, Color.light],
-                                       [Color.light, Color.light],
-                                       [Color.light, Color.white]]
+                daysOfWeekColorList = [[Color.regular_two, Color.regular_two],
+                                       [Color.regular_two, Color.regular_two],
+                                       [Color.regular_two],
+                                       [Color.regular_two, Color.regular_two],
+                                       [Color.regular_two, Color.regular_two],
+                                       [Color.regular_two, Color.regular_two],
+                                       [Color.regular_two, Color.white]]
                 
                 optionalWorkoutList = [[false, false],
                                        [false, false],
@@ -1823,10 +1864,10 @@ class WeekTVC: UITableViewController, UIPopoverPresentationControllerDelegate, U
                                         ["6"],
                                         ["7", "7"]]
                 
-                daysOfWeekColorList = [[Color.light, Color.light, Color.light, Color.light],
-                                       [Color.light, Color.light],
-                                       [Color.light],
-                                       [Color.light, Color.white]]
+                daysOfWeekColorList = [[Color.light_One, Color.light_two, Color.light_three, Color.light_four],
+                                       [Color.light_five, Color.light_five],
+                                       [Color.light_six],
+                                       [Color.light_seven, Color.white]]
                 
                 optionalWorkoutList = [[false, false, false, false],
                                        [false, false],
@@ -1855,13 +1896,13 @@ class WeekTVC: UITableViewController, UIPopoverPresentationControllerDelegate, U
                                         ["6A", "6A", "6B", "6B"],
                                         ["7", "7"]]
                 
-                daysOfWeekColorList = [[Color.light, Color.light],
-                                       [Color.light, Color.light],
-                                       [Color.light, Color.light, Color.red, Color.light],
-                                       [Color.light, Color.light],
-                                       [Color.light, Color.light],
-                                       [Color.light, Color.light, Color.red, Color.light],
-                                       [Color.light, Color.white]]
+                daysOfWeekColorList = [[Color.regular_three, Color.regular_three],
+                                       [Color.regular_three, Color.regular_three],
+                                       [Color.regular_three, Color.regular_three, Color.orange, Color.regular_three],
+                                       [Color.regular_three, Color.regular_three],
+                                       [Color.regular_three, Color.regular_three],
+                                       [Color.regular_three, Color.regular_three, Color.orange, Color.regular_three],
+                                       [Color.regular_three, Color.white]]
                 
                 optionalWorkoutList = [[false, false,],
                                        [false, false],
@@ -1896,13 +1937,13 @@ class WeekTVC: UITableViewController, UIPopoverPresentationControllerDelegate, U
                                         ["6A", "6B"],
                                         ["7", "7"]]
                 
-                daysOfWeekColorList = [[Color.light, Color.light],
-                                       [Color.light, Color.light],
-                                       [Color.light, Color.light],
-                                       [Color.light, Color.light],
-                                       [Color.light, Color.light],
-                                       [Color.light, Color.light],
-                                       [Color.light, Color.white]]
+                daysOfWeekColorList = [[Color.regular_four, Color.regular_four],
+                                       [Color.regular_four, Color.regular_four],
+                                       [Color.regular_four, Color.regular_four],
+                                       [Color.regular_four, Color.regular_four],
+                                       [Color.regular_four, Color.regular_four],
+                                       [Color.regular_four, Color.regular_four],
+                                       [Color.regular_four, Color.white]]
                 
                 optionalWorkoutList = [[false, false],
                                        [false, false],
@@ -1937,13 +1978,13 @@ class WeekTVC: UITableViewController, UIPopoverPresentationControllerDelegate, U
                                         ["6A", "6A", "6B", "6B"],
                                         ["7", "7"]]
                 
-                daysOfWeekColorList = [[Color.light, Color.light],
-                                       [Color.light, Color.light],
-                                       [Color.light, Color.light, Color.red, Color.light],
-                                       [Color.light, Color.light],
-                                       [Color.light, Color.light],
-                                       [Color.light, Color.light, Color.red, Color.light],
-                                       [Color.light, Color.white]]
+                daysOfWeekColorList = [[Color.regular_three, Color.regular_three],
+                                       [Color.regular_three, Color.regular_three],
+                                       [Color.regular_three, Color.regular_three, Color.orange, Color.regular_three],
+                                       [Color.regular_three, Color.regular_three],
+                                       [Color.regular_three, Color.regular_three],
+                                       [Color.regular_three, Color.regular_three, Color.orange, Color.regular_three],
+                                       [Color.regular_three, Color.white]]
                 
                 optionalWorkoutList = [[false, false,],
                                        [false, false],
@@ -1978,13 +2019,13 @@ class WeekTVC: UITableViewController, UIPopoverPresentationControllerDelegate, U
                                         ["6A", "6B"],
                                         ["7", "7"]]
                 
-                daysOfWeekColorList = [[Color.light, Color.light],
-                                       [Color.light, Color.light],
-                                       [Color.light, Color.light],
-                                       [Color.light, Color.light],
-                                       [Color.light, Color.light],
-                                       [Color.light, Color.light],
-                                       [Color.light, Color.white]]
+                daysOfWeekColorList = [[Color.regular_four, Color.regular_four],
+                                       [Color.regular_four, Color.regular_four],
+                                       [Color.regular_four, Color.regular_four],
+                                       [Color.regular_four, Color.regular_four],
+                                       [Color.regular_four, Color.regular_four],
+                                       [Color.regular_four, Color.regular_four],
+                                       [Color.regular_four, Color.white]]
                 
                 optionalWorkoutList = [[false, false],
                                        [false, false],
@@ -2011,8 +2052,8 @@ class WeekTVC: UITableViewController, UIPopoverPresentationControllerDelegate, U
                                         ["6", "6"],
                                         ["7"]]
                 
-                daysOfWeekColorList = [[Color.light, Color.light, Color.light, Color.light, Color.light],
-                                       [Color.light, Color.white],
+                daysOfWeekColorList = [[Color.light_One, Color.light_two, Color.light_three, Color.light_four, Color.light_five],
+                                       [Color.light_six, Color.white],
                                        [Color.white]]
                 
                 optionalWorkoutList = [[false, false, false, false, false],
@@ -2041,13 +2082,13 @@ class WeekTVC: UITableViewController, UIPopoverPresentationControllerDelegate, U
                                         ["6A", "6B"],
                                         ["7", "7"]]
                 
-                daysOfWeekColorList = [[Color.light, Color.light, Color.light],
-                                       [Color.light, Color.light],
-                                       [Color.light, Color.light],
-                                       [Color.light, Color.light, Color.light],
-                                       [Color.light, Color.light],
-                                       [Color.light, Color.light],
-                                       [Color.light, Color.white]]
+                daysOfWeekColorList = [[Color.regular_five, Color.regular_five, Color.regular_five],
+                                       [Color.regular_five, Color.regular_five],
+                                       [Color.regular_five, Color.regular_five],
+                                       [Color.regular_five, Color.regular_five, Color.regular_five],
+                                       [Color.regular_five, Color.regular_five],
+                                       [Color.regular_five, Color.regular_five],
+                                       [Color.regular_five, Color.white]]
                 
                 optionalWorkoutList = [[false, false, false],
                                        [false, false],
@@ -2082,13 +2123,13 @@ class WeekTVC: UITableViewController, UIPopoverPresentationControllerDelegate, U
                                         ["6A", "6B"],
                                         ["7", "7"]]
                 
-                daysOfWeekColorList = [[Color.light, Color.light, Color.light],
-                                       [Color.light, Color.light],
-                                       [Color.light, Color.light],
-                                       [Color.light, Color.light, Color.light],
-                                       [Color.light, Color.light],
-                                       [Color.light, Color.light],
-                                       [Color.light, Color.white]]
+                daysOfWeekColorList = [[Color.regular_five, Color.regular_five, Color.regular_five],
+                                       [Color.regular_five, Color.regular_five],
+                                       [Color.regular_five, Color.regular_five],
+                                       [Color.regular_five, Color.regular_five, Color.regular_five],
+                                       [Color.regular_five, Color.regular_five],
+                                       [Color.regular_five, Color.regular_five],
+                                       [Color.regular_five, Color.white]]
                 
                 optionalWorkoutList = [[false, false, false],
                                        [false, false],
@@ -2123,13 +2164,13 @@ class WeekTVC: UITableViewController, UIPopoverPresentationControllerDelegate, U
                                         ["6A", "6B"],
                                         ["7", "7"]]
                 
-                daysOfWeekColorList = [[Color.light, Color.light, Color.light],
-                                       [Color.light, Color.light],
-                                       [Color.light, Color.light],
-                                       [Color.light, Color.light, Color.light],
-                                       [Color.light, Color.light],
-                                       [Color.light, Color.light],
-                                       [Color.light, Color.white]]
+                daysOfWeekColorList = [[Color.regular_five, Color.regular_five, Color.regular_five],
+                                       [Color.regular_five, Color.regular_five],
+                                       [Color.regular_five, Color.regular_five],
+                                       [Color.regular_five, Color.regular_five, Color.regular_five],
+                                       [Color.regular_five, Color.regular_five],
+                                       [Color.regular_five, Color.regular_five],
+                                       [Color.regular_five, Color.white]]
                 
                 optionalWorkoutList = [[false, false, false],
                                        [false, false],
@@ -2156,8 +2197,8 @@ class WeekTVC: UITableViewController, UIPopoverPresentationControllerDelegate, U
                                         ["6", "6"],
                                         ["7"]]
                 
-                daysOfWeekColorList = [[Color.light, Color.light, Color.light, Color.light, Color.light],
-                                       [Color.light, Color.white],
+                daysOfWeekColorList = [[Color.light_One, Color.light_two, Color.light_three, Color.light_four, Color.light_five],
+                                       [Color.light_six, Color.white],
                                        [Color.white]]
                 
                 optionalWorkoutList = [[false, false, false, false, false],
@@ -2183,8 +2224,8 @@ class WeekTVC: UITableViewController, UIPopoverPresentationControllerDelegate, U
                 daysOfWeekNumberList = [["1", "2", "3", "4", "5", "6"],
                                         ["7", "7"]]
                 
-                daysOfWeekColorList = [[Color.light, Color.light, Color.light, Color.light, Color.light, Color.light],
-                                       [Color.light, Color.white]]
+                daysOfWeekColorList = [[Color.regular_One, Color.regular_One, Color.regular_One, Color.regular_One, Color.regular_One, Color.regular_One],
+                                       [Color.regular_One, Color.white]]
                 
                 optionalWorkoutList = [[false, false, false, false, false, false],
                                        [true, true]]
@@ -2199,8 +2240,8 @@ class WeekTVC: UITableViewController, UIPopoverPresentationControllerDelegate, U
                 daysOfWeekNumberList = [["1", "2", "3", "4", "5", "6"],
                                         ["7", "7"]]
                 
-                daysOfWeekColorList = [[Color.light, Color.light, Color.light, Color.light, Color.light, Color.light],
-                                       [Color.light, Color.white]]
+                daysOfWeekColorList = [[Color.regular_One, Color.regular_One, Color.regular_One, Color.regular_One, Color.regular_One, Color.regular_One],
+                                       [Color.regular_One, Color.white]]
                 
                 optionalWorkoutList = [[false, false, false, false, false, false],
                                        [true, true]]
@@ -2215,8 +2256,8 @@ class WeekTVC: UITableViewController, UIPopoverPresentationControllerDelegate, U
                 daysOfWeekNumberList = [["1", "2", "3", "4", "5", "6"],
                                         ["7", "7"]]
                 
-                daysOfWeekColorList = [[Color.light, Color.light, Color.light, Color.light, Color.light, Color.light],
-                                       [Color.light, Color.white]]
+                daysOfWeekColorList = [[Color.regular_One, Color.regular_One, Color.regular_One, Color.regular_One, Color.regular_One, Color.regular_One],
+                                       [Color.regular_One, Color.white]]
                 
                 optionalWorkoutList = [[false, false, false, false, false, false],
                                        [true, true]]
@@ -2231,8 +2272,8 @@ class WeekTVC: UITableViewController, UIPopoverPresentationControllerDelegate, U
                 daysOfWeekNumberList = [["1", "2", "3", "4", "5", "6"],
                                         ["7", "7"]]
                 
-                daysOfWeekColorList = [[Color.light, Color.light, Color.light, Color.light, Color.light, Color.light],
-                                       [Color.light, Color.white]]
+                daysOfWeekColorList = [[Color.light_One, Color.light_two, Color.light_three, Color.light_four, Color.light_five, Color.light_six],
+                                       [Color.light_seven, Color.white]]
                 
                 optionalWorkoutList = [[false, false, false, false, false, false],
                                        [true, true]]
@@ -2247,8 +2288,8 @@ class WeekTVC: UITableViewController, UIPopoverPresentationControllerDelegate, U
                 daysOfWeekNumberList = [["1", "2", "3", "4", "5", "6"],
                                         ["7", "7"]]
                 
-                daysOfWeekColorList = [[Color.light, Color.light, Color.light, Color.light, Color.light, Color.light],
-                                       [Color.light, Color.white]]
+                daysOfWeekColorList = [[Color.light_three, Color.light_three, Color.light_three, Color.light_three, Color.light_three, Color.light_three],
+                                       [Color.light_three, Color.white]]
                 
                 optionalWorkoutList = [[false, false, false, false, false, false],
                                        [true, true]]
@@ -2263,8 +2304,8 @@ class WeekTVC: UITableViewController, UIPopoverPresentationControllerDelegate, U
                 daysOfWeekNumberList = [["1", "2", "3", "4", "5", "6"],
                                         ["7", "7"]]
                 
-                daysOfWeekColorList = [[Color.light, Color.light, Color.light, Color.light, Color.light, Color.light],
-                                       [Color.light, Color.white]]
+                daysOfWeekColorList = [[Color.light_three, Color.light_three, Color.light_three, Color.light_three, Color.light_three, Color.light_three],
+                                       [Color.light_three, Color.white]]
                 
                 optionalWorkoutList = [[false, false, false, false, false, false],
                                        [true, true]]
@@ -2279,8 +2320,8 @@ class WeekTVC: UITableViewController, UIPopoverPresentationControllerDelegate, U
                 daysOfWeekNumberList = [["1", "2", "3", "4", "5", "6"],
                                         ["7", "7"]]
                 
-                daysOfWeekColorList = [[Color.light, Color.light, Color.light, Color.light, Color.light, Color.light],
-                                       [Color.light, Color.white]]
+                daysOfWeekColorList = [[Color.light_three, Color.light_three, Color.light_three, Color.light_three, Color.light_three, Color.light_three],
+                                       [Color.light_three, Color.white]]
                 
                 optionalWorkoutList = [[false, false, false, false, false, false],
                                        [true, true]]
@@ -2295,8 +2336,8 @@ class WeekTVC: UITableViewController, UIPopoverPresentationControllerDelegate, U
                 daysOfWeekNumberList = [["1", "2", "3", "4", "5", "6"],
                                         ["7", "7"]]
                 
-                daysOfWeekColorList = [[Color.light, Color.light, Color.light, Color.light, Color.light, Color.light],
-                                       [Color.light, Color.white]]
+                daysOfWeekColorList = [[Color.light_One, Color.light_two, Color.light_three, Color.light_four, Color.light_five, Color.light_six],
+                                       [Color.light_seven, Color.white]]
                 
                 optionalWorkoutList = [[false, false, false, false, false, false],
                                        [true, true]]
@@ -2311,8 +2352,8 @@ class WeekTVC: UITableViewController, UIPopoverPresentationControllerDelegate, U
                 daysOfWeekNumberList = [["1", "2", "3", "4", "5", "6"],
                                         ["7", "7"]]
                 
-                daysOfWeekColorList = [[Color.light, Color.light, Color.light, Color.light, Color.light, Color.light],
-                                       [Color.light, Color.white]]
+                daysOfWeekColorList = [[Color.light_five, Color.light_five, Color.light_five, Color.light_five, Color.light_five, Color.light_five],
+                                       [Color.light_five, Color.white]]
                 
                 optionalWorkoutList = [[false, false, false, false, false, false],
                                        [true, true]]
@@ -2327,8 +2368,8 @@ class WeekTVC: UITableViewController, UIPopoverPresentationControllerDelegate, U
                 daysOfWeekNumberList = [["1", "2", "3", "4", "5", "6"],
                                         ["7", "7"]]
                 
-                daysOfWeekColorList = [[Color.light, Color.light, Color.light, Color.light, Color.light, Color.light],
-                                       [Color.light, Color.white]]
+                daysOfWeekColorList = [[Color.light_seven, Color.light_seven, Color.light_seven, Color.light_seven, Color.light_seven, Color.light_seven],
+                                       [Color.light_seven, Color.white]]
                 
                 optionalWorkoutList = [[false, false, false, false, false, false],
                                        [true, true]]
@@ -2343,8 +2384,8 @@ class WeekTVC: UITableViewController, UIPopoverPresentationControllerDelegate, U
                 daysOfWeekNumberList = [["1", "2", "3", "4", "5", "6"],
                                         ["7", "7"]]
                 
-                daysOfWeekColorList = [[Color.light, Color.light, Color.light, Color.light, Color.light, Color.light],
-                                       [Color.light, Color.white]]
+                daysOfWeekColorList = [[Color.light_five, Color.light_five, Color.light_five, Color.light_five, Color.light_five, Color.light_five],
+                                       [Color.light_five, Color.white]]
                 
                 optionalWorkoutList = [[false, false, false, false, false, false],
                                        [true, true]]
@@ -2359,8 +2400,8 @@ class WeekTVC: UITableViewController, UIPopoverPresentationControllerDelegate, U
                 daysOfWeekNumberList = [["1", "2", "3", "4", "5", "6"],
                                         ["7", "7"]]
                 
-                daysOfWeekColorList = [[Color.light, Color.light, Color.light, Color.light, Color.light, Color.light],
-                                       [Color.light, Color.white]]
+                daysOfWeekColorList = [[Color.light_seven, Color.light_seven, Color.light_seven, Color.light_seven, Color.light_seven, Color.light_seven],
+                                       [Color.light_seven, Color.white]]
                 
                 optionalWorkoutList = [[false, false, false, false, false, false],
                                        [true, true]]
@@ -2377,8 +2418,8 @@ class WeekTVC: UITableViewController, UIPopoverPresentationControllerDelegate, U
                                         ["6", "6"],
                                         ["7"]]
                 
-                daysOfWeekColorList = [[Color.light, Color.light, Color.light, Color.light, Color.light],
-                                       [Color.light, Color.white],
+                daysOfWeekColorList = [[Color.light_One, Color.light_two, Color.light_three, Color.light_four, Color.light_five],
+                                       [Color.light_six, Color.white],
                                        [Color.white]]
                 
                 optionalWorkoutList = [[false, false, false, false, false],
@@ -2387,7 +2428,7 @@ class WeekTVC: UITableViewController, UIPopoverPresentationControllerDelegate, U
                 
                 workoutIndexList = [[3, 13, 2, 11, 11],
                                     [15, 13],
-                                    [2]]
+                                    [1]]
                 
             default:
                 currentWeekWorkoutList = [[],[]]

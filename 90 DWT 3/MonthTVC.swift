@@ -49,11 +49,12 @@ class MonthTVC: UITableViewController, UIPopoverPresentationControllerDelegate, 
     }
     
     fileprivate struct Color {
-        static let light = "Light"
-        static let dark = "Dark"
-        static let red = "Red"
-        static let purple = "Purple"
-        static let tan = "Tan"
+        static let one = "One"
+        static let two = "Two"
+        static let three = "Three"
+        static let four = "Four"
+        static let five = "Five"
+        static let orange = "Orange"
         static let white = "White"
     }
     
@@ -248,24 +249,28 @@ class MonthTVC: UITableViewController, UIPopoverPresentationControllerDelegate, 
         }
 
         switch weekOfMonthColorList[indexPath.section][indexPath.row] as! String {
-        case "Light":
-            cell.weekOfMonthTextField.backgroundColor = UIColor(red: 86/255, green: 145/255, blue: 254/255, alpha: 1.0)
+        case "One":
+            cell.weekOfMonthTextField.backgroundColor = UIColor(red: 0/255, green: 125/255, blue: 191/255, alpha: 1.0)
             cell.weekOfMonthTextField.textColor = UIColor.white
             
-        case "Dark":
-            cell.weekOfMonthTextField.backgroundColor = UIColor(red: 43/255, green: 72/255, blue: 127/255, alpha: 1.0)
+        case "Two":
+            cell.weekOfMonthTextField.backgroundColor = UIColor(red: 0/255, green: 104/255, blue: 159/255, alpha: 1.0)
             cell.weekOfMonthTextField.textColor = UIColor.white
             
-        case "Red":
-            cell.weekOfMonthTextField.backgroundColor = UIColor(red: 203/255, green: 116/255, blue: 49/255, alpha: 1.0)
+        case "Three":
+            cell.weekOfMonthTextField.backgroundColor = UIColor(red: 0/255, green: 84/255, blue: 127/255, alpha: 1.0)
             cell.weekOfMonthTextField.textColor = UIColor.white
             
-        case "Purple":
-            cell.weekOfMonthTextField.backgroundColor = UIColor(red: 119/255, green: 112/255, blue: 152/255, alpha: 1.0)
+        case "Four":
+            cell.weekOfMonthTextField.backgroundColor = UIColor(red: 0/255, green: 63/255, blue: 95/255, alpha: 1.0)
             cell.weekOfMonthTextField.textColor = UIColor.white
             
-        case "Tan":
-            cell.weekOfMonthTextField.backgroundColor = UIColor(red: 254/255, green: 211/255, blue: 150/255, alpha: 1.0)
+        case "Five":
+            cell.weekOfMonthTextField.backgroundColor = UIColor(red: 0/255, green: 42/255, blue: 63/255, alpha: 1.0)
+            cell.weekOfMonthTextField.textColor = UIColor.white
+            
+        case "Orange":
+            cell.weekOfMonthTextField.backgroundColor = UIColor (red: 242/255, green: 83/255, blue: 24/255, alpha: 1.0)
             cell.weekOfMonthTextField.textColor = UIColor.white
             
         case "White":
@@ -279,10 +284,10 @@ class MonthTVC: UITableViewController, UIPopoverPresentationControllerDelegate, 
         if self.weekCompleted(weekNum) {
             
             // Week completed so put a checkmark as the accessoryview icon
-            let tempAccessoryView:UIImageView = UIImageView (image: UIImage (named: "RED_White_CheckMark"))
+            let tempAccessoryView:UIImageView = UIImageView (image: UIImage (named: "Colored_White_CheckMark"))
             cell.accessoryView = tempAccessoryView
             
-//            if let tempAccessoryView:UIImageView = UIImageView (image: UIImage (named: "RED_White_CheckMark")) {
+//            if let tempAccessoryView:UIImageView = UIImageView (image: UIImage (named: "Colored_White_CheckMark")) {
 //                
 //                cell.accessoryView = tempAccessoryView
 //            }
@@ -375,10 +380,10 @@ class MonthTVC: UITableViewController, UIPopoverPresentationControllerDelegate, 
                              [Week.week9, Week.week10, Week.week11, Week.week12, Week.week13],
                              [Week.week14, Week.week15, Week.week16, Week.week17]]
             
-            weekOfMonthColorList = [[Color.light, Color.light, Color.light, Color.red],
-                                    [Color.dark, Color.dark, Color.dark, Color.red],
-                                    [Color.light, Color.dark, Color.light, Color.dark, Color.red],
-                                    [Color.light, Color.dark, Color.light, Color.red]]
+            weekOfMonthColorList = [[Color.one, Color.one, Color.one, Color.orange],
+                                    [Color.two, Color.two, Color.two, Color.orange],
+                                    [Color.three, Color.four, Color.three, Color.four, Color.orange],
+                                    [Color.five, Color.five, Color.five, Color.orange]]
             
             lightWorkoutList = [[false, false, false, true], [false, false, false, true], [false, false, false, false, true],
                                 [false, false, false, true]]
@@ -389,10 +394,10 @@ class MonthTVC: UITableViewController, UIPopoverPresentationControllerDelegate, 
                              [Week.week9, Week.week10, Week.week11, Week.week12, Week.week13],
                              [Week.week14, Week.week15, Week.week16, Week.week17]]
             
-            weekOfMonthColorList = [[Color.light, Color.light, Color.light, Color.red],
-                                    [Color.dark, Color.dark, Color.dark, Color.red],
-                                    [Color.purple, Color.tan, Color.purple, Color.tan, Color.red],
-                                    [Color.purple, Color.tan, Color.purple, Color.red]]
+            weekOfMonthColorList = [[Color.one, Color.one, Color.one, Color.one],
+                                    [Color.two, Color.two, Color.two, Color.two],
+                                    [Color.three, Color.four, Color.three, Color.four, Color.one],
+                                    [Color.five, Color.five, Color.five, Color.five]]
             
             lightWorkoutList = [[false, false, false, true], [false, false, false, true], [false, false, false, false, true],
                                 [false, false, false, true]]
@@ -403,10 +408,10 @@ class MonthTVC: UITableViewController, UIPopoverPresentationControllerDelegate, 
                              [Week.week9, Week.week10, Week.week11, Week.week12, Week.week13],
                              [Week.week14, Week.week15, Week.week16, Week.week17]]
             
-            weekOfMonthColorList = [[Color.light, Color.light, Color.light, Color.red],
-                                    [Color.dark, Color.dark, Color.dark, Color.red],
-                                    [Color.purple, Color.tan, Color.purple, Color.tan, Color.red],
-                                    [Color.purple, Color.tan, Color.purple, Color.red]]
+            weekOfMonthColorList = [[Color.one, Color.one, Color.one, Color.one],
+                                    [Color.two, Color.two, Color.two, Color.two],
+                                    [Color.three, Color.four, Color.three, Color.four, Color.one],
+                                    [Color.five, Color.five, Color.five, Color.five]]
             
             lightWorkoutList = [[false, false, false, true], [false, false, false, true], [false, false, false, false, true],
                                 [false, false, false, true]]
@@ -416,9 +421,9 @@ class MonthTVC: UITableViewController, UIPopoverPresentationControllerDelegate, 
                              [Week.week5, Week.week6, Week.week7, Week.week8],
                              [Week.week9, Week.week10, Week.week11, Week.week12, Week.week13]]
             
-            weekOfMonthColorList = [[Color.light, Color.light, Color.light, Color.red],
-                                    [Color.dark, Color.dark, Color.dark, Color.red],
-                                    [Color.light, Color.dark, Color.light, Color.dark, Color.red]]
+            weekOfMonthColorList = [[Color.one, Color.one, Color.one, Color.one],
+                                    [Color.two, Color.two, Color.two, Color.two],
+                                    [Color.three, Color.four, Color.three, Color.four, Color.one]]
             
             lightWorkoutList = [[false, false, false, true], [false, false, false, true], [false, false, false, false, true]]
             
@@ -1330,7 +1335,7 @@ class MonthTVC: UITableViewController, UIPopoverPresentationControllerDelegate, 
                     }
                 }
                 
-                if workoutsCompleted == 5 && group1 == "YES" {
+                if workoutsCompleted == 6 && group1 == "YES" {
                     
                     completed = true
                 }
@@ -1469,7 +1474,7 @@ class MonthTVC: UITableViewController, UIPopoverPresentationControllerDelegate, 
                     }
                 }
                 
-                if workoutsCompleted == 5 && group1 == "YES" {
+                if workoutsCompleted == 6 && group1 == "YES" {
                     
                     completed = true
                 }
@@ -1956,7 +1961,7 @@ class MonthTVC: UITableViewController, UIPopoverPresentationControllerDelegate, 
                     }
                 }
                 
-                if workoutsCompleted == 5 && group1 == "YES" {
+                if workoutsCompleted == 6 && group1 == "YES" {
                     
                     completed = true
                 }
@@ -2095,7 +2100,7 @@ class MonthTVC: UITableViewController, UIPopoverPresentationControllerDelegate, 
                     }
                 }
                 
-                if workoutsCompleted == 5 && group1 == "YES" {
+                if workoutsCompleted == 6 && group1 == "YES" {
                     
                     completed = true
                 }
@@ -2632,7 +2637,7 @@ class MonthTVC: UITableViewController, UIPopoverPresentationControllerDelegate, 
                     }
                 }
                 
-                if workoutsCompleted == 5 && group1 == "YES" {
+                if workoutsCompleted == 6 && group1 == "YES" {
                     
                     completed = true
                 }
@@ -2771,7 +2776,7 @@ class MonthTVC: UITableViewController, UIPopoverPresentationControllerDelegate, 
                     }
                 }
                 
-                if workoutsCompleted == 5 && group1 == "YES" {
+                if workoutsCompleted == 6 && group1 == "YES" {
                     
                     completed = true
                 }
@@ -3197,16 +3202,30 @@ class MonthTVC: UITableViewController, UIPopoverPresentationControllerDelegate, 
                 
                 // Case 13
                 
+                var group1 = "NO"
+                
                 for i in 0..<resultsArray.count {
                     
-                    // User needs to do all these workouts
-                    if resultsArray[i] == "YES" {
+                    if i == 5 || i == 6 {
                         
-                        workoutsCompleted += 1
+                        // User has a choice to do 1 of 2 workouts.  Only needs to do 1.
+                        if resultsArray[i] == "YES" {
+                            
+                            group1 = "YES"
+                        }
+                    }
+                        
+                    else {
+                        
+                        // User needs to do all these workouts
+                        if resultsArray[i] == "YES" {
+                            
+                            workoutsCompleted += 1
+                        }
                     }
                 }
                 
-                if workoutsCompleted == 6 {
+                if workoutsCompleted == 6 && group1 == "YES" {
                     
                     completed = true
                 }

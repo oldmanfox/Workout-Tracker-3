@@ -134,7 +134,7 @@ extension StoreTVC {
         header.textLabel?.textColor = UIColor.white
         
         // Set the background color of the header/footer
-        header.contentView.backgroundColor = UIColor.lightGray
+        header.contentView.backgroundColor = UIColor (red: 60/255, green: 153/255, blue: 202/255, alpha: 1)
     }
     
     // MARK: - Navigation

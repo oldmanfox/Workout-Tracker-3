@@ -513,7 +513,7 @@ class CDOperation {
                 
                 var workoutArray = [NSManagedObject]()
                 
-                for outerIndex in 0...1 {
+                for outerIndex in 0...4 {
                     
                     var objectsAtIndexArray = [NSManagedObject]()
                     
@@ -2701,21 +2701,21 @@ class CDOperation {
                                                  13,
                                                  1]
             
-            let two_A_Days_WorkoutIndexArray = [bulk_Week1_WorkoutIndexArray,
-                                                bulk_Week2_WorkoutIndexArray,
-                                                bulk_Week3_WorkoutIndexArray,
-                                                bulk_Week4_WorkoutIndexArray,
-                                                bulk_Week5_WorkoutIndexArray,
-                                                bulk_Week6_WorkoutIndexArray,
-                                                bulk_Week7_WorkoutIndexArray,
-                                                bulk_Week8_WorkoutIndexArray,
-                                                bulk_Week9_WorkoutIndexArray,
-                                                bulk_Week10_WorkoutIndexArray,
-                                                bulk_Week11_WorkoutIndexArray,
-                                                bulk_Week12_WorkoutIndexArray,
-                                                bulk_Week13_WorkoutIndexArray]
+            let bulk_WorkoutIndexArray = [bulk_Week1_WorkoutIndexArray,
+                                          bulk_Week2_WorkoutIndexArray,
+                                          bulk_Week3_WorkoutIndexArray,
+                                          bulk_Week4_WorkoutIndexArray,
+                                          bulk_Week5_WorkoutIndexArray,
+                                          bulk_Week6_WorkoutIndexArray,
+                                          bulk_Week7_WorkoutIndexArray,
+                                          bulk_Week8_WorkoutIndexArray,
+                                          bulk_Week9_WorkoutIndexArray,
+                                          bulk_Week10_WorkoutIndexArray,
+                                          bulk_Week11_WorkoutIndexArray,
+                                          bulk_Week12_WorkoutIndexArray,
+                                          bulk_Week13_WorkoutIndexArray]
             
-            return two_A_Days_WorkoutIndexArray
+            return bulk_WorkoutIndexArray
         }
     }
     
@@ -2791,12 +2791,12 @@ class CDOperation {
                              "Rotating Plyometric Push-Ups",
                              "Plyometric Lunge Press",
                              "3 Way Pull-Ups",
-                             "Push-Up Plank Cross Crunch",
-                             "BONUS Slow Underhand Pull-Ups",
-                             "BONUS Rotating Plyometric Push-Ups",
-                             "BONUS Plyometric Lunge Press",
-                             "BONUS 3 Way Pull-Ups",
-                             "BONUS Push-Up Plank Cross Crunch"]
+                             "Push-Up Plank Cross Crunch"]
+//                             "BONUS Slow Underhand Pull-Ups",
+//                             "BONUS Rotating Plyometric Push-Ups",
+//                             "BONUS Plyometric Lunge Press",
+//                             "BONUS 3 Way Pull-Ups",
+//                             "BONUS Push-Up Plank Cross Crunch"
         
         let agility_Lower = ["1 Leg Squat",
                              "Plyometric Lunge Press",
@@ -2935,6 +2935,19 @@ class CDOperation {
                 // Workout
                 for i in 0..<allWorkoutTitlesArray.count {
                     
+                    var roundHeaderCount = 0
+                    
+                    switch allWorkoutTitlesArray[i] {
+                    case "Agility Upper":
+                        roundHeaderCount = 5
+                        
+                    case "Agility Lower":
+                        roundHeaderCount = 4
+                        
+                    default:
+                        roundHeaderCount = 2
+                    }
+
                     let tempExerciseTitlesArray = allExerciseTitlesArray[i]
                     
                     // Get workout data with the current session.  Sort by INDEX.
@@ -3031,13 +3044,23 @@ class CDOperation {
                                                     tempExerciseName = tempExerciseTitlesArray[b]
                                                     
                                                     //  Add the exercise title to the string
-                                                    writeString.append(",\n\(tempExerciseName)\n, Round 1, Round 2, ,Notes\n")
+                                                    //  Add the exercise title to the string
+                                                    switch allWorkoutTitlesArray[i] {
+                                                    case "Agility Upper":
+                                                        writeString.append(",\n\(tempExerciseName)\n, Round 1, Round 2, Round 3, Round 4, Round 5, ,Notes\n")
+                                                        
+                                                    case "Agility Lower":
+                                                        writeString.append(",\n\(tempExerciseName)\n, Round 1, Round 2, Round 3, Round 4, ,Notes\n")
+                                                        
+                                                    default:
+                                                        writeString.append(",\n\(tempExerciseName)\n, Round 1, Round 2, ,Notes\n")
+                                                    }
                                                     
                                                     // Add the "Reps" to the row
                                                     writeString.append("Reps,")
                                                     
                                                     //  Add the reps and notes to the string
-                                                    for round in 0..<2 {
+                                                    for round in 0..<roundHeaderCount {
                                                         
                                                         roundConvertedToString = self.renameRoundIntToString(round)
                                                         tempRepData = ""
@@ -3067,7 +3090,7 @@ class CDOperation {
                                                                         
                                                                         tempRepData = (workoutObjects3.last?.reps)!
                                                                         
-                                                                        if round == 1 {
+                                                                        if round == roundHeaderCount - 1 {
                                                                             
                                                                             //  Inserts a """" into the string
                                                                             writeString.append("\(tempRepData),,")
@@ -3081,7 +3104,7 @@ class CDOperation {
                                                                     else {
                                                                         
                                                                         // There was a record found, but only had data for the weight or notes and not the reps.
-                                                                        if round == 1 {
+                                                                        if round == roundHeaderCount - 1 {
                                                                             
                                                                             //  Inserts a """" into the string
                                                                             writeString.append("\(tempRepData),,")
@@ -3095,7 +3118,7 @@ class CDOperation {
                                                                 }
                                                                 else {
                                                                     // No match found
-                                                                    if round == 1 {
+                                                                    if round == roundHeaderCount - 1 {
                                                                         
                                                                         //  Inserts a """" into the string
                                                                         writeString.append("\(tempRepData),,")
@@ -3110,7 +3133,7 @@ class CDOperation {
                                                         } catch { print(" ERROR executing a fetch request: \( error)") }
                                                         
                                                         //  Notes
-                                                        if round == 1 {
+                                                        if round == roundHeaderCount - 1 {
                                                             
                                                             filter = NSPredicate(format: "session == %@ AND routine == %@ AND workout == %@ AND exercise = %@ AND round = %@ AND index == %@",
                                                                                  currentSessionString,
@@ -3156,7 +3179,7 @@ class CDOperation {
                                                     writeString.append("Weight,")
                                                     
                                                     //  Add the weight line from the database
-                                                    for round in 0..<2 {
+                                                    for round in 0..<roundHeaderCount {
                                                         
                                                         roundConvertedToString = self.renameRoundIntToString(round)
                                                         tempWeightData = ""
@@ -3185,7 +3208,7 @@ class CDOperation {
                                                                         
                                                                         tempWeightData = (workoutObjects4.last?.weight)!
                                                                         
-                                                                        if round == 1 {
+                                                                        if round == roundHeaderCount - 1 {
                                                                             
                                                                             writeString.append("\(tempWeightData)\n")
                                                                         }
@@ -3197,7 +3220,7 @@ class CDOperation {
                                                                     else {
                                                                         
                                                                         //  There was a record found, but only had data for the reps or notes and not the weight.
-                                                                        if round == 1 {
+                                                                        if round == roundHeaderCount - 1 {
                                                                             
                                                                             writeString.append("\(tempWeightData)\n")
                                                                         }
@@ -3211,7 +3234,7 @@ class CDOperation {
                                                                     
                                                                     //  No Weight
                                                                     //  Inserts a "" into the string
-                                                                    if round == 1 {
+                                                                    if round == roundHeaderCount - 1 {
                                                                         
                                                                         writeString.append("\(tempWeightData)\n")
                                                                     }
@@ -3264,6 +3287,19 @@ class CDOperation {
             // Workout
             for i in 0..<allWorkoutTitlesArray.count {
                 
+                var roundHeaderCount = 0
+                
+                switch allWorkoutTitlesArray[i] {
+                case "Agility Upper":
+                    roundHeaderCount = 5
+                    
+                case "Agility Lower":
+                    roundHeaderCount = 4
+                    
+                default:
+                    roundHeaderCount = 2
+                }
+
                 let tempExerciseTitlesArray = allExerciseTitlesArray[i]
                 
                 // Get workout data with the current session.  Sort by INDEX.
@@ -3360,13 +3396,22 @@ class CDOperation {
                                                 tempExerciseName = tempExerciseTitlesArray[b]
                                                 
                                                 //  Add the exercise title to the string
-                                                writeString.append(",\n\(tempExerciseName)\n, Round 1, Round 2, ,Notes\n")
+                                                switch allWorkoutTitlesArray[i] {
+                                                case "Agility Upper":
+                                                    writeString.append(",\n\(tempExerciseName)\n, Round 1, Round 2, Round 3, Round 4, Round 5, ,Notes\n")
+                                                    
+                                                case "Agility Lower":
+                                                    writeString.append(",\n\(tempExerciseName)\n, Round 1, Round 2, Round 3, Round 4, ,Notes\n")
+                                                    
+                                                default:
+                                                    writeString.append(",\n\(tempExerciseName)\n, Round 1, Round 2, ,Notes\n")
+                                                }
                                                 
                                                 // Add the "Reps" to the row
                                                 writeString.append("Reps,")
 
                                                 //  Add the reps and notes to the string
-                                                for round in 0..<2 {
+                                                for round in 0..<roundHeaderCount {
                                                     
                                                     roundConvertedToString = self.renameRoundIntToString(round)
                                                     tempRepData = ""
@@ -3396,7 +3441,7 @@ class CDOperation {
                                                                     
                                                                     tempRepData = (workoutObjects3.last?.reps)!
                                                                     
-                                                                    if round == 1 {
+                                                                    if round == roundHeaderCount - 1 {
                                                                         
                                                                         //  Inserts a """" into the string
                                                                         writeString.append("\(tempRepData),,")
@@ -3410,7 +3455,7 @@ class CDOperation {
                                                                 else {
                                                                     
                                                                     // There was a record found, but only had data for the weight or notes and not the reps.
-                                                                    if round == 1 {
+                                                                    if round == roundHeaderCount - 1 {
                                                                         
                                                                         //  Inserts a """" into the string
                                                                         writeString.append("\(tempRepData),,")
@@ -3424,7 +3469,7 @@ class CDOperation {
                                                             }
                                                             else {
                                                                 // No match found
-                                                                if round == 1 {
+                                                                if round == roundHeaderCount - 1 {
                                                                     
                                                                     //  Inserts a """" into the string
                                                                     writeString.append("\(tempRepData),,")
@@ -3439,7 +3484,7 @@ class CDOperation {
                                                     } catch { print(" ERROR executing a fetch request: \( error)") }
                                                     
                                                     //  Notes
-                                                    if round == 1 {
+                                                    if round == roundHeaderCount - 1 {
                                                         
                                                         filter = NSPredicate(format: "session == %@ AND routine == %@ AND workout == %@ AND exercise = %@ AND round = %@ AND index == %@",
                                                                              currentSessionString,
@@ -3485,7 +3530,7 @@ class CDOperation {
                                                 writeString.append("Weight,")
                                                 
                                                 //  Add the weight line from the database
-                                                for round in 0..<2 {
+                                                for round in 0..<roundHeaderCount {
                                                     
                                                     roundConvertedToString = self.renameRoundIntToString(round)
                                                     tempWeightData = ""
@@ -3514,7 +3559,7 @@ class CDOperation {
                                                                     
                                                                     tempWeightData = (workoutObjects4.last?.weight)!
                                                                     
-                                                                    if round == 1 {
+                                                                    if round == roundHeaderCount - 1 {
                                                                         
                                                                         writeString.append("\(tempWeightData)\n")
                                                                     }
@@ -3526,7 +3571,7 @@ class CDOperation {
                                                                 else {
                                                                     
                                                                     //  There was a record found, but only had data for the reps or notes and not the weight.
-                                                                    if round == 1 {
+                                                                    if round == roundHeaderCount - 1 {
                                                                         
                                                                         writeString.append("\(tempWeightData)\n")
                                                                     }
@@ -3540,7 +3585,7 @@ class CDOperation {
                                                                 
                                                                 //  No Weight
                                                                 //  Inserts a "" into the string
-                                                                if round == 1 {
+                                                                if round == roundHeaderCount - 1 {
                                                                     
                                                                     writeString.append("\(tempWeightData)\n")
                                                                 }
@@ -3578,6 +3623,19 @@ class CDOperation {
         let localAllWorkoutTitleArray = self.allWorkoutTitleArray()
         let localAllExerciseTitleArray = self.allExerciseTitleArray()
         var exerciseTitleArray = [String]()
+        
+        var roundHeaderCount = 0
+        
+        switch workoutName {
+        case "Agility Upper":
+            roundHeaderCount = 5
+            
+        case "Agility Lower":
+            roundHeaderCount = 4
+            
+        default:
+            roundHeaderCount = 2
+        }
         
         for arrayIndex in 0..<localAllWorkoutTitleArray.count {
             
@@ -3645,13 +3703,22 @@ class CDOperation {
                         let tempExerciseName = exerciseTitleArray[b] 
                         
                         //  Add the exercise title to the string
-                        writeString.append(",\n\(tempExerciseName)\n, Round 1, Round 2, ,Notes\n")
+                        switch workoutName {
+                        case "Agility Upper":
+                            writeString.append(",\n\(tempExerciseName)\n, Round 1, Round 2, Round 3, Round 4, Round 5, ,Notes\n")
+                            
+                        case "Agility Lower":
+                            writeString.append(",\n\(tempExerciseName)\n, Round 1, Round 2, Round 3, Round 4, ,Notes\n")
+                            
+                        default:
+                            writeString.append(",\n\(tempExerciseName)\n, Round 1, Round 2, ,Notes\n")
+                        }
                         
                         // Add the "Reps" to the row
                         writeString.append("Reps,")
                         
                         //  Add the reps and notes to the string
-                        for round in 0..<2 {
+                        for round in 0..<roundHeaderCount {
                             
                             let roundConvertedToString = self.renameRoundIntToString(round)
                             var tempRepData = ""
@@ -3681,7 +3748,7 @@ class CDOperation {
                                             
                                             tempRepData = (workoutObjects3.last?.reps)!
                                             
-                                            if round == 1 {
+                                            if round == roundHeaderCount - 1 {
                                                 
                                                 //  Inserts a """" into the string
                                                 writeString.append("\(tempRepData),,")
@@ -3695,7 +3762,7 @@ class CDOperation {
                                         else {
                                             
                                             // There was a record found, but only had data for the weight or notes and not the reps.
-                                            if round == 1 {
+                                            if round == roundHeaderCount - 1 {
                                                 
                                                 //  Inserts a """" into the string
                                                 writeString.append("\(tempRepData),,")
@@ -3709,7 +3776,7 @@ class CDOperation {
                                     }
                                     else {
                                         // No match found
-                                        if round == 1 {
+                                        if round == roundHeaderCount - 1 {
                                             
                                             //  Inserts a """" into the string
                                             writeString.append("\(tempRepData),,")
@@ -3724,7 +3791,7 @@ class CDOperation {
                             } catch { print(" ERROR executing a fetch request: \( error)") }
                             
                             //  Notes
-                            if round == 1 {
+                            if round == roundHeaderCount - 1 {
                                 
                                 filter = NSPredicate(format: "session == %@ AND routine == %@ AND workout == %@ AND exercise = %@ AND round = %@ AND index == %@",
                                                      currentSessionString,
@@ -3770,7 +3837,7 @@ class CDOperation {
                         writeString.append("Weight,")
                         
                         //  Add the weight line from the database
-                        for round in 0..<2 {
+                        for round in 0..<roundHeaderCount {
                             
                             let roundConvertedToString = self.renameRoundIntToString(round)
                             var tempWeightData = ""
@@ -3799,7 +3866,7 @@ class CDOperation {
                                             
                                             tempWeightData = (workoutObjects4.last?.weight)!
                                             
-                                            if round == 1 {
+                                            if round == roundHeaderCount - 1 {
                                                 
                                                 writeString.append("\(tempWeightData)\n")
                                             }
@@ -3811,7 +3878,7 @@ class CDOperation {
                                         else {
                                             
                                             //  There was a record found, but only had data for the reps or notes and not the weight.
-                                            if round == 1 {
+                                            if round == roundHeaderCount - 1 {
                                                 
                                                 writeString.append("\(tempWeightData)\n")
                                             }
@@ -3825,7 +3892,7 @@ class CDOperation {
                                         
                                         //  No Weight
                                         //  Inserts a "" into the string
-                                        if round == 1 {
+                                        if round == roundHeaderCount - 1 {
                                             
                                             writeString.append("\(tempWeightData)\n")
                                         }
@@ -3898,9 +3965,12 @@ class CDOperation {
         case 2:
             return "Round 3"
             
-        default:
-            // Round 4
+        case 3:
             return "Round 4"
+            
+        default:
+            // Round 5
+            return "Round 5"
         }
     }
     
@@ -3916,9 +3986,12 @@ class CDOperation {
         case "Round 3":
             return 2
             
-        default:
-            // Round 4
+        case "Round 4":
             return 3
+            
+        default:
+            // Round 5
+            return 4
         }
     }
 }

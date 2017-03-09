@@ -42,43 +42,49 @@ class WorkoutTVC: UITableViewController, UIPopoverPresentationControllerDelegate
     fileprivate struct CellType {
         static let straight_1 = "WorkoutCell_Straight_1"
         static let straight_2 = "WorkoutCell_Straight_2"
-        //static let straight_3 = "WorkoutCell_Straight_3"
-        static let shuffle = "ShuffleCell"
+        static let straight_4_Rep = "WorkoutCell_Straight_4_Rep"
+        static let straight_4_Weight = "WorkoutCell_Straight_4_Weight"
+        static let straight_5_Rep = "WorkoutCell_Straight_5_Rep"
+        static let straight_5_Weight = "WorkoutCell_Straight_5_Weight"
         static let completion = "CompletionCell"
     }
     
     fileprivate struct Round {
         static let round1 = "Round 1"
         static let round2 = "Round 2"
-        //static let round3 = "Round 3"
+        static let round3 = "Round 3"
         static let empty = ""
     }
     
-    fileprivate struct LabelType {
-            static let reps = "R"
-            static let sec = "Sec"
-            static let empty = ""
-            static let weight = "W"
+    fileprivate struct LabelNumber {
+        static let _6 = "6"
+        static let _8 = "8"
+        static let _10 = "10"
+        static let _12 = "12"
+        static let _16 = "16"
+        static let empty = ""
+    }
+
+    fileprivate struct LabelTitle {
+        static let reps = "R"
+        static let reps_Long = "Reps"
+        static let sec = "Sec"
+        static let empty = ""
+        static let weight = "W"
     }
     
     fileprivate struct Color {
-        static let light = UIColor (red: 86/255, green: 145/255, blue: 254/255, alpha: 1)
-        static let medium = UIColor (red: 4/255, green: 142/255, blue: 93/255, alpha: 1)
-        static let dark = UIColor (red: 43/255, green: 72/255, blue: 127/255, alpha: 1)
+        static let one = UIColor (red: 0/255, green: 125/255, blue: 191/255, alpha: 1)
+        static let two = UIColor (red: 0/255, green: 97/255, blue: 148/255, alpha: 1)
+        static let three = UIColor (red: 0/255, green: 70/255, blue: 106/255, alpha: 1)
+        static let four = UIColor (red: 0/255, green: 42/255, blue: 63/255, alpha: 1)
+        static let red = UIColor (red: 202/255, green: 20/255, blue: 34/255, alpha: 1)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if segmentedControlTitle == "Round 1" {
-            
-            loadExerciseNameArray(selectedWorkout)
-        }
-        else {
-            
-            // Will only be "Chest + Back & Ab Workout" so no argument needs to be passed.
-            loadShuffledExerciseNameArray()
-        }
+        loadExerciseNameArray(selectedWorkout)
         
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 88
@@ -406,7 +412,7 @@ class WorkoutTVC: UITableViewController, UIPopoverPresentationControllerDelegate
                     let titleArray = workoutObject[0] as? NSArray
                     cell.title.text = (titleArray![0] as AnyObject).uppercased
                     cell.nonUpperCaseExerciseName = titleArray![0] as! String
-                    
+
                     cell.workoutRoutine = workoutRoutine // Bulk or Tone
                     cell.selectedWorkout = selectedWorkout // B1: Chest+Tri etc...
                     cell.workoutIndex = workoutIndex // Index of the workout in the program
@@ -452,6 +458,15 @@ class WorkoutTVC: UITableViewController, UIPopoverPresentationControllerDelegate
 //                        // Round 3
 //                        cell.currentRep3.backgroundColor = cellColor[4]
 //                        cell.currentWeight3.backgroundColor = cellColor[5]
+                        
+                        if titleArray![0] as! String == "BONUS Military Push-Ups" ||
+                            titleArray![0] as! String == "BONUS Wide Pull-Ups" ||
+                            titleArray![0] as! String == "BONUS Push-Ups Plank Sphinx" ||
+                            titleArray![0] as! String == "BONUS Pull-Up Push-Up"
+                        {
+                            
+                            cell.repLabel1.backgroundColor = Color.red
+                        }
                     }
                     
                     if let textFields = workoutObject[4] as? [Bool] {
@@ -767,36 +782,659 @@ class WorkoutTVC: UITableViewController, UIPopoverPresentationControllerDelegate
                     
                     return cell
                 }
-                else if cellIdentifier == "ShuffleCell" {
+                else if cellIdentifier == "WorkoutCell_Straight_4_Rep" || cellIdentifier == "WorkoutCell_Straight_5_Rep" {
                     
-                    let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! WorkoutTVC_ShuffleTableViewCell
+                    let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! WorkoutTVC_Workout5Round_Rep_TableViewCell
                     
-                    cell.segmentedControlTap = { (WorkoutTVC_ShuffleTableViewCell) in
+                    let titleArray = workoutObject[0] as? NSArray
+                    cell.title.text = (titleArray![0] as AnyObject).uppercased
+                    cell.nonUpperCaseExerciseName = titleArray![0] as! String
+                    
+                    cell.workoutRoutine = workoutRoutine // Bulk or Tone
+                    cell.selectedWorkout = selectedWorkout // B1: Chest+Tri etc...
+                    cell.workoutIndex = workoutIndex // Index of the workout in the program
+                    cell.session = session
+                    cell.workoutWeek = workoutWeek
+                    cell.month = month
+                    
+                    if let repNumbers = workoutObject[1] as? [String] {
                         
-                        // Add Code here
-                        self.segmentedControlTitle = cell.roundSegmentedControl.titleForSegment(at: cell.roundSegmentedControl.selectedSegmentIndex)!
-                        
-                        if self.segmentedControlTitle == "Round 1" {
-                            
-                            self.loadExerciseNameArray(self.selectedWorkout)
-                        }
-                        else {
-                            
-                            // Round 2
-                            self.loadShuffledExerciseNameArray()
-                        }
-                        
-                        //  Reload tableview and scroll to the top.
-                        self.tableView.reloadData()
-                        
-                        var newIndexPath = indexPath
-                        newIndexPath.section = 0
-                        newIndexPath.row = 0
-                        self.tableView.scrollToRow(at: newIndexPath, at: UITableViewScrollPosition.none, animated: true)
+                        cell.repNumberLabel1.text = repNumbers[0]
+                        cell.repNumberLabel2.text = repNumbers[1]
+                        cell.repNumberLabel3.text = repNumbers[2]
+                        cell.repNumberLabel4.text = repNumbers[3]
+                        cell.repNumberLabel5.text = repNumbers[4]
+//                        cell.repNumberLabel6.text = repNumbers[5]
                     }
+                    
+                    if let repTitles = workoutObject[2] as? [String] {
+                        
+                        cell.repTitleLabel1.text = repTitles[0]
+                        cell.repTitleLabel2.text = repTitles[1]
+                        cell.repTitleLabel3.text = repTitles[2]
+                        cell.repTitleLabel4.text = repTitles[3]
+                        cell.repTitleLabel5.text = repTitles[4]
+//                        cell.repTitleLabel6.text = repTitles[5]
+                    }
+                    
+                    if let cellColor = workoutObject[3] as? [UIColor] {
+                        
+                        cell.currentReps1.backgroundColor = cellColor[0]
+                        cell.currentReps2.backgroundColor = cellColor[1]
+                        cell.currentReps3.backgroundColor = cellColor[2]
+                        cell.currentReps4.backgroundColor = cellColor[3]
+                        cell.currentReps5.backgroundColor = cellColor[4]
+//                        cell.currentReps6.backgroundColor = cellColor[5]
+                    }
+                    
+                    if let weightFields = workoutObject[4] as? [Bool] {
+                        
+                        // PREVIOUS
+                        cell.currentReps1.isHidden = weightFields[0]
+                        cell.currentReps2.isHidden = weightFields[1]
+                        cell.currentReps3.isHidden = weightFields[2]
+                        cell.currentReps4.isHidden = weightFields[3]
+                        cell.currentReps5.isHidden = weightFields[4]
+//                        cell.currentReps6.isHidden = weightFields[5]
+                        
+                        // CURRENT
+                        cell.currentReps1.isHidden = weightFields[0]
+                        cell.currentReps2.isHidden = weightFields[1]
+                        cell.currentReps3.isHidden = weightFields[2]
+                        cell.currentReps4.isHidden = weightFields[3]
+                        cell.currentReps5.isHidden = weightFields[4]
+//                        cell.ccurrentReps6.isHidden = weightFields[5]
+                    }
+                    
+                    cell.currentReps1.text = "0.0"
+                    cell.currentReps2.text = "0.0"
+                    cell.currentReps3.text = "0.0"
+                    cell.currentReps4.text = "0.0"
+                    cell.currentReps5.text = "0.0"
+//                    cell.currentReps6.text = "0.0"
+                    cell.currentNotes.text = "CURRENT NOTES"
+                    
+                    cell.originalCurrentRep1_Text = "0.0"
+                    cell.originalCurrentRep2_Text = "0.0"
+                    cell.originalCurrentRep3_Text = "0.0"
+                    cell.originalCurrentRep4_Text = "0.0"
+                    cell.originalCurrentRep5_Text = "0.0"
+//                    cell.ooriginalCurrentRep6_Text = "0.0"
+                    cell.originalCurrentNotes_Text = "CURRENT NOTES"
+                    
+                    cell.previousReps1.text = "0.0"
+                    cell.previousReps2.text = "0.0"
+                    cell.previousReps3.text = "0.0"
+                    cell.previousReps4.text = "0.0"
+                    cell.previousReps5.text = "0.0"
+//                    cell.previousReps6.text = "0.0"
+                    cell.previousNotes.text = "PREVIOUS NOTES"
+                    
+                    // Current Rep Fields and Notes
+                    if let workoutObjects = CDOperation.getRepWeightTextForExercise(session, routine: workoutRoutine, workout: selectedWorkout, exercise: titleArray![0] as! String, index: workoutIndex as NSNumber)  as? [Workout] {
+                        
+                        if debug == 1 {
+                            
+                            print("Objects in array: \(workoutObjects.count)")
+                        }
+                        
+                        for object in workoutObjects {
+                            
+                            var tempRep = ""
+                            
+                            if object.reps != nil {
+                                
+                                tempRep = object.reps!
+                            }
+                            else {
+                                
+                                tempRep = "0.0"
+                            }
+                            
+                            if debug == 1 {
+                                
+                                print("Round = \(object.round!) - Reps = \(tempRep)")
+                            }
+                        }
+                        
+                        if workoutObjects.count != 0 {
+                            
+                            for object in workoutObjects {
+                                
+                                switch CDOperation.renameRoundStringToInt(object.round!) {
+                                case 0:
+                                    if object.reps != nil {
+                                        
+                                        cell.currentReps1.text = object.reps
+                                        cell.originalCurrentRep1_Text = object.reps!
+                                    }
+                                    else {
+                                        cell.currentReps1.text = "0.0"
+                                        cell.originalCurrentRep1_Text = "0.0"
+                                    }
+                                    
+                                    // Notes
+                                    if object.notes != nil {
+                                        
+                                        cell.currentNotes.text = object.notes?.uppercased()
+                                        cell.originalCurrentNotes_Text = object.notes!.uppercased()
+                                    }
+                                    else {
+                                        
+                                        cell.currentNotes.text = "CURRENT NOTES"
+                                        cell.originalCurrentNotes_Text = "CURRENT NOTES"
+                                    }
+                                    
+                                case 1:
+                                    if object.reps != nil {
+                                        
+                                        cell.currentReps2.text = object.reps
+                                        cell.originalCurrentRep2_Text = object.reps!
+                                    }
+                                    else {
+                                        
+                                        cell.currentReps2.text = "0.0"
+                                        cell.originalCurrentRep2_Text = "0.0"
+                                    }
+                                    
+                                case 2:
+                                    if object.reps != nil {
+                                        
+                                        cell.currentReps3.text = object.reps
+                                        cell.originalCurrentRep3_Text = object.reps!
+                                    }
+                                    else {
+                                        
+                                        cell.currentReps3.text = "0.0"
+                                        cell.originalCurrentRep3_Text = "0.0"
+                                    }
+                                    
+                                case 3:
+                                    if object.reps != nil {
+                                        
+                                        cell.currentReps4.text = object.reps
+                                        cell.originalCurrentRep4_Text = object.reps!
+                                    }
+                                    else {
+                                        
+                                        cell.currentReps4.text = "0.0"
+                                        cell.originalCurrentRep4_Text = "0.0"
+                                    }
+                                    
+                                case 4:
+                                    if object.reps != nil {
+                                        
+                                        cell.currentReps5.text = object.reps
+                                        cell.originalCurrentRep5_Text = object.reps!
+                                    }
+                                    else {
+                                        
+                                        cell.currentReps5.text = "0.0"
+                                        cell.originalCurrentRep5_Text = "0.0"
+                                    }
+                                    
+//                                case 5:
+//                                    if object.weight != nil {
+//                                        
+//                                        cell.currentWeight6.text = object.weight
+//                                        cell.originalCurrentWeight6_Text = object.weight!
+//                                        
+//                                    }
+//                                    else {
+//                                        
+//                                        cell.currentWeight6.text = "0.0"
+//                                        cell.originalCurrentWeight6_Text = "0.0"
+//                                    }
+                                    
+                                default:
+                                    break
+                                }
+                            }
+                        }
+                    }
+                    
+                    // Previous Reps Fields and Notes
+                    if let workoutObjects = CDOperation.getRepWeightTextForExercise(session, routine: workoutRoutine, workout: selectedWorkout, exercise: titleArray![0] as! String, index: workoutIndex - 1 as NSNumber)  as? [Workout] {
+                        
+                        if debug == 1 {
+                            
+                            print("Objects in array: \(workoutObjects.count)")
+                        }
+                        
+                        for object in workoutObjects {
+                            
+                            var tempReps = ""
+                            
+                            if object.reps != nil {
+                                
+                                tempReps = object.reps!
+                            }
+                            else {
+                                
+                                tempReps = "0.0"
+                            }
+                            
+                            if debug == 1 {
+                                
+                                print("Round = \(object.round!) - Reps = \(tempReps)")
+                            }
+                        }
+                        
+                        if workoutObjects.count != 0 {
+                            
+                            for object in workoutObjects {
+                                
+                                switch CDOperation.renameRoundStringToInt(object.round!) {
+                                case 0:
+                                    cell.previousReps1.text = object.reps
+                                    
+                                    cell.previousNotes.text = object.notes?.uppercased()
+                                    
+                                case 1:
+                                    cell.previousReps2.text = object.reps
+                                    
+                                case 2:
+                                    cell.previousReps3.text = object.reps
+                                    
+                                case 3:
+                                    cell.previousReps4.text = object.reps
+                                    
+                                case 4:
+                                    cell.previousReps5.text = object.reps
+                                    
+//                                case 5:
+//                                    cell.previousReps6.text = object.reps
+//                                    cell.previousNotes.text = object.notes?.uppercased()
+                                    
+                                default:
+                                    break
+                                }
+                            }
+                        }
+                    }
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                    
+                    if self.graphViewPurchased {
+                        
+                        cell.graphButton.isHidden = false
+                        cell.rewardVideoButton.isHidden = true
+                        
+                        if debug == 1 {
+                            
+                            print("GraphView was purchased")
+                        }
+                    }
+                    else if appDelegate.shouldShowRewardGraph {
+                        
+                        cell.graphButton.isHidden = false
+                        cell.rewardVideoButton.isHidden = true
+                        
+                        if debug == 1 {
+                            
+                            print("Reward GraphView was purchased")
+                        }
+                    }
+                    else {
+                        
+                        cell.graphButton.isHidden = true
+                        cell.rewardVideoButton.isHidden = false
+                    }
+                    
+                    
+                    
+                    
+                    
+                    
+//                    //  TESTING PURPOSES ONLY!!!  COMMENT OUT WHEN DONE TAKING SCREENSHOTS
+//                    cell.graphButton.isHidden = false
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
                     
                     return cell
                 }
+                else if cellIdentifier == "WorkoutCell_Straight_4_Weight" || cellIdentifier == "WorkoutCell_Straight_5_Weight" {
+                    
+                    let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! WorkoutTVC_Workout5Round_Weight_TableViewCell
+                    
+                    let titleArray = workoutObject[0] as? NSArray
+                    cell.title.text = (titleArray![0] as AnyObject).uppercased
+                    cell.nonUpperCaseExerciseName = titleArray![0] as! String
+                    
+                    cell.workoutRoutine = workoutRoutine // Bulk or Tone
+                    cell.selectedWorkout = selectedWorkout // B1: Chest+Tri etc...
+                    cell.workoutIndex = workoutIndex // Index of the workout in the program
+                    cell.session = session
+                    cell.workoutWeek = workoutWeek
+                    cell.month = month
+                    
+                    if let repNumbers = workoutObject[1] as? [String] {
+                        
+                        cell.repNumberLabel1.text = repNumbers[0]
+                        cell.repNumberLabel2.text = repNumbers[1]
+                        cell.repNumberLabel3.text = repNumbers[2]
+                        cell.repNumberLabel4.text = repNumbers[3]
+                        cell.repNumberLabel5.text = repNumbers[4]
+                        //                        cell.repNumberLabel6.text = repNumbers[5]
+                    }
+                    
+                    if let repTitles = workoutObject[2] as? [String] {
+                        
+                        cell.repTitleLabel1.text = repTitles[0]
+                        cell.repTitleLabel2.text = repTitles[1]
+                        cell.repTitleLabel3.text = repTitles[2]
+                        cell.repTitleLabel4.text = repTitles[3]
+                        cell.repTitleLabel5.text = repTitles[4]
+                        //                        cell.repTitleLabel6.text = repTitles[5]
+                    }
+                    
+                    if let cellColor = workoutObject[3] as? [UIColor] {
+                        
+                        cell.currentWeight1.backgroundColor = cellColor[0]
+                        cell.currentWeight2.backgroundColor = cellColor[1]
+                        cell.currentWeight3.backgroundColor = cellColor[2]
+                        cell.currentWeight4.backgroundColor = cellColor[3]
+                        cell.currentWeight5.backgroundColor = cellColor[4]
+                        //                        cell.currentWeight6.backgroundColor = cellColor[5]
+                    }
+                    
+                    if let weightFields = workoutObject[4] as? [Bool] {
+                        
+                        // PREVIOUS
+                        cell.previousWeight1.isHidden = weightFields[0]
+                        cell.previousWeight2.isHidden = weightFields[1]
+                        cell.previousWeight3.isHidden = weightFields[2]
+                        cell.previousWeight4.isHidden = weightFields[3]
+                        cell.previousWeight5.isHidden = weightFields[4]
+                        //                        cell.previousWeight6.isHidden = weightFields[5]
+                        
+                        // CURRENT
+                        cell.currentWeight1.isHidden = weightFields[0]
+                        cell.currentWeight2.isHidden = weightFields[1]
+                        cell.currentWeight3.isHidden = weightFields[2]
+                        cell.currentWeight4.isHidden = weightFields[3]
+                        cell.currentWeight5.isHidden = weightFields[4]
+                        //                        cell.currentWeight6.isHidden = weightFields[5]
+                    }
+                    
+                    cell.currentWeight1.text = "0.0"
+                    cell.currentWeight2.text = "0.0"
+                    cell.currentWeight3.text = "0.0"
+                    cell.currentWeight4.text = "0.0"
+                    cell.currentWeight5.text = "0.0"
+                    //                    cell.currentWeight6.text = "0.0"
+                    cell.currentNotes.text = "CURRENT NOTES"
+                    
+                    cell.originalCurrentWeight1_Text = "0.0"
+                    cell.originalCurrentWeight2_Text = "0.0"
+                    cell.originalCurrentWeight3_Text = "0.0"
+                    cell.originalCurrentWeight4_Text = "0.0"
+                    cell.originalCurrentWeight5_Text = "0.0"
+                    //                    cell.originalCurrentWeight6_Text = "0.0"
+                    cell.originalCurrentNotes_Text = "CURRENT NOTES"
+                    
+                    cell.previousWeight1.text = "0.0"
+                    cell.previousWeight2.text = "0.0"
+                    cell.previousWeight3.text = "0.0"
+                    cell.previousWeight4.text = "0.0"
+                    cell.previousWeight5.text = "0.0"
+                    //                    cell.previousWeight6.text = "0.0"
+                    cell.previousNotes.text = "PREVIOUS NOTES"
+                    
+                    // Current Weight Fields and Notes
+                    if let workoutObjects = CDOperation.getRepWeightTextForExercise(session, routine: workoutRoutine, workout: selectedWorkout, exercise: titleArray![0] as! String, index: workoutIndex as NSNumber)  as? [Workout] {
+                        
+                        if debug == 1 {
+                            
+                            print("Objects in array: \(workoutObjects.count)")
+                        }
+                        
+                        for object in workoutObjects {
+                            
+                            var tempWeight = ""
+                            
+                            if object.weight != nil {
+                                
+                                tempWeight = object.weight!
+                            }
+                            else {
+                                
+                                tempWeight = "0.0"
+                            }
+                            
+                            if debug == 1 {
+                                
+                                print("Round = \(object.round!) - Weight = \(tempWeight)")
+                            }
+                        }
+                        
+                        if workoutObjects.count != 0 {
+                            
+                            for object in workoutObjects {
+                                
+                                switch CDOperation.renameRoundStringToInt(object.round!) {
+                                case 0:
+                                    if object.weight != nil {
+                                        
+                                        cell.currentWeight1.text = object.weight
+                                        cell.originalCurrentWeight1_Text = object.weight!
+                                    }
+                                    else {
+                                        cell.currentWeight1.text = "0.0"
+                                        cell.originalCurrentWeight1_Text = "0.0"
+                                    }
+                                    
+                                    // Notes
+                                    if object.notes != nil {
+                                        
+                                        cell.currentNotes.text = object.notes?.uppercased()
+                                        cell.originalCurrentNotes_Text = object.notes!.uppercased()
+                                    }
+                                    else {
+                                        
+                                        cell.currentNotes.text = "CURRENT NOTES"
+                                        cell.originalCurrentNotes_Text = "CURRENT NOTES"
+                                    }
+                                    
+                                case 1:
+                                    if object.weight != nil {
+                                        
+                                        cell.currentWeight2.text = object.weight
+                                        cell.originalCurrentWeight2_Text = object.weight!
+                                    }
+                                    else {
+                                        
+                                        cell.currentWeight2.text = "0.0"
+                                        cell.originalCurrentWeight2_Text = "0.0"
+                                    }
+                                    
+                                case 2:
+                                    if object.weight != nil {
+                                        
+                                        cell.currentWeight3.text = object.weight
+                                        cell.originalCurrentWeight3_Text = object.weight!
+                                    }
+                                    else {
+                                        
+                                        cell.currentWeight3.text = "0.0"
+                                        cell.originalCurrentWeight3_Text = "0.0"
+                                    }
+                                    
+                                case 3:
+                                    if object.weight != nil {
+                                        
+                                        cell.currentWeight4.text = object.weight
+                                        cell.originalCurrentWeight4_Text = object.weight!
+                                    }
+                                    else {
+                                        
+                                        cell.currentWeight4.text = "0.0"
+                                        cell.originalCurrentWeight4_Text = "0.0"
+                                    }
+                                    
+                                case 4:
+                                    if object.weight != nil {
+                                        
+                                        cell.currentWeight5.text = object.weight
+                                        cell.originalCurrentWeight5_Text = object.weight!
+                                    }
+                                    else {
+                                        
+                                        cell.currentWeight5.text = "0.0"
+                                        cell.originalCurrentWeight5_Text = "0.0"
+                                    }
+                                    
+                                    //                                case 5:
+                                    //                                    if object.weight != nil {
+                                    //
+                                    //                                        cell.currentWeight6.text = object.weight
+                                    //                                        cell.originalCurrentWeight6_Text = object.weight!
+                                    //
+                                    //                                    }
+                                    //                                    else {
+                                    //
+                                    //                                        cell.currentWeight6.text = "0.0"
+                                    //                                        cell.originalCurrentWeight6_Text = "0.0"
+                                    //                                    }
+                                    
+                                default:
+                                    break
+                                }
+                            }
+                        }
+                    }
+                    
+                    // Previous Weight Fields and Notes
+                    if let workoutObjects = CDOperation.getRepWeightTextForExercise(session, routine: workoutRoutine, workout: selectedWorkout, exercise: titleArray![0] as! String, index: workoutIndex - 1 as NSNumber)  as? [Workout] {
+                        
+                        if debug == 1 {
+                            
+                            print("Objects in array: \(workoutObjects.count)")
+                        }
+                        
+                        for object in workoutObjects {
+                            
+                            var tempWeight = ""
+                            
+                            if object.weight != nil {
+                                
+                                tempWeight = object.weight!
+                            }
+                            else {
+                                
+                                tempWeight = "0.0"
+                            }
+                            
+                            if debug == 1 {
+                                
+                                print("Round = \(object.round!) - Weight = \(tempWeight)")
+                            }
+                        }
+                        
+                        if workoutObjects.count != 0 {
+                            
+                            for object in workoutObjects {
+                                
+                                switch CDOperation.renameRoundStringToInt(object.round!) {
+                                case 0:
+                                    cell.previousWeight1.text = object.weight
+                                    
+                                    cell.previousNotes.text = object.notes?.uppercased()
+                                    
+                                case 1:
+                                    cell.previousWeight2.text = object.weight
+                                    
+                                case 2:
+                                    cell.previousWeight3.text = object.weight
+                                    
+                                case 3:
+                                    cell.previousWeight4.text = object.weight
+                                    
+                                case 4:
+                                    cell.previousWeight5.text = object.weight
+                                    
+                                    //                                case 5:
+                                    //                                    cell.previousWeight6.text = object.weight
+                                    //                                    cell.previousNotes.text = object.notes?.uppercased()
+                                    
+                                default:
+                                    break
+                                }
+                            }
+                        }
+                    }
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                    
+                    if self.graphViewPurchased {
+                        
+                        cell.graphButton.isHidden = false
+                        cell.rewardVideoButton.isHidden = true
+                        
+                        if debug == 1 {
+                            
+                            print("GraphView was purchased")
+                        }
+                    }
+                    else if appDelegate.shouldShowRewardGraph {
+                        
+                        cell.graphButton.isHidden = false
+                        cell.rewardVideoButton.isHidden = true
+                        
+                        if debug == 1 {
+                            
+                            print("Reward GraphView was purchased")
+                        }
+                    }
+                    else {
+                        
+                        cell.graphButton.isHidden = true
+                        cell.rewardVideoButton.isHidden = false
+                    }
+                    
+                    
+                    
+                    
+                    
+                    
+//                    //  TESTING PURPOSES ONLY!!!  COMMENT OUT WHEN DONE TAKING SCREENSHOTS
+//                    cell.graphButton.isHidden = false
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    return cell
+                }
+
                 else {
                     
                     // CompletionCell
@@ -826,14 +1464,26 @@ class WorkoutTVC: UITableViewController, UIPopoverPresentationControllerDelegate
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         
-        if section != numberOfSections(in: tableView) - 1 {
+        var headerString = ""
+        
+        if numberOfSections(in: tableView) == 2 && section != numberOfSections(in: tableView) - 1 {
             
-            return "Set \(section + 1) of \(numberOfSections(in: tableView) - 1)"
+            headerString = "Set \(section + 1) of \(numberOfSections(in: tableView) - 1)"
+        }
+        else if numberOfSections(in: tableView) >= 3 && section < numberOfSections(in: tableView) - 2 {
+            
+            headerString = "Set \(section + 1) of \(numberOfSections(in: tableView) - 1)"
+        }
+        else if numberOfSections(in: tableView) >= 3 && section == numberOfSections(in: tableView) - 2 {
+            
+            headerString = "Set \(section + 1) of \(numberOfSections(in: tableView) - 1) - BONUS"
         }
         else {
             
-            return "Finished"
+            headerString = "Finished"
         }
+        
+        return headerString
     }
     
     // MARK: UITableViewDelegate
@@ -845,7 +1495,14 @@ class WorkoutTVC: UITableViewController, UIPopoverPresentationControllerDelegate
         header.textLabel?.textColor = UIColor.white
         
         // Set the background color of the header/footer
-        header.contentView.backgroundColor = UIColor (red: 130/255, green: 155/255, blue: 203/255, alpha: 1)
+        if numberOfSections(in: tableView) >= 3 && section == numberOfSections(in: tableView) - 2 {
+         
+            header.contentView.backgroundColor = Color.red
+        }
+        else {
+            
+            header.contentView.backgroundColor = UIColor (red: 60/255, green: 153/255, blue: 202/255, alpha: 1)
+        }
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -895,7 +1552,8 @@ class WorkoutTVC: UITableViewController, UIPopoverPresentationControllerDelegate
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
         
-        if segue.identifier == "ShowShinobiChart" {
+        if segue.identifier == "WorkoutCell_Straight_1" ||
+            segue.identifier == "WorkoutCell_Straight_2" {
             
             let destinationNavController = segue.destination as? UINavigationController
             let destinationVC = destinationNavController?.topViewController as! ExerciseChartViewController
@@ -904,9 +1562,13 @@ class WorkoutTVC: UITableViewController, UIPopoverPresentationControllerDelegate
             destinationVC.workoutRoutine = self.workoutRoutine
             destinationVC.selectedWorkout = self.selectedWorkout
             destinationVC.workoutIndex = self.workoutIndex
+            destinationVC.segueIdentifier = segue.identifier!
             
             let button = sender as! UIButton
             let view = button.superview
+            
+            //  WorkoutTVC_WorkoutTableViewCell
+            //  Round 1 and 2 with Reps and/or Weight
             let cell = view?.superview as! WorkoutTVC_WorkoutTableViewCell
             
             destinationVC.exerciseName = cell.nonUpperCaseExerciseName
@@ -952,7 +1614,74 @@ class WorkoutTVC: UITableViewController, UIPopoverPresentationControllerDelegate
                 destinationVC.numberOfSeriesToShow = 1
                 destinationVC.seriesConfiguration = 1000 // ON, OFF, OFF, OFF
             }
+            
+            if debug == 1 {
+                
+                let exerciseName = cell.nonUpperCaseExerciseName
+                print("Exercise Name = \(exerciseName)")
+            }
+        }
+            
+        else if segue.identifier == "WorkoutCell_Straight_4_Rep" ||
+            segue.identifier == "WorkoutCell_Straight_5_Rep" {
+            
+            let destinationNavController = segue.destination as? UINavigationController
+            let destinationVC = destinationNavController?.topViewController as! ExerciseChartViewController
+            
+            destinationVC.session = session
+            destinationVC.workoutRoutine = workoutRoutine
+            destinationVC.selectedWorkout = selectedWorkout
+            destinationVC.workoutIndex = workoutIndex
+            destinationVC.segueIdentifier = segue.identifier!
+            
+            let button = sender as! UIButton
+            let view = button.superview
+            let cell = view?.superview as! WorkoutTVC_Workout5Round_Rep_TableViewCell
+            
+            destinationVC.exerciseName = cell.nonUpperCaseExerciseName
+            destinationVC.navigationItem.title = selectedWorkout
+            let graphDataPoints = [cell.repNumberLabel1.text,
+                                   cell.repNumberLabel2.text,
+                                   cell.repNumberLabel3.text,
+                                   cell.repNumberLabel4.text,
+                                   cell.repNumberLabel5.text]
+            
+            destinationVC.graphDataPoints = graphDataPoints
+            
+            let exerciseName = cell.nonUpperCaseExerciseName
+            
+            if debug == 1 {
+                
+                print("Exercise Name = \(exerciseName)")
+            }
+        }
 
+        else if segue.identifier == "WorkoutCell_Straight_4_Weight" ||
+            segue.identifier == "WorkoutCell_Straight_5_Weight" {
+            
+            let destinationNavController = segue.destination as? UINavigationController
+            let destinationVC = destinationNavController?.topViewController as! ExerciseChartViewController
+            
+            destinationVC.session = session
+            destinationVC.workoutRoutine = workoutRoutine
+            destinationVC.selectedWorkout = selectedWorkout
+            destinationVC.workoutIndex = workoutIndex
+            destinationVC.segueIdentifier = segue.identifier!
+            
+            let button = sender as! UIButton
+            let view = button.superview
+            let cell = view?.superview as! WorkoutTVC_Workout5Round_Weight_TableViewCell
+            
+            destinationVC.exerciseName = cell.nonUpperCaseExerciseName
+            destinationVC.navigationItem.title = selectedWorkout
+            let graphDataPoints = [cell.repNumberLabel1.text,
+                                   cell.repNumberLabel2.text,
+                                   cell.repNumberLabel3.text,
+                                   cell.repNumberLabel4.text,
+                                   cell.repNumberLabel5.text]
+            
+            destinationVC.graphDataPoints = graphDataPoints
+            
             let exerciseName = cell.nonUpperCaseExerciseName
             
             if debug == 1 {
@@ -970,98 +1699,98 @@ class WorkoutTVC: UITableViewController, UIPopoverPresentationControllerDelegate
     func loadExerciseNameArray(_ workout: String) {
         
         switch workout {
-        case "Chest + Back & Ab Workout":
+        case "Negative Lower":
             
-            let cell1 = [["Push-Ups"],
-                         [Round.round1, Round.round2, Round.empty, Round.empty, Round.empty, Round.empty],
-                         [LabelType.reps, LabelType.weight, LabelType.reps, LabelType.weight, LabelType.empty, LabelType.empty],
-                         [Color.light, Color.light, Color.dark, Color.dark, UIColor.white, UIColor.white],
-                         [false, true, false, true, true, true], // isHidden
-                         [CellType.straight_2]]
+            let cell1 = [["Squat"],
+                         [Round.round1, Round.empty, Round.empty, Round.empty, Round.empty, Round.empty],
+                         [LabelTitle.reps, LabelTitle.weight, LabelTitle.empty, LabelTitle.empty, LabelTitle.empty, LabelTitle.empty],
+                         [Color.one, Color.four, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
+                         [false, false, true, true, true, true], // isHidden
+                [CellType.straight_1]]
             
-            let cell2 = [["Wide Pull-Ups"],
-                         [Round.round1, Round.round2, Round.empty, Round.empty, Round.empty, Round.empty],
-                         [LabelType.reps, LabelType.weight, LabelType.reps, LabelType.weight, LabelType.empty, LabelType.empty],
-                         [Color.light, Color.light, Color.dark, Color.dark, UIColor.white, UIColor.white],
-                         [false, true, false, true, true, true],
-                         [CellType.straight_2]]
+            let cell2 = [["Lunge"],
+                         [Round.round1, Round.empty, Round.empty, Round.empty, Round.empty, Round.empty],
+                         [LabelTitle.reps, LabelTitle.weight, LabelTitle.empty, LabelTitle.empty, LabelTitle.empty, LabelTitle.empty],
+                         [Color.one, Color.four, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
+                         [false, false, true, true, true, true],
+                         [CellType.straight_1]]
             
-            let cell3 = [["Shoulder Width Push-Ups"],
-                         [Round.round1, Round.round2, Round.empty, Round.empty, Round.empty, Round.empty],
-                         [LabelType.reps, LabelType.weight, LabelType.reps, LabelType.weight, LabelType.empty, LabelType.empty],
-                         [Color.light, Color.light, Color.dark, Color.dark, UIColor.white, UIColor.white],
-                         [false, true, false, true, true, true],
-                         [CellType.straight_2]]
+            let cell3 = [["Wide Squat"],
+                         [Round.round1, Round.empty, Round.empty, Round.empty, Round.empty, Round.empty],
+                         [LabelTitle.reps, LabelTitle.weight, LabelTitle.empty, LabelTitle.empty, LabelTitle.empty, LabelTitle.empty],
+                         [Color.one, Color.four, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
+                         [false, false, true, true, true, true],
+                         [CellType.straight_1]]
             
-            let cell4 = [["Underhand Pull-Ups"],
-                         [Round.round1, Round.round2, Round.empty, Round.empty, Round.empty, Round.empty],
-                         [LabelType.reps, LabelType.weight, LabelType.reps, LabelType.weight, LabelType.empty, LabelType.empty],
-                         [Color.light, Color.light, Color.dark, Color.dark, UIColor.white, UIColor.white],
-                         [false, true, false, true, true, true],
-                         [CellType.straight_2]]
+            let cell4 = [["1 Leg Squat"],
+                         [Round.round1, Round.empty, Round.empty, Round.empty, Round.empty, Round.empty],
+                         [LabelTitle.reps, LabelTitle.weight, LabelTitle.empty, LabelTitle.empty, LabelTitle.empty, LabelTitle.empty],
+                         [Color.one, Color.four, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
+                         [false, false, true, true, true, true],
+                         [CellType.straight_1]]
             
-            let cell5 = [["Wide Push-Ups"],
-                         [Round.round1, Round.round2, Round.empty, Round.empty, Round.empty, Round.empty],
-                         [LabelType.reps, LabelType.weight, LabelType.reps, LabelType.weight, LabelType.empty, LabelType.empty],
-                         [Color.light, Color.light, Color.dark, Color.dark, UIColor.white, UIColor.white],
-                         [false, true, false, true, true, true],
-                         [CellType.straight_2]]
+            let cell5 = [["Side High Knee Kick"],
+                         [Round.round1, Round.empty, Round.empty, Round.empty, Round.empty, Round.empty],
+                         [LabelTitle.reps, LabelTitle.weight, LabelTitle.empty, LabelTitle.empty, LabelTitle.empty, LabelTitle.empty],
+                         [Color.one, Color.four, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
+                         [false, true, true, true, true, true],
+                         [CellType.straight_1]]
             
-            let cell6 = [["Narrow Pull-Ups"],
-                         [Round.round1, Round.round2, Round.empty, Round.empty, Round.empty, Round.empty],
-                         [LabelType.reps, LabelType.weight, LabelType.reps, LabelType.weight, LabelType.empty, LabelType.empty],
-                         [Color.light, Color.light, Color.dark, Color.dark, UIColor.white, UIColor.white],
-                         [false, true, false, true, true, true],
-                         [CellType.straight_2]]
+            let cell6 = [["Front High Knee Kick"],
+                         [Round.round1, Round.empty, Round.empty, Round.empty, Round.empty, Round.empty],
+                         [LabelTitle.reps, LabelTitle.weight, LabelTitle.empty, LabelTitle.empty, LabelTitle.empty, LabelTitle.empty],
+                         [Color.one, Color.four, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
+                         [false, false, true, true, true, true],
+                         [CellType.straight_1]]
             
-            let cell7 = [["Decline Push-Ups"],
-                         [Round.round1, Round.round2, Round.empty, Round.empty, Round.empty, Round.empty],
-                         [LabelType.reps, LabelType.weight, LabelType.reps, LabelType.weight, LabelType.empty, LabelType.empty],
-                         [Color.light, Color.light, Color.dark, Color.dark, UIColor.white, UIColor.white],
-                         [false, true, false, true, true, true],
-                         [CellType.straight_2]]
+            let cell7 = [["1 Leg Lunge"],
+                         [Round.round1, Round.empty, Round.empty, Round.empty, Round.empty, Round.empty],
+                         [LabelTitle.reps, LabelTitle.weight, LabelTitle.empty, LabelTitle.empty, LabelTitle.empty, LabelTitle.empty],
+                         [Color.one, Color.four, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
+                         [false, false, true, true, true, true],
+                         [CellType.straight_1]]
             
-            let cell8 = [["Bent Over Rows"],
-                         [Round.round1, Round.round2, Round.empty, Round.empty, Round.empty, Round.empty],
-                         [LabelType.reps, LabelType.weight, LabelType.reps, LabelType.weight, LabelType.empty, LabelType.empty],
-                         [Color.light, Color.light, Color.dark, Color.dark, UIColor.white, UIColor.white],
-                         [false, false, false, false, true, true],
-                         [CellType.straight_2]]
+            let cell8 = [["Side Lunge Raise"],
+                         [Round.round1, Round.empty, Round.empty, Round.empty, Round.empty, Round.empty],
+                         [LabelTitle.reps, LabelTitle.weight, LabelTitle.empty, LabelTitle.empty, LabelTitle.empty, LabelTitle.empty],
+                         [Color.one, Color.four, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
+                         [false, false, true, true, true, true],
+                         [CellType.straight_1]]
             
-            let cell9 = [["Diamonds"],
-                         [Round.round1, Round.round2, Round.empty, Round.empty, Round.empty, Round.empty],
-                         [LabelType.reps, LabelType.weight, LabelType.reps, LabelType.weight, LabelType.empty, LabelType.empty],
-                         [Color.light, Color.light, Color.dark, Color.dark, UIColor.white, UIColor.white],
-                         [false, true, false, true, true, true],
-                         [CellType.straight_2]]
+            let cell9 = [["1 Leg Squat Punch"],
+                         [Round.round1, Round.empty, Round.empty, Round.empty, Round.empty, Round.empty],
+                         [LabelTitle.reps, LabelTitle.weight, LabelTitle.empty, LabelTitle.empty, LabelTitle.empty, LabelTitle.empty],
+                         [Color.one, Color.four, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
+                         [false, false, true, true, true, true],
+                         [CellType.straight_1]]
             
-            let cell10 = [["Single Arm Bent Over Rows"],
-                          [Round.round1, Round.round2, Round.empty, Round.empty, Round.empty, Round.empty],
-                          [LabelType.reps, LabelType.weight, LabelType.reps, LabelType.weight, LabelType.empty, LabelType.empty],
-                          [Color.light, Color.light, Color.dark, Color.dark, UIColor.white, UIColor.white],
-                          [false, false, false, false, true, true],
-                          [CellType.straight_2]]
+            let cell10 = [["Side Sphinx Leg Lift"],
+                          [Round.round1, Round.empty, Round.empty, Round.empty, Round.empty, Round.empty],
+                          [LabelTitle.reps, LabelTitle.weight, LabelTitle.empty, LabelTitle.empty, LabelTitle.empty, LabelTitle.empty],
+                          [Color.one, Color.four, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
+                          [false, true, true, true, true, true],
+                          [CellType.straight_1]]
             
-            let cell11 = [["Under The Wall"],
-                          [Round.round1, Round.round2, Round.empty, Round.empty, Round.empty, Round.empty],
-                          [LabelType.reps, LabelType.weight, LabelType.reps, LabelType.weight, LabelType.empty, LabelType.empty],
-                          [Color.light, Color.light, Color.dark, Color.dark, UIColor.white, UIColor.white],
-                          [false, true, false, true, true, true],
-                          [CellType.straight_2]]
+            let cell11 = [["Laying Heel Raise"],
+                          [Round.round1, Round.empty, Round.empty, Round.empty, Round.empty, Round.empty],
+                          [LabelTitle.reps, LabelTitle.weight, LabelTitle.empty, LabelTitle.empty, LabelTitle.empty, LabelTitle.empty],
+                          [Color.one, Color.four, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
+                          [false, false, true, true, true, true],
+                          [CellType.straight_1]]
             
-            let cell12 = [["Seated Back Flys"],
-                          [Round.round1, Round.round2, Round.empty, Round.empty, Round.empty, Round.empty],
-                          [LabelType.reps, LabelType.weight, LabelType.reps, LabelType.weight, LabelType.empty, LabelType.empty],
-                          [Color.light,Color.light, Color.dark, Color.dark, UIColor.white, UIColor.white],
-                          [false, false, false, false, true, true],
-                          [CellType.straight_2]]
+            let cell12 = [["Pommel Horse V"],
+                          [Round.round1, Round.empty, Round.empty, Round.empty, Round.empty, Round.empty],
+                          [LabelTitle.reps, LabelTitle.weight, LabelTitle.empty, LabelTitle.empty, LabelTitle.empty, LabelTitle.empty],
+                          [Color.one, Color.four, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
+                          [false, true, true, true, true, true],
+                          [CellType.straight_1]]
             
-            let cell13 = [["Shuffle The Next Round"],
-                          [Round.round1, Round.round2, Round.empty, Round.empty, Round.empty, Round.empty],
-                          [LabelType.reps, LabelType.weight, LabelType.reps, LabelType.weight, LabelType.empty, LabelType.empty],
-                          [Color.light,Color.light, Color.dark, Color.dark, UIColor.white, UIColor.white],
-                          [false, false, false, false, true, true],
-                          [CellType.shuffle]]
+            let cell13 = [["Downward Dog Calf Extension"],
+                          [Round.round1, Round.empty, Round.empty, Round.empty, Round.empty, Round.empty],
+                          [LabelTitle.reps, LabelTitle.weight, LabelTitle.empty, LabelTitle.empty, LabelTitle.empty, LabelTitle.empty],
+                          [Color.one, Color.four, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
+                          [false, true, true, true, true, true],
+                          [CellType.straight_1]]
             
             let completeCell = [[],
                                 [],
@@ -1070,117 +1799,157 @@ class WorkoutTVC: UITableViewController, UIPopoverPresentationControllerDelegate
                                 [],
                                 [CellType.completion]]
             
-            cellArray = [[cell1, cell2, cell3, cell4],
-                         [cell5, cell6, cell7, cell8],
-                         [cell9, cell10, cell11, cell12, cell13],
+            cellArray = [[cell1, cell2, cell3, cell4, cell5, cell6, cell7, cell8, cell9, cell10, cell11, cell12, cell13],
                          [completeCell]]
             
-        case "Shoulders + Arms & Ab Workout":
+        case "Negative Upper":
             
-            let cell1 = [["Shoulder Presses"],
-                         [Round.round1, Round.round2, Round.empty, Round.empty, Round.empty, Round.empty],
-                         [LabelType.reps, LabelType.weight, LabelType.reps, LabelType.weight, LabelType.empty, LabelType.empty],
-                         [Color.light, Color.light, Color.dark, Color.dark, UIColor.white, UIColor.white],
-                         [false, false, false, false, true, true], // isHidden
-                         [CellType.straight_2]]
+            let cell1 = [["Push-Ups"],
+                         [Round.round1, Round.empty, Round.empty, Round.empty, Round.empty, Round.empty],
+                         [LabelTitle.reps, LabelTitle.weight, LabelTitle.empty, LabelTitle.empty, LabelTitle.empty, LabelTitle.empty],
+                         [Color.one, Color.four, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
+                         [false, true, true, true, true, true], // isHidden
+                [CellType.straight_1]]
             
-            let cell2 = [["2-Way Bicep Curls"],
-                         [Round.round1, Round.round2, Round.empty, Round.empty, Round.empty, Round.empty],
-                         [LabelType.reps, LabelType.weight, LabelType.reps, LabelType.weight, LabelType.empty, LabelType.empty],
-                         [Color.light, Color.light, Color.dark, Color.dark, UIColor.white, UIColor.white],
-                         [false, false, false, false, true, true],
-                         [CellType.straight_2]]
+            let cell2 = [["Pull-Ups"],
+                         [Round.round1, Round.empty, Round.empty, Round.empty, Round.empty, Round.empty],
+                         [LabelTitle.reps, LabelTitle.weight, LabelTitle.empty, LabelTitle.empty, LabelTitle.empty, LabelTitle.empty],
+                         [Color.one, Color.four, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
+                         [false, true, true, true, true, true],
+                         [CellType.straight_1]]
             
-            let cell3 = [["Tricep Extensions"],
-                         [Round.round1, Round.round2, Round.empty, Round.empty, Round.empty, Round.empty],
-                         [LabelType.reps, LabelType.weight, LabelType.reps, LabelType.weight, LabelType.empty, LabelType.empty],
-                         [Color.light, Color.light, Color.dark, Color.dark, UIColor.white, UIColor.white],
-                         [false, false, false, false, true, true],
-                         [CellType.straight_2]]
+            let cell3 = [["Shoulder Press"],
+                         [Round.round1, Round.empty, Round.empty, Round.empty, Round.empty, Round.empty],
+                         [LabelTitle.reps, LabelTitle.weight, LabelTitle.empty, LabelTitle.empty, LabelTitle.empty, LabelTitle.empty],
+                         [Color.one, Color.four, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
+                         [false, false, true, true, true, true],
+                         [CellType.straight_1]]
             
-            let cell4 = [["Curl/Shoulder Presses"],
-                         [Round.round1, Round.round2, Round.empty, Round.empty, Round.empty, Round.empty],
-                         [LabelType.reps, LabelType.weight, LabelType.reps, LabelType.weight, LabelType.empty, LabelType.empty],
-                         [Color.light, Color.light, Color.dark, Color.dark, UIColor.white, UIColor.white],
-                         [false, false, false, false, true, true],
-                         [CellType.straight_2]]
+            let cell4 = [["Military Push-Ups"],
+                         [Round.round1, Round.empty, Round.empty, Round.empty, Round.empty, Round.empty],
+                         [LabelTitle.reps, LabelTitle.weight, LabelTitle.empty, LabelTitle.empty, LabelTitle.empty, LabelTitle.empty],
+                         [Color.one, Color.four, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
+                         [false, true, true, true, true, true],
+                         [CellType.straight_1]]
             
-            let cell5 = [["Single Concentration Bicep Curls"],
-                         [Round.round1, Round.round2, Round.empty, Round.empty, Round.empty, Round.empty],
-                         [LabelType.reps, LabelType.weight, LabelType.reps, LabelType.weight, LabelType.empty, LabelType.empty],
-                         [Color.light, Color.light, Color.dark, Color.dark, UIColor.white, UIColor.white],
-                         [false, false, false, false, true, true],
-                         [CellType.straight_2]]
+            let cell5 = [["Underhand Pull-Ups"],
+                         [Round.round1, Round.empty, Round.empty, Round.empty, Round.empty, Round.empty],
+                         [LabelTitle.reps, LabelTitle.weight, LabelTitle.empty, LabelTitle.empty, LabelTitle.empty, LabelTitle.empty],
+                         [Color.one, Color.four, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
+                         [false, true, true, true, true, true],
+                         [CellType.straight_1]]
             
-            let cell6 = [["Dips"],
-                         [Round.round1, Round.round2, Round.empty, Round.empty, Round.empty, Round.empty],
-                         [LabelType.reps, LabelType.weight, LabelType.reps, LabelType.weight, LabelType.empty, LabelType.empty],
-                         [Color.light, Color.light, Color.dark, Color.dark, UIColor.white, UIColor.white],
-                         [false, true, false, true, true, true],
-                         [CellType.straight_2]]
+            let cell6 = [["Bicep Curl to Shoulder Press"],
+                         [Round.round1, Round.empty, Round.empty, Round.empty, Round.empty, Round.empty],
+                         [LabelTitle.reps, LabelTitle.weight, LabelTitle.empty, LabelTitle.empty, LabelTitle.empty, LabelTitle.empty],
+                         [Color.one, Color.four, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
+                         [false, false, true, true, true, true],
+                         [CellType.straight_1]]
             
-            let cell7 = [["Chin Rows"],
-                         [Round.round1, Round.round2, Round.empty, Round.empty, Round.empty, Round.empty],
-                         [LabelType.reps, LabelType.weight, LabelType.reps, LabelType.weight, LabelType.empty, LabelType.empty],
-                         [Color.light, Color.light, Color.dark, Color.dark, UIColor.white, UIColor.white],
-                         [false, false, false, false, true, true],
-                         [CellType.straight_2]]
+            let cell7 = [["Wide Push-Ups"],
+                         [Round.round1, Round.empty, Round.empty, Round.empty, Round.empty, Round.empty],
+                         [LabelTitle.reps, LabelTitle.weight, LabelTitle.empty, LabelTitle.empty, LabelTitle.empty, LabelTitle.empty],
+                         [Color.one, Color.four, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
+                         [false, true, true, true, true, true],
+                         [CellType.straight_1]]
             
-            let cell8 = [["Parallel Bicep Curls"],
-                         [Round.round1, Round.round2, Round.empty, Round.empty, Round.empty, Round.empty],
-                         [LabelType.reps, LabelType.weight, LabelType.reps, LabelType.weight, LabelType.empty, LabelType.empty],
-                         [Color.light, Color.light, Color.dark, Color.dark, UIColor.white, UIColor.white],
-                         [false, false, false, false, true, true],
-                         [CellType.straight_2]]
+            let cell8 = [["Side to Side Pull-Ups"],
+                         [Round.round1, Round.empty, Round.empty, Round.empty, Round.empty, Round.empty],
+                         [LabelTitle.reps, LabelTitle.weight, LabelTitle.empty, LabelTitle.empty, LabelTitle.empty, LabelTitle.empty],
+                         [Color.one, Color.four, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
+                         [false, true, true, true, true, true],
+                         [CellType.straight_1]]
             
-            let cell9 = [["Twisting Tricep Extentions"],
-                         [Round.round1, Round.round2, Round.empty, Round.empty, Round.empty, Round.empty],
-                         [LabelType.reps, LabelType.weight, LabelType.reps, LabelType.weight, LabelType.empty, LabelType.empty],
-                         [Color.light, Color.light, Color.dark, Color.dark, UIColor.white, UIColor.white],
-                         [false, false, false, false, true, true],
-                         [CellType.straight_2]]
+            let cell9 = [["Upright Row to Hammer"],
+                         [Round.round1, Round.empty, Round.empty, Round.empty, Round.empty, Round.empty],
+                         [LabelTitle.reps, LabelTitle.weight, LabelTitle.empty, LabelTitle.empty, LabelTitle.empty, LabelTitle.empty],
+                         [Color.one, Color.four, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
+                         [false, false, true, true, true, true],
+                         [CellType.straight_1]]
             
-            let cell10 = [["Seated Shoulder Flys"],
-                          [Round.round1, Round.round2, Round.empty, Round.empty, Round.empty, Round.empty],
-                          [LabelType.reps, LabelType.weight, LabelType.reps, LabelType.weight, LabelType.empty, LabelType.empty],
-                          [Color.light, Color.light, Color.dark, Color.dark, UIColor.white, UIColor.white],
-                          [false, false, false, false, true, true],
-                          [CellType.straight_2]]
+            let cell10 = [["Offset Push-Ups"],
+                          [Round.round1, Round.empty, Round.empty, Round.empty, Round.empty, Round.empty],
+                          [LabelTitle.reps, LabelTitle.weight, LabelTitle.empty, LabelTitle.empty, LabelTitle.empty, LabelTitle.empty],
+                          [Color.one, Color.four, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
+                          [false, true, true, true, true, true],
+                          [CellType.straight_1]]
             
-            let cell11 = [["Double Concentration Bicep Curls"],
-                          [Round.round1, Round.round2, Round.empty, Round.empty, Round.empty, Round.empty],
-                          [LabelType.reps, LabelType.weight, LabelType.reps, LabelType.weight, LabelType.empty, LabelType.empty],
-                          [Color.light, Color.light, Color.dark, Color.dark, UIColor.white, UIColor.white],
-                          [false, false, false, false, true, true],
-                          [CellType.straight_2]]
+            let cell11 = [["Leaning Row"],
+                          [Round.round1, Round.empty, Round.empty, Round.empty, Round.empty, Round.empty],
+                          [LabelTitle.reps, LabelTitle.weight, LabelTitle.empty, LabelTitle.empty, LabelTitle.empty, LabelTitle.empty],
+                          [Color.one, Color.four, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
+                          [false, false, true, true, true, true],
+                          [CellType.straight_1]]
             
-            let cell12 = [["Overhead Tricep Extensions"],
-                          [Round.round1, Round.round2, Round.empty, Round.empty, Round.empty, Round.empty],
-                          [LabelType.reps, LabelType.weight, LabelType.reps, LabelType.weight, LabelType.empty, LabelType.empty],
-                          [Color.light, Color.light, Color.dark, Color.dark, UIColor.white, UIColor.white],
-                          [false, false, false, false, true, true],
-                          [CellType.straight_2]]
+            let cell12 = [["2 Way Shoulder Raise"],
+                          [Round.round1, Round.empty, Round.empty, Round.empty, Round.empty, Round.empty],
+                          [LabelTitle.reps, LabelTitle.weight, LabelTitle.empty, LabelTitle.empty, LabelTitle.empty, LabelTitle.empty],
+                          [Color.one, Color.four, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
+                          [false, false, true, true, true, true],
+                          [CellType.straight_1]]
             
-            let cell13 = [["2-Way Shoulder Flys"],
-                          [Round.round1, Round.round2, Round.empty, Round.empty, Round.empty, Round.empty],
-                          [LabelType.reps, LabelType.weight, LabelType.reps, LabelType.weight, LabelType.empty, LabelType.empty],
-                          [Color.light, Color.light, Color.dark, Color.dark, UIColor.white, UIColor.white],
-                          [false, false, false, false, true, true],
-                          [CellType.straight_2]]
+            let cell13 = [["Plyometric Push-Ups"],
+                          [Round.round1, Round.empty, Round.empty, Round.empty, Round.empty, Round.empty],
+                          [LabelTitle.reps, LabelTitle.weight, LabelTitle.empty, LabelTitle.empty, LabelTitle.empty, LabelTitle.empty],
+                          [Color.one, Color.four, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
+                          [false, true, true, true, true, true],
+                          [CellType.straight_1]]
             
-            let cell14 = [["Hammer Bicep Curls"],
-                          [Round.round1, Round.round2, Round.empty, Round.empty, Round.empty, Round.empty],
-                          [LabelType.reps, LabelType.weight, LabelType.reps, LabelType.weight, LabelType.empty, LabelType.empty],
-                          [Color.light, Color.light, Color.dark, Color.dark, UIColor.white, UIColor.white],
-                          [false, false, false, false, true, true],
-                          [CellType.straight_2]]
+            let cell14 = [["Opposite Grip Pull-Ups"],
+                          [Round.round1, Round.empty, Round.empty, Round.empty, Round.empty, Round.empty],
+                          [LabelTitle.reps, LabelTitle.weight, LabelTitle.empty, LabelTitle.empty, LabelTitle.empty, LabelTitle.empty],
+                          [Color.one, Color.four, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
+                          [false, true, true, true, true, true],
+                          [CellType.straight_1]]
             
-            let cell15 = [["Bodyweight Tricep Extensions"],
-                          [Round.round1, Round.round2, Round.empty, Round.empty, Round.empty, Round.empty],
-                          [LabelType.reps, LabelType.weight, LabelType.reps, LabelType.weight, LabelType.empty, LabelType.empty],
-                          [Color.light, Color.light, Color.dark, Color.dark, UIColor.white, UIColor.white],
-                          [false, true, false, true, true, true],
-                          [CellType.straight_2]]
+            let cell15 = [["Leaning Shoulder Flys"],
+                          [Round.round1, Round.empty, Round.empty, Round.empty, Round.empty, Round.empty],
+                          [LabelTitle.reps, LabelTitle.weight, LabelTitle.empty, LabelTitle.empty, LabelTitle.empty, LabelTitle.empty],
+                          [Color.one, Color.four, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
+                          [false, false, true, true, true, true],
+                          [CellType.straight_1]]
+            
+            let cell16 = [["Leaning Tricep Extension"],
+                          [Round.round1, Round.empty, Round.empty, Round.empty, Round.empty, Round.empty],
+                          [LabelTitle.reps, LabelTitle.weight, LabelTitle.empty, LabelTitle.empty, LabelTitle.empty, LabelTitle.empty],
+                          [Color.one, Color.four, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
+                          [false, false, true, true, true, true],
+                          [CellType.straight_1]]
+            
+            let cell17 = [["2 Way Bicep Curl"],
+                          [Round.round1, Round.empty, Round.empty, Round.empty, Round.empty, Round.empty],
+                          [LabelTitle.reps, LabelTitle.weight, LabelTitle.empty, LabelTitle.empty, LabelTitle.empty, LabelTitle.empty],
+                          [Color.one, Color.four, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
+                          [false, false, true, true, true, true],
+                          [CellType.straight_1]]
+            
+            let cell18 = [["Tricep Pelvis Raise"],
+                          [Round.round1, Round.empty, Round.empty, Round.empty, Round.empty, Round.empty],
+                          [LabelTitle.reps, LabelTitle.weight, LabelTitle.empty, LabelTitle.empty, LabelTitle.empty, LabelTitle.empty],
+                          [Color.one, Color.four, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
+                          [false, true, true, true, true, true],
+                          [CellType.straight_1]]
+            
+            let cell19 = [["Leaning Preacher Curl"],
+                          [Round.round1, Round.empty, Round.empty, Round.empty, Round.empty, Round.empty],
+                          [LabelTitle.reps, LabelTitle.weight, LabelTitle.empty, LabelTitle.empty, LabelTitle.empty, LabelTitle.empty],
+                          [Color.one, Color.four, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
+                          [false, false, true, true, true, true],
+                          [CellType.straight_1]]
+            
+            let cell20 = [["BONUS Military Push-Ups"],
+                          [Round.round1, Round.empty, Round.empty, Round.empty, Round.empty, Round.empty],
+                          [LabelTitle.reps, LabelTitle.weight, LabelTitle.empty, LabelTitle.empty, LabelTitle.empty, LabelTitle.empty],
+                          [Color.red, Color.four, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
+                          [false, true, true, true, true, true],
+                          [CellType.straight_1]]
+            
+            let cell21 = [["BONUS Wide Pull-Ups"],
+                          [Round.round1, Round.empty, Round.empty, Round.empty, Round.empty, Round.empty],
+                          [LabelTitle.reps, LabelTitle.weight, LabelTitle.empty, LabelTitle.empty, LabelTitle.empty, LabelTitle.empty],
+                          [Color.red, Color.four, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
+                          [false, true, true, true, true, true],
+                          [CellType.straight_1]]
             
             let completeCell = [[],
                                 [],
@@ -1194,170 +1963,46 @@ class WorkoutTVC: UITableViewController, UIPopoverPresentationControllerDelegate
                          [cell7, cell8, cell9],
                          [cell10, cell11, cell12],
                          [cell13, cell14, cell15],
+                         [cell16, cell17, cell18, cell19],
+                         [cell20, cell21],
                          [completeCell]]
             
-        case "Legs + Back & Ab Workout":
+        case "Agility Upper":
             
-            let cell1 = [["Chair Lunges"],
-                         [Round.round1, Round.empty, Round.empty, Round.empty, Round.empty, Round.empty],
-                         [LabelType.reps, LabelType.weight, LabelType.empty, LabelType.empty, LabelType.empty, LabelType.empty],
-                         [Color.light, Color.dark, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
-                         [false, true, true, true, true, true],
-                         [CellType.straight_1]]
+            let cell1 = [["Slow Underhand Pull-Ups"],
+                         [LabelNumber._12, LabelNumber._12, LabelNumber._12, LabelNumber._12, LabelNumber._6, LabelNumber.empty],
+                         [LabelTitle.reps_Long, LabelTitle.reps_Long, LabelTitle.reps_Long, LabelTitle.reps_Long, LabelTitle.reps_Long, LabelTitle.empty],
+                         [Color.one, Color.two, Color.three, Color.four, Color.red, UIColor.white],
+                         [false, false, false, false, false, true], // isHidden
+                [CellType.straight_5_Rep]]
             
-            let cell2 = [["Squat to Calf Extensions"],
-                         [Round.round1, Round.empty, Round.empty, Round.empty, Round.empty, Round.empty],
-                         [LabelType.reps, LabelType.weight, LabelType.empty, LabelType.empty, LabelType.empty, LabelType.empty],
-                         [Color.light, Color.dark, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
-                         [false, false, true, true, true, true],
-                         [CellType.straight_1]]
+            let cell2 = [["Rotating Plyometric Push-Ups"],
+                         [LabelNumber._8, LabelNumber._8, LabelNumber._8, LabelNumber._8, LabelNumber._6, LabelNumber.empty],
+                         [LabelTitle.reps_Long, LabelTitle.reps_Long, LabelTitle.reps_Long, LabelTitle.reps_Long, LabelTitle.reps_Long, LabelTitle.empty],
+                         [Color.one, Color.two, Color.three, Color.four, Color.red, UIColor.white],
+                         [false, false, false, false, false, true],
+                         [CellType.straight_5_Rep]]
             
-            let cell3 = [["Underhand Pull-Ups 1"],
-                         [Round.round1, Round.empty, Round.empty, Round.empty, Round.empty, Round.empty],
-                         [LabelType.reps, LabelType.weight, LabelType.empty, LabelType.empty, LabelType.empty, LabelType.empty],
-                         [Color.light, Color.dark, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
-                         [false, true, true, true, true, true],
-                         [CellType.straight_1]]
+            let cell3 = [["Plyometric Lunge Press"],
+                         [LabelNumber._12, LabelNumber._12, LabelNumber._12, LabelNumber._12, LabelNumber._12, LabelNumber.empty],
+                         [LabelTitle.reps_Long, LabelTitle.reps_Long, LabelTitle.reps_Long, LabelTitle.reps_Long, LabelTitle.reps_Long, LabelTitle.empty],
+                         [Color.one, Color.two, Color.three, Color.four, Color.red, UIColor.white],
+                         [false, false, false, false, false, true],
+                         [CellType.straight_5_Weight]]
             
-            let cell4 = [["Single Leg Lunges"],
-                         [Round.round1, Round.empty, Round.empty, Round.empty, Round.empty, Round.empty],
-                         [LabelType.reps, LabelType.weight, LabelType.empty, LabelType.empty, LabelType.empty, LabelType.empty],
-                         [Color.light, Color.dark, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
-                         [false, true, true, true, true, true],
-                         [CellType.straight_1]]
+            let cell4 = [["3 Way Pull-Ups"],
+                         [LabelNumber._12, LabelNumber._12, LabelNumber._12, LabelNumber._12, LabelNumber._6, LabelNumber.empty],
+                         [LabelTitle.reps_Long, LabelTitle.reps_Long, LabelTitle.reps_Long, LabelTitle.reps_Long, LabelTitle.reps_Long, LabelTitle.empty],
+                         [Color.one, Color.two, Color.three, Color.four, Color.red, UIColor.white],
+                         [false, false, false, false, false, true],
+                         [CellType.straight_5_Rep]]
             
-            let cell5 = [["Hold Parallel Squats"],
-                         [Round.round1, Round.empty, Round.empty, Round.empty, Round.empty, Round.empty],
-                         [LabelType.reps, LabelType.weight, LabelType.empty, LabelType.empty, LabelType.empty, LabelType.empty],
-                         [Color.light, Color.dark, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
-                         [false, true, true, true, true, true],
-                         [CellType.straight_1]]
-            
-            let cell6 = [["Wide Pull-Ups 1"],
-                         [Round.round1, Round.empty, Round.empty, Round.empty, Round.empty, Round.empty],
-                         [LabelType.reps, LabelType.weight, LabelType.empty, LabelType.empty, LabelType.empty, LabelType.empty],
-                         [Color.light, Color.dark, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
-                         [false, true, true, true, true, true],
-                         [CellType.straight_1]]
-            
-            let cell7 = [["Reverse Lunges"],
-                         [Round.round1, Round.empty, Round.empty, Round.empty, Round.empty, Round.empty],
-                         [LabelType.reps, LabelType.weight, LabelType.empty, LabelType.empty, LabelType.empty, LabelType.empty],
-                         [Color.light, Color.dark, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
-                         [false, false, true, true, true, true],
-                         [CellType.straight_1]]
-            
-            let cell8 = [["Side Lunges"],
-                         [Round.round1, Round.empty, Round.empty, Round.empty, Round.empty, Round.empty],
-                         [LabelType.reps, LabelType.weight, LabelType.empty, LabelType.empty, LabelType.empty, LabelType.empty],
-                         [Color.light, Color.dark, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
-                         [false, false, true, true, true, true],
-                         [CellType.straight_1]]
-            
-            let cell9 = [["Narrow Pull-Ups 1"],
-                         [Round.round1, Round.empty, Round.empty, Round.empty, Round.empty, Round.empty],
-                         [LabelType.reps, LabelType.weight, LabelType.empty, LabelType.empty, LabelType.empty, LabelType.empty],
-                         [Color.light, Color.dark, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
-                         [false, true, true, true, true, true],
-                         [CellType.straight_1]]
-            
-            let cell10 = [["1 Leg Hold Parallel Squats"],
-                          [Round.round1, Round.empty, Round.empty, Round.empty, Round.empty, Round.empty],
-                          [LabelType.reps, LabelType.weight, LabelType.empty, LabelType.empty, LabelType.empty, LabelType.empty],
-                          [Color.light, Color.dark, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
-                          [false, true, true, true, true, true],
-                          [CellType.straight_1]]
-            
-            let cell11 = [["Deadlifts"],
-                          [Round.round1, Round.empty, Round.empty, Round.empty, Round.empty, Round.empty],
-                          [LabelType.reps, LabelType.weight, LabelType.empty, LabelType.empty, LabelType.empty, LabelType.empty],
-                          [Color.light, Color.dark, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
-                          [false, true, true, true, true, true],
-                          [CellType.straight_1]]
-            
-            let cell12 = [["2-Way Pull-Ups 1"],
-                          [Round.round1, Round.empty, Round.empty, Round.empty, Round.empty, Round.empty],
-                          [LabelType.reps, LabelType.weight, LabelType.empty, LabelType.empty, LabelType.empty, LabelType.empty],
-                          [Color.light, Color.dark, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
-                          [false, true, true, true, true, true],
-                          [CellType.straight_1]]
-            
-            let cell13 = [["3-Way Lunges"],
-                          [Round.round1, Round.empty, Round.empty, Round.empty, Round.empty, Round.empty],
-                          [LabelType.reps, LabelType.weight, LabelType.empty, LabelType.empty, LabelType.empty, LabelType.empty],
-                          [Color.light, Color.dark, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
-                          [false, true, true, true, true, true],
-                          [CellType.straight_1]]
-            
-            let cell14 = [["Toe Lunges"],
-                          [Round.round1, Round.empty, Round.empty, Round.empty, Round.empty, Round.empty],
-                          [LabelType.reps, LabelType.weight, LabelType.empty, LabelType.empty, LabelType.empty, LabelType.empty],
-                          [Color.light, Color.dark, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
-                          [false, true, true, true, true, true],
-                          [CellType.straight_1]]
-            
-            let cell15 = [["Underhand Pull-Ups 2"],
-                          [Round.round1, Round.empty, Round.empty, Round.empty, Round.empty, Round.empty],
-                          [LabelType.reps, LabelType.weight, LabelType.empty, LabelType.empty, LabelType.empty, LabelType.empty],
-                          [Color.light, Color.dark, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
-                          [false, true, true, true, true, true],
-                          [CellType.straight_1]]
-            
-            let cell16 = [["Chair Squats"],
-                          [Round.round1, Round.empty, Round.empty, Round.empty, Round.empty, Round.empty],
-                          [LabelType.reps, LabelType.weight, LabelType.empty, LabelType.empty, LabelType.empty, LabelType.empty],
-                          [Color.light, Color.dark, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
-                          [false, true, true, true, true, true],
-                          [CellType.straight_1]]
-            
-            let cell17 = [["Lunge Calf Extensions"],
-                          [Round.round1, Round.empty, Round.empty, Round.empty, Round.empty, Round.empty],
-                          [LabelType.reps, LabelType.weight, LabelType.empty, LabelType.empty, LabelType.empty, LabelType.empty],
-                          [Color.light, Color.dark, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
-                          [false, false, true, true, true, true],
-                          [CellType.straight_1]]
-            
-            let cell18 = [["Wide Pull-Ups 2"],
-                          [Round.round1, Round.empty, Round.empty, Round.empty, Round.empty, Round.empty],
-                          [LabelType.reps, LabelType.weight, LabelType.empty, LabelType.empty, LabelType.empty, LabelType.empty],
-                          [Color.light, Color.dark, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
-                          [false, true, true, true, true, true],
-                          [CellType.straight_1]]
-            
-            let cell19 = [["Crouching Tiger"],
-                          [Round.round1, Round.empty, Round.empty, Round.empty, Round.empty, Round.empty],
-                          [LabelType.reps, LabelType.weight, LabelType.empty, LabelType.empty, LabelType.empty, LabelType.empty],
-                          [Color.light, Color.dark, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
-                          [false, true, true, true, true, true],
-                          [CellType.straight_1]]
-            
-            let cell20 = [["Calf Raises"],
-                          [Round.round1, Round.empty, Round.empty, Round.empty, Round.empty, Round.empty],
-                          [LabelType.reps, LabelType.weight, LabelType.empty, LabelType.empty, LabelType.empty, LabelType.empty],
-                          [Color.light, Color.dark, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
-                          [false, false, true, true, true, true],
-                          [CellType.straight_1]]
-            
-            let cell21 = [["Narrow Pull-Ups 2"],
-                          [Round.round1, Round.empty, Round.empty, Round.empty, Round.empty, Round.empty],
-                          [LabelType.reps, LabelType.weight, LabelType.empty, LabelType.empty, LabelType.empty, LabelType.empty],
-                          [Color.light, Color.dark, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
-                          [false, true, true, true, true, true],
-                          [CellType.straight_1]]
-            
-            let cell22 = [["1 Leg Squats"],
-                          [Round.round1, Round.empty, Round.empty, Round.empty, Round.empty, Round.empty],
-                          [LabelType.reps, LabelType.weight, LabelType.empty, LabelType.empty, LabelType.empty, LabelType.empty],
-                          [Color.light, Color.dark, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
-                          [false, true, true, true, true, true],
-                          [CellType.straight_1]]
-            
-            let cell23 = [["2-Way Pull-Ups 2"],
-                          [Round.round1, Round.empty, Round.empty, Round.empty, Round.empty, Round.empty],
-                          [LabelType.reps, LabelType.weight, LabelType.empty, LabelType.empty, LabelType.empty, LabelType.empty],
-                          [Color.light, Color.dark, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
-                          [false, true, true, true, true, true],
-                          [CellType.straight_1]]
+            let cell5 = [["Push-Up Plank Cross Crunch"],
+                         [LabelNumber._12, LabelNumber._12, LabelNumber._12, LabelNumber._12, LabelNumber._8, LabelNumber.empty],
+                         [LabelTitle.reps_Long, LabelTitle.reps_Long, LabelTitle.reps_Long, LabelTitle.reps_Long, LabelTitle.reps_Long, LabelTitle.empty],
+                         [Color.one, Color.two, Color.three, Color.four, Color.red, UIColor.white],
+                         [false, false, false, false, false, true],
+                         [CellType.straight_5_Rep]]
             
             let completeCell = [[],
                                 [],
@@ -1366,177 +2011,188 @@ class WorkoutTVC: UITableViewController, UIPopoverPresentationControllerDelegate
                                 [],
                                 [CellType.completion]]
             
-            cellArray = [[cell1, cell2, cell3, cell4, cell5, cell6, cell7, cell8, cell9, cell10, cell11, cell12],
-                         [cell13, cell14, cell15, cell16, cell17, cell18, cell19, cell20, cell21, cell22, cell23],
+            cellArray = [[cell1, cell2, cell3, cell4, cell5],
                          [completeCell]]
+
+        case "Agility Lower":
             
-        case "Chest + Shoulders + Tri & Ab Workout":
+            let cell1 = [["1 Leg Squat"],
+                         [LabelNumber._10, LabelNumber._10, LabelNumber._10, LabelNumber._10, LabelNumber.empty, LabelNumber.empty],
+                         [LabelTitle.reps_Long, LabelTitle.reps_Long, LabelTitle.reps_Long, LabelTitle.reps_Long, LabelTitle.empty, LabelTitle.empty],
+                         [Color.one, Color.two, Color.three, Color.four, UIColor.white, UIColor.white],
+                         [false, false, false, false, true, true], // isHidden
+                         [CellType.straight_4_Weight]]
             
-            let cell1 = [["3-Way Push-Ups"],
+            let cell2 = [["Plyometric Lunge Press"],
+                         [LabelNumber._16, LabelNumber._16, LabelNumber._16, LabelNumber._16, LabelNumber.empty, LabelNumber.empty],
+                         [LabelTitle.reps_Long, LabelTitle.reps_Long, LabelTitle.reps_Long, LabelTitle.reps_Long, LabelTitle.empty, LabelTitle.empty],
+                         [Color.one, Color.two, Color.three, Color.four, UIColor.white, UIColor.white],
+                         [false, false, false, false, true, true],
+                         [CellType.straight_4_Weight]]
+            
+            let cell3 = [["Side Jump Hops"],
+                         [LabelNumber._16, LabelNumber._16, LabelNumber._16, LabelNumber._16, LabelNumber.empty, LabelNumber.empty],
+                         [LabelTitle.reps_Long, LabelTitle.reps_Long, LabelTitle.reps_Long, LabelTitle.reps_Long, LabelTitle.empty, LabelTitle.empty],
+                         [Color.one, Color.two, Color.three, Color.four, UIColor.white, UIColor.white],
+                         [false, false, false, false, true, true],
+                         [CellType.straight_4_Rep]]
+            
+            let cell4 = [["Dead Squat Lunge"],
+                         [LabelNumber._10, LabelNumber._10, LabelNumber._10, LabelNumber._10, LabelNumber.empty, LabelNumber.empty],
+                         [LabelTitle.reps_Long, LabelTitle.reps_Long, LabelTitle.reps_Long, LabelTitle.reps_Long, LabelTitle.empty, LabelTitle.empty],
+                         [Color.one, Color.two, Color.three, Color.four, UIColor.white, UIColor.white],
+                         [false, false, false, false, true, true],
+                         [CellType.straight_4_Weight]]
+            
+            let cell5 = [["Alt Side Sphinx Leg Raise"],
+                         [LabelNumber._10, LabelNumber._10, LabelNumber._10, LabelNumber._10, LabelNumber.empty, LabelNumber.empty],
+                         [LabelTitle.reps_Long, LabelTitle.reps_Long, LabelTitle.reps_Long, LabelTitle.reps_Long, LabelTitle.empty, LabelTitle.empty],
+                         [Color.one, Color.two, Color.three, Color.four, UIColor.white, UIColor.white],
+                         [false, false, false, false, true, true],
+                         [CellType.straight_4_Rep]]
+            
+            let completeCell = [[],
+                                [],
+                                [],
+                                [],
+                                [],
+                                [CellType.completion]]
+            
+            cellArray = [[cell1, cell2, cell3, cell4, cell5],
+                         [completeCell]]
+           
+        case "Devastator":
+            
+            let cell1 = [["Plank Row"],
                          [Round.round1, Round.empty, Round.empty, Round.empty, Round.empty, Round.empty],
-                         [LabelType.reps, LabelType.weight, LabelType.empty, LabelType.empty, LabelType.empty, LabelType.empty],
-                         [Color.light, Color.dark, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
+                         [LabelTitle.reps, LabelTitle.weight, LabelTitle.empty, LabelTitle.empty, LabelTitle.empty, LabelTitle.empty],
+                         [Color.one, Color.four, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
+                         [false, true, true, true, true, true], // isHidden
+                [CellType.straight_1]]
+            
+            let cell2 = [["Pull-Ups"],
+                         [Round.round1, Round.empty, Round.empty, Round.empty, Round.empty, Round.empty],
+                         [LabelTitle.reps, LabelTitle.weight, LabelTitle.empty, LabelTitle.empty, LabelTitle.empty, LabelTitle.empty],
+                         [Color.one, Color.four, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
                          [false, true, true, true, true, true],
                          [CellType.straight_1]]
             
-            let cell2 = [["2-Way Shoulder Flys"],
+            let cell3 = [["Laying Chest Flys"],
                          [Round.round1, Round.empty, Round.empty, Round.empty, Round.empty, Round.empty],
-                         [LabelType.reps, LabelType.weight, LabelType.empty, LabelType.empty, LabelType.empty, LabelType.empty],
-                         [Color.light, Color.dark, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
+                         [LabelTitle.reps, LabelTitle.weight, LabelTitle.empty, LabelTitle.empty, LabelTitle.empty, LabelTitle.empty],
+                         [Color.one, Color.four, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
                          [false, false, true, true, true, true],
-                         [CellType.straight_1]]
-            
-            let cell3 = [["Dips"],
-                         [Round.round1, Round.empty, Round.empty, Round.empty, Round.empty, Round.empty],
-                         [LabelType.reps, LabelType.weight, LabelType.empty, LabelType.empty, LabelType.empty, LabelType.empty],
-                         [Color.light, Color.dark, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
-                         [false, true, true, true, true, true],
                          [CellType.straight_1]]
             
             let cell4 = [["Push-Ups"],
                          [Round.round1, Round.empty, Round.empty, Round.empty, Round.empty, Round.empty],
-                         [LabelType.reps, LabelType.weight, LabelType.empty, LabelType.empty, LabelType.empty, LabelType.empty],
-                         [Color.light, Color.dark, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
+                         [LabelTitle.reps, LabelTitle.weight, LabelTitle.empty, LabelTitle.empty, LabelTitle.empty, LabelTitle.empty],
+                         [Color.one, Color.four, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
                          [false, true, true, true, true, true],
                          [CellType.straight_1]]
             
-            let cell5 = [["Upside Down Shoulder Presses"],
+            let cell5 = [["Leaning Row"],
                          [Round.round1, Round.empty, Round.empty, Round.empty, Round.empty, Round.empty],
-                         [LabelType.reps, LabelType.weight, LabelType.empty, LabelType.empty, LabelType.empty, LabelType.empty],
-                         [Color.light, Color.dark, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
+                         [LabelTitle.reps, LabelTitle.weight, LabelTitle.empty, LabelTitle.empty, LabelTitle.empty, LabelTitle.empty],
+                         [Color.one, Color.four, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
                          [false, true, true, true, true, true],
                          [CellType.straight_1]]
             
-            let cell6 = [["Bodyweight Tricep Extensions"],
+            let cell6 = [["Underhand Pull-Ups"],
                          [Round.round1, Round.empty, Round.empty, Round.empty, Round.empty, Round.empty],
-                         [LabelType.reps, LabelType.weight, LabelType.empty, LabelType.empty, LabelType.empty, LabelType.empty],
-                         [Color.light, Color.dark, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
-                         [false, true, true, true, true, true],
-                         [CellType.straight_1]]
-            
-            let cell7 = [["Side Push-Ups"],
-                         [Round.round1, Round.empty, Round.empty, Round.empty, Round.empty, Round.empty],
-                         [LabelType.reps, LabelType.weight, LabelType.empty, LabelType.empty, LabelType.empty, LabelType.empty],
-                         [Color.light, Color.dark, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
-                         [false, true, true, true, true, true],
-                         [CellType.straight_1]]
-            
-            let cell8 = [["Shoulder Rotations"],
-                         [Round.round1, Round.empty, Round.empty, Round.empty, Round.empty, Round.empty],
-                         [LabelType.reps, LabelType.weight, LabelType.empty, LabelType.empty, LabelType.empty, LabelType.empty],
-                         [Color.light, Color.dark, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
+                         [LabelTitle.reps, LabelTitle.weight, LabelTitle.empty, LabelTitle.empty, LabelTitle.empty, LabelTitle.empty],
+                         [Color.one, Color.four, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
                          [false, false, true, true, true, true],
                          [CellType.straight_1]]
             
-            let cell9 = [["Tricep Extensions 1"],
+            let cell7 = [["Laying Chest Press"],
                          [Round.round1, Round.empty, Round.empty, Round.empty, Round.empty, Round.empty],
-                         [LabelType.reps, LabelType.weight, LabelType.empty, LabelType.empty, LabelType.empty, LabelType.empty],
-                         [Color.light, Color.dark, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
+                         [LabelTitle.reps, LabelTitle.weight, LabelTitle.empty, LabelTitle.empty, LabelTitle.empty, LabelTitle.empty],
+                         [Color.one, Color.four, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
+                         [false, true, true, true, true, true],
+                         [CellType.straight_1]]
+            
+            let cell8 = [["Military Push-Ups"],
+                         [Round.round1, Round.empty, Round.empty, Round.empty, Round.empty, Round.empty],
+                         [LabelTitle.reps, LabelTitle.weight, LabelTitle.empty, LabelTitle.empty, LabelTitle.empty, LabelTitle.empty],
+                         [Color.one, Color.four, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
+                         [false, true, true, true, true, true],
+                         [CellType.straight_1]]
+            
+            let cell9 = [["3 Way Shoulder"],
+                         [Round.round1, Round.empty, Round.empty, Round.empty, Round.empty, Round.empty],
+                         [LabelTitle.reps, LabelTitle.weight, LabelTitle.empty, LabelTitle.empty, LabelTitle.empty, LabelTitle.empty],
+                         [Color.one, Color.four, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
                          [false, false, true, true, true, true],
                          [CellType.straight_1]]
             
-            let cell10 = [["2-Way Push-Ups"],
+            let cell10 = [["Decline Shoulder Press"],
                           [Round.round1, Round.empty, Round.empty, Round.empty, Round.empty, Round.empty],
-                          [LabelType.reps, LabelType.weight, LabelType.empty, LabelType.empty, LabelType.empty, LabelType.empty],
-                          [Color.light, Color.dark, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
+                          [LabelTitle.reps, LabelTitle.weight, LabelTitle.empty, LabelTitle.empty, LabelTitle.empty, LabelTitle.empty],
+                          [Color.one, Color.four, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
                           [false, true, true, true, true, true],
                           [CellType.straight_1]]
             
-            let cell11 = [["Shoulder Presses"],
+            let cell11 = [["Leaning Shoulder Flys"],
                           [Round.round1, Round.empty, Round.empty, Round.empty, Round.empty, Round.empty],
-                          [LabelType.reps, LabelType.weight, LabelType.empty, LabelType.empty, LabelType.empty, LabelType.empty],
-                          [Color.light, Color.dark, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
+                          [LabelTitle.reps, LabelTitle.weight, LabelTitle.empty, LabelTitle.empty, LabelTitle.empty, LabelTitle.empty],
+                          [Color.one, Color.four, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
                           [false, false, true, true, true, true],
                           [CellType.straight_1]]
             
-            let cell12 = [["Tricep Extensions 2"],
+            let cell12 = [["Sphinx to A"],
                           [Round.round1, Round.empty, Round.empty, Round.empty, Round.empty, Round.empty],
-                          [LabelType.reps, LabelType.weight, LabelType.empty, LabelType.empty, LabelType.empty, LabelType.empty],
-                          [Color.light, Color.dark, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
+                          [LabelTitle.reps, LabelTitle.weight, LabelTitle.empty, LabelTitle.empty, LabelTitle.empty, LabelTitle.empty],
+                          [Color.one, Color.four, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
                           [false, false, true, true, true, true],
                           [CellType.straight_1]]
             
-            let cell13 = [["Lateral Push-Ups"],
+            let cell13 = [["Hammer Curls"],
                           [Round.round1, Round.empty, Round.empty, Round.empty, Round.empty, Round.empty],
-                          [LabelType.reps, LabelType.weight, LabelType.empty, LabelType.empty, LabelType.empty, LabelType.empty],
-                          [Color.light, Color.dark, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
+                          [LabelTitle.reps, LabelTitle.weight, LabelTitle.empty, LabelTitle.empty, LabelTitle.empty, LabelTitle.empty],
+                          [Color.one, Color.four, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
                           [false, true, true, true, true, true],
                           [CellType.straight_1]]
             
-            let cell14 = [["Lateral Shoulder Raises"],
+            let cell14 = [["Leaning Curls"],
                           [Round.round1, Round.empty, Round.empty, Round.empty, Round.empty, Round.empty],
-                          [LabelType.reps, LabelType.weight, LabelType.empty, LabelType.empty, LabelType.empty, LabelType.empty],
-                          [Color.light, Color.dark, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
-                          [false, false, true, true, true, true],
-                          [CellType.straight_1]]
-            
-            let cell15 = [["Tricep Extensions 3"],
-                          [Round.round1, Round.empty, Round.empty, Round.empty, Round.empty, Round.empty],
-                          [LabelType.reps, LabelType.weight, LabelType.empty, LabelType.empty, LabelType.empty, LabelType.empty],
-                          [Color.light, Color.dark, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
-                          [false, false, true, true, true, true],
-                          [CellType.straight_1]]
-            
-            let cell16 = [["1-Arm Push-Ups"],
-                          [Round.round1, Round.empty, Round.empty, Round.empty, Round.empty, Round.empty],
-                          [LabelType.reps, LabelType.weight, LabelType.empty, LabelType.empty, LabelType.empty, LabelType.empty],
-                          [Color.light, Color.dark, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
+                          [LabelTitle.reps, LabelTitle.weight, LabelTitle.empty, LabelTitle.empty, LabelTitle.empty, LabelTitle.empty],
+                          [Color.one, Color.four, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
                           [false, true, true, true, true, true],
                           [CellType.straight_1]]
             
-            let cell17 = [["Side Shoulder Circles"],
+            let cell15 = [["Laying Cross Tricep Extension"],
                           [Round.round1, Round.empty, Round.empty, Round.empty, Round.empty, Round.empty],
-                          [LabelType.reps, LabelType.weight, LabelType.empty, LabelType.empty, LabelType.empty, LabelType.empty],
-                          [Color.light, Color.dark, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
+                          [LabelTitle.reps, LabelTitle.weight, LabelTitle.empty, LabelTitle.empty, LabelTitle.empty, LabelTitle.empty],
+                          [Color.one, Color.four, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
                           [false, false, true, true, true, true],
                           [CellType.straight_1]]
             
-            let cell18 = [["Footballs"],
+            let cell16 = [["Tricep Pelvis Raise"],
                           [Round.round1, Round.empty, Round.empty, Round.empty, Round.empty, Round.empty],
-                          [LabelType.reps, LabelType.weight, LabelType.empty, LabelType.empty, LabelType.empty, LabelType.empty],
-                          [Color.light, Color.dark, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
+                          [LabelTitle.reps, LabelTitle.weight, LabelTitle.empty, LabelTitle.empty, LabelTitle.empty, LabelTitle.empty],
+                          [Color.one, Color.four, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
                           [false, false, true, true, true, true],
                           [CellType.straight_1]]
             
-            let cell19 = [["Plyometric Push-Ups"],
+            let cell17 = [["2 Way Curl"],
                           [Round.round1, Round.empty, Round.empty, Round.empty, Round.empty, Round.empty],
-                          [LabelType.reps, LabelType.weight, LabelType.empty, LabelType.empty, LabelType.empty, LabelType.empty],
-                          [Color.light, Color.dark, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
+                          [LabelTitle.reps, LabelTitle.weight, LabelTitle.empty, LabelTitle.empty, LabelTitle.empty, LabelTitle.empty],
+                          [Color.one, Color.four, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
+                          [false, false, true, true, true, true],
+                          [CellType.straight_1]]
+            
+            let cell18 = [["Leaning Tricep Extension"],
+                          [Round.round1, Round.empty, Round.empty, Round.empty, Round.empty, Round.empty],
+                          [LabelTitle.reps, LabelTitle.weight, LabelTitle.empty, LabelTitle.empty, LabelTitle.empty, LabelTitle.empty],
+                          [Color.one, Color.four, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
                           [false, true, true, true, true, true],
                           [CellType.straight_1]]
             
-            let cell20 = [["Front Shoulder Raises"],
+            let cell19 = [["BONUS Push-Ups Plank Sphinx"],
                           [Round.round1, Round.empty, Round.empty, Round.empty, Round.empty, Round.empty],
-                          [LabelType.reps, LabelType.weight, LabelType.empty, LabelType.empty, LabelType.empty, LabelType.empty],
-                          [Color.light, Color.dark, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
-                          [false, false, true, true, true, true],
-                          [CellType.straight_1]]
-            
-            let cell21 = [["Tricep Extensions 4"],
-                          [Round.round1, Round.empty, Round.empty, Round.empty, Round.empty, Round.empty],
-                          [LabelType.reps, LabelType.weight, LabelType.empty, LabelType.empty, LabelType.empty, LabelType.empty],
-                          [Color.light, Color.dark, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
-                          [false, false, true, true, true, true],
-                          [CellType.straight_1]]
-            
-            let cell22 = [["Side Plank Push-Ups"],
-                          [Round.round1, Round.empty, Round.empty, Round.empty, Round.empty, Round.empty],
-                          [LabelType.reps, LabelType.weight, LabelType.empty, LabelType.empty, LabelType.empty, LabelType.empty],
-                          [Color.light, Color.dark, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
-                          [false, true, true, true, true, true],
-                          [CellType.straight_1]]
-            
-            let cell23 = [["3-Way Arms"],
-                          [Round.round1, Round.empty, Round.empty, Round.empty, Round.empty, Round.empty],
-                          [LabelType.reps, LabelType.weight, LabelType.empty, LabelType.empty, LabelType.empty, LabelType.empty],
-                          [Color.light, Color.dark, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
-                          [false, false, true, true, true, true],
-                          [CellType.straight_1]]
-            
-            let cell24 = [["Chest Presses"],
-                          [Round.round1, Round.empty, Round.empty, Round.empty, Round.empty, Round.empty],
-                          [LabelType.reps, LabelType.weight, LabelType.empty, LabelType.empty, LabelType.empty, LabelType.empty],
-                          [Color.light, Color.dark, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
+                          [LabelTitle.reps, LabelTitle.weight, LabelTitle.empty, LabelTitle.empty, LabelTitle.empty, LabelTitle.empty],
+                          [Color.red, Color.four, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
                           [false, false, true, true, true, true],
                           [CellType.straight_1]]
             
@@ -1547,199 +2203,122 @@ class WorkoutTVC: UITableViewController, UIPopoverPresentationControllerDelegate
                                 [],
                                 [CellType.completion]]
             
-            cellArray = [[cell1, cell2, cell3, cell4, cell5, cell6, cell7, cell8, cell9, cell10, cell11, cell12],
-                         [cell13, cell14, cell15, cell16, cell17, cell18, cell19, cell20, cell21, cell22, cell23, cell24],
+            cellArray = [[cell1, cell2, cell3, cell4, cell5, cell6, cell7, cell8, cell9, cell10, cell11, cell12, cell13, cell14, cell15, cell16, cell17, cell18],
+                         [cell19],
                          [completeCell]]
             
-        case "Back + Biceps & Ab Workout":
+        case "Complete Fitness":
             
-            let cell1 = [["Wide Pull-Ups"],
+            let cell1 = [["Push-Up to Arm Balance"],
                          [Round.round1, Round.empty, Round.empty, Round.empty, Round.empty, Round.empty],
-                         [LabelType.reps, LabelType.weight, LabelType.empty, LabelType.empty, LabelType.empty, LabelType.empty],
-                         [Color.light, Color.dark, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
+                         [LabelTitle.reps, LabelTitle.weight, LabelTitle.empty, LabelTitle.empty, LabelTitle.empty, LabelTitle.empty],
+                         [Color.one, Color.four, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
+                         [false, true, true, true, true, true], // isHidden
+                [CellType.straight_1]]
+            
+            let cell2 = [["Crescent to Chair"],
+                         [Round.round1, Round.empty, Round.empty, Round.empty, Round.empty, Round.empty],
+                         [LabelTitle.reps, LabelTitle.weight, LabelTitle.empty, LabelTitle.empty, LabelTitle.empty, LabelTitle.empty],
+                         [Color.one, Color.four, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
                          [false, true, true, true, true, true],
                          [CellType.straight_1]]
             
-            let cell2 = [["Single Arm Bent Over Rows 1"],
+            let cell3 = [["Pull-Up Crunch"],
                          [Round.round1, Round.empty, Round.empty, Round.empty, Round.empty, Round.empty],
-                         [LabelType.reps, LabelType.weight, LabelType.empty, LabelType.empty, LabelType.empty, LabelType.empty],
-                         [Color.light, Color.dark, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
-                         [false, false, true, true, true, true],
-                         [CellType.straight_1]]
-            
-            let cell3 = [["Bicep Curls 1"],
-                         [Round.round1, Round.empty, Round.empty, Round.empty, Round.empty, Round.empty],
-                         [LabelType.reps, LabelType.weight, LabelType.empty, LabelType.empty, LabelType.empty, LabelType.empty],
-                         [Color.light, Color.dark, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
-                         [false, false, true, true, true, true],
-                         [CellType.straight_1]]
-            
-            let cell4 = [["Bicep Curls 2"],
-                         [Round.round1, Round.empty, Round.empty, Round.empty, Round.empty, Round.empty],
-                         [LabelType.reps, LabelType.weight, LabelType.empty, LabelType.empty, LabelType.empty, LabelType.empty],
-                         [Color.light, Color.dark, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
-                         [false, false, true, true, true, true],
-                         [CellType.straight_1]]
-            
-            let cell5 = [["2-Way Pull-Ups"],
-                         [Round.round1, Round.empty, Round.empty, Round.empty, Round.empty, Round.empty],
-                         [LabelType.reps, LabelType.weight, LabelType.empty, LabelType.empty, LabelType.empty, LabelType.empty],
-                         [Color.light, Color.dark, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
+                         [LabelTitle.reps, LabelTitle.weight, LabelTitle.empty, LabelTitle.empty, LabelTitle.empty, LabelTitle.empty],
+                         [Color.one, Color.four, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
                          [false, true, true, true, true, true],
                          [CellType.straight_1]]
             
-            let cell6 = [["Single Arm Bent Over Rows 2"],
+            let cell4 = [["Side Sphinx Crunch"],
                          [Round.round1, Round.empty, Round.empty, Round.empty, Round.empty, Round.empty],
-                         [LabelType.reps, LabelType.weight, LabelType.empty, LabelType.empty, LabelType.empty, LabelType.empty],
-                         [Color.light, Color.dark, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
-                         [false, false, true, true, true, true],
-                         [CellType.straight_1]]
-            
-            let cell7 = [["Bicep Curls 3"],
-                         [Round.round1, Round.empty, Round.empty, Round.empty, Round.empty, Round.empty],
-                         [LabelType.reps, LabelType.weight, LabelType.empty, LabelType.empty, LabelType.empty, LabelType.empty],
-                         [Color.light, Color.dark, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
-                         [false, false, true, true, true, true],
-                         [CellType.straight_1]]
-            
-            let cell8 = [["Concentration Curls"],
-                         [Round.round1, Round.empty, Round.empty, Round.empty, Round.empty, Round.empty],
-                         [LabelType.reps, LabelType.weight, LabelType.empty, LabelType.empty, LabelType.empty, LabelType.empty],
-                         [Color.light, Color.dark, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
-                         [false, false, true, true, true, true],
-                         [CellType.straight_1]]
-            
-            let cell9 = [["Side to Side Pull-Ups"],
-                         [Round.round1, Round.empty, Round.empty, Round.empty, Round.empty, Round.empty],
-                         [LabelType.reps, LabelType.weight, LabelType.empty, LabelType.empty, LabelType.empty, LabelType.empty],
-                         [Color.light, Color.dark, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
+                         [LabelTitle.reps, LabelTitle.weight, LabelTitle.empty, LabelTitle.empty, LabelTitle.empty, LabelTitle.empty],
+                         [Color.one, Color.four, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
                          [false, true, true, true, true, true],
                          [CellType.straight_1]]
             
-            let cell10 = [["Bent Over Rows"],
+            let cell5 = [["Plyometric Runner Push-Ups"],
+                         [Round.round1, Round.empty, Round.empty, Round.empty, Round.empty, Round.empty],
+                         [LabelTitle.reps, LabelTitle.weight, LabelTitle.empty, LabelTitle.empty, LabelTitle.empty, LabelTitle.empty],
+                         [Color.one, Color.four, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
+                         [false, true, true, true, true, true],
+                         [CellType.straight_1]]
+            
+            let cell6 = [["Wide Squat on Toes"],
+                         [Round.round1, Round.empty, Round.empty, Round.empty, Round.empty, Round.empty],
+                         [LabelTitle.reps, LabelTitle.weight, LabelTitle.empty, LabelTitle.empty, LabelTitle.empty, LabelTitle.empty],
+                         [Color.one, Color.four, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
+                         [false, false, true, true, true, true],
+                         [CellType.straight_1]]
+            
+            let cell7 = [["Underhand Pull-Up Crunch"],
+                         [Round.round1, Round.empty, Round.empty, Round.empty, Round.empty, Round.empty],
+                         [LabelTitle.reps, LabelTitle.weight, LabelTitle.empty, LabelTitle.empty, LabelTitle.empty, LabelTitle.empty],
+                         [Color.one, Color.four, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
+                         [false, true, true, true, true, true],
+                         [CellType.straight_1]]
+            
+            let cell8 = [["V to Plow"],
+                         [Round.round1, Round.empty, Round.empty, Round.empty, Round.empty, Round.empty],
+                         [LabelTitle.reps, LabelTitle.weight, LabelTitle.empty, LabelTitle.empty, LabelTitle.empty, LabelTitle.empty],
+                         [Color.one, Color.four, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
+                         [false, true, true, true, true, true],
+                         [CellType.straight_1]]
+            
+            let cell9 = [["Balance Circle Press"],
+                         [Round.round1, Round.empty, Round.empty, Round.empty, Round.empty, Round.empty],
+                         [LabelTitle.reps, LabelTitle.weight, LabelTitle.empty, LabelTitle.empty, LabelTitle.empty, LabelTitle.empty],
+                         [Color.one, Color.four, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
+                         [false, false, true, true, true, true],
+                         [CellType.straight_1]]
+            
+            let cell10 = [["Lateral Jump Press"],
                           [Round.round1, Round.empty, Round.empty, Round.empty, Round.empty, Round.empty],
-                          [LabelType.reps, LabelType.weight, LabelType.empty, LabelType.empty, LabelType.empty, LabelType.empty],
-                          [Color.light, Color.dark, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
+                          [LabelTitle.reps, LabelTitle.weight, LabelTitle.empty, LabelTitle.empty, LabelTitle.empty, LabelTitle.empty],
+                          [Color.one, Color.four, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
                           [false, false, true, true, true, true],
                           [CellType.straight_1]]
             
-            let cell11 = [["Wide Arm Curls"],
+            let cell11 = [["Balance 2 Way Hammer"],
                           [Round.round1, Round.empty, Round.empty, Round.empty, Round.empty, Round.empty],
-                          [LabelType.reps, LabelType.weight, LabelType.empty, LabelType.empty, LabelType.empty, LabelType.empty],
-                          [Color.light, Color.dark, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
+                          [LabelTitle.reps, LabelTitle.weight, LabelTitle.empty, LabelTitle.empty, LabelTitle.empty, LabelTitle.empty],
+                          [Color.one, Color.four, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
                           [false, false, true, true, true, true],
                           [CellType.straight_1]]
             
-            let cell12 = [["Parallel Bicep Curls"],
+            let cell12 = [["V Crunch"],
                           [Round.round1, Round.empty, Round.empty, Round.empty, Round.empty, Round.empty],
-                          [LabelType.reps, LabelType.weight, LabelType.empty, LabelType.empty, LabelType.empty, LabelType.empty],
-                          [Color.light, Color.dark, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
-                          [false, false, true, true, true, true],
-                          [CellType.straight_1]]
-            
-            let cell13 = [["Uneven Pull-Ups"],
-                          [Round.round1, Round.empty, Round.empty, Round.empty, Round.empty, Round.empty],
-                          [LabelType.reps, LabelType.weight, LabelType.empty, LabelType.empty, LabelType.empty, LabelType.empty],
-                          [Color.light, Color.dark, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
+                          [LabelTitle.reps, LabelTitle.weight, LabelTitle.empty, LabelTitle.empty, LabelTitle.empty, LabelTitle.empty],
+                          [Color.one, Color.four, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
                           [false, true, true, true, true, true],
                           [CellType.straight_1]]
             
-            let cell14 = [["Alternating Bent Over Rows"],
+            let cell13 = [["Balance 2 Way Arm Raise"],
                           [Round.round1, Round.empty, Round.empty, Round.empty, Round.empty, Round.empty],
-                          [LabelType.reps, LabelType.weight, LabelType.empty, LabelType.empty, LabelType.empty, LabelType.empty],
-                          [Color.light, Color.dark, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
+                          [LabelTitle.reps, LabelTitle.weight, LabelTitle.empty, LabelTitle.empty, LabelTitle.empty, LabelTitle.empty],
+                          [Color.one, Color.four, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
                           [false, false, true, true, true, true],
                           [CellType.straight_1]]
             
-            let cell15 = [["Double Concentration Bicep Curls"],
+            let cell14 = [["Squat Front Back"],
                           [Round.round1, Round.empty, Round.empty, Round.empty, Round.empty, Round.empty],
-                          [LabelType.reps, LabelType.weight, LabelType.empty, LabelType.empty, LabelType.empty, LabelType.empty],
-                          [Color.light, Color.dark, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
+                          [LabelTitle.reps, LabelTitle.weight, LabelTitle.empty, LabelTitle.empty, LabelTitle.empty, LabelTitle.empty],
+                          [Color.one, Color.four, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
                           [false, false, true, true, true, true],
                           [CellType.straight_1]]
             
-            let cell16 = [["Bicep Curls 4"],
+            let cell15 = [["Laying Tricep Extension Punch"],
                           [Round.round1, Round.empty, Round.empty, Round.empty, Round.empty, Round.empty],
-                          [LabelType.reps, LabelType.weight, LabelType.empty, LabelType.empty, LabelType.empty, LabelType.empty],
-                          [Color.light, Color.dark, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
+                          [LabelTitle.reps, LabelTitle.weight, LabelTitle.empty, LabelTitle.empty, LabelTitle.empty, LabelTitle.empty],
+                          [Color.one, Color.four, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
                           [false, false, true, true, true, true],
                           [CellType.straight_1]]
             
-            let cell17 = [["Underhand Pull-Ups"],
+            let cell16 = [["3 Way Warrior"],
                           [Round.round1, Round.empty, Round.empty, Round.empty, Round.empty, Round.empty],
-                          [LabelType.reps, LabelType.weight, LabelType.empty, LabelType.empty, LabelType.empty, LabelType.empty],
-                          [Color.light, Color.dark, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
+                          [LabelTitle.reps, LabelTitle.weight, LabelTitle.empty, LabelTitle.empty, LabelTitle.empty, LabelTitle.empty],
+                          [Color.one, Color.four, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
                           [false, true, true, true, true, true],
-                          [CellType.straight_1]]
-            
-            let cell18 = [["Seated Back Flys"],
-                          [Round.round1, Round.empty, Round.empty, Round.empty, Round.empty, Round.empty],
-                          [LabelType.reps, LabelType.weight, LabelType.empty, LabelType.empty, LabelType.empty, LabelType.empty],
-                          [Color.light, Color.dark, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
-                          [false, false, true, true, true, true],
-                          [CellType.straight_1]]
-            
-            let cell19 = [["Bicep Curls 5"],
-                          [Round.round1, Round.empty, Round.empty, Round.empty, Round.empty, Round.empty],
-                          [LabelType.reps, LabelType.weight, LabelType.empty, LabelType.empty, LabelType.empty, LabelType.empty],
-                          [Color.light, Color.dark, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
-                          [false, false, true, true, true, true],
-                          [CellType.straight_1]]
-            
-            let cell20 = [["Hammer Curls"],
-                          [Round.round1, Round.empty, Round.empty, Round.empty, Round.empty, Round.empty],
-                          [LabelType.reps, LabelType.weight, LabelType.empty, LabelType.empty, LabelType.empty, LabelType.empty],
-                          [Color.light, Color.dark, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
-                          [false, false, true, true, true, true],
-                          [CellType.straight_1]]
-            
-            let cell21 = [["Pull-Ups"],
-                          [Round.round1, Round.empty, Round.empty, Round.empty, Round.empty, Round.empty],
-                          [LabelType.reps, LabelType.weight, LabelType.empty, LabelType.empty, LabelType.empty, LabelType.empty],
-                          [Color.light, Color.dark, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
-                          [false, true, true, true, true, true],
-                          [CellType.straight_1]]
-            
-            let cell22 = [["Lower Back Raises"],
-                          [Round.round1, Round.empty, Round.empty, Round.empty, Round.empty, Round.empty],
-                          [LabelType.reps, LabelType.weight, LabelType.empty, LabelType.empty, LabelType.empty, LabelType.empty],
-                          [Color.light, Color.dark, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
-                          [false, true, true, true, true, true],
-                          [CellType.straight_1]]
-            
-            let cell23 = [["2-Way Hammer Curls"],
-                          [Round.round1, Round.empty, Round.empty, Round.empty, Round.empty, Round.empty],
-                          [LabelType.reps, LabelType.weight, LabelType.empty, LabelType.empty, LabelType.empty, LabelType.empty],
-                          [Color.light, Color.dark, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
-                          [false, false, true, true, true, true],
-                          [CellType.straight_1]]
-            
-            let cell24 = [["Burnout Bicep Curls 1"],
-                          [Round.round1, Round.empty, Round.empty, Round.empty, Round.empty, Round.empty],
-                          [LabelType.reps, LabelType.weight, LabelType.empty, LabelType.empty, LabelType.empty, LabelType.empty],
-                          [Color.light, Color.dark, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
-                          [false, false, true, true, true, true],
-                          [CellType.straight_1]]
-            
-            let cell25 = [["Burnout Bicep Curls 2"],
-                          [Round.round1, Round.empty, Round.empty, Round.empty, Round.empty, Round.empty],
-                          [LabelType.reps, LabelType.weight, LabelType.empty, LabelType.empty, LabelType.empty, LabelType.empty],
-                          [Color.light, Color.dark, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
-                          [false, false, true, true, true, true],
-                          [CellType.straight_1]]
-            
-            let cell26 = [["Burnout Bicep Curls 3"],
-                          [Round.round1, Round.empty, Round.empty, Round.empty, Round.empty, Round.empty],
-                          [LabelType.reps, LabelType.weight, LabelType.empty, LabelType.empty, LabelType.empty, LabelType.empty],
-                          [Color.light, Color.dark, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
-                          [false, false, true, true, true, true],
-                          [CellType.straight_1]]
-            
-            let cell27 = [["Burnout Bicep Curls 4"],
-                          [Round.round1, Round.empty, Round.empty, Round.empty, Round.empty, Round.empty],
-                          [LabelType.reps, LabelType.weight, LabelType.empty, LabelType.empty, LabelType.empty, LabelType.empty],
-                          [Color.light, Color.dark, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
-                          [false, false, true, true, true, true],
                           [CellType.straight_1]]
             
             let completeCell = [[],
@@ -1749,165 +2328,73 @@ class WorkoutTVC: UITableViewController, UIPopoverPresentationControllerDelegate
                                 [],
                                 [CellType.completion]]
             
-            cellArray = [[cell1, cell2, cell3, cell4, cell5, cell6, cell7, cell8, cell9, cell10, cell11, cell12],
-                         [cell13, cell14, cell15, cell16, cell17, cell18, cell19, cell20, cell21, cell22, cell23, cell24, cell25, cell26, cell27],
+            cellArray = [[cell1, cell2, cell3, cell4, cell5, cell6, cell7, cell8, cell9, cell10, cell11, cell12, cell13, cell14, cell15, cell16],
                          [completeCell]]
             
-        case "Core Fitness":
+        case "The Goal":
             
-            let cell1 = [["Offset Push-Ups"],
+            let cell1 = [["Wide Pull-Up"],
+                         [Round.round1, Round.round2, Round.empty, Round.empty, Round.empty, Round.empty],
+                         [LabelTitle.reps, LabelTitle.weight, LabelTitle.reps, LabelTitle.weight, LabelTitle.empty, LabelTitle.empty],
+                         [Color.one, Color.one, Color.four, Color.four, UIColor.white, UIColor.white],
+                         [false, true, false, true, true, true], // isHidden
+                [CellType.straight_2]]
+            
+            let cell2 = [["Push-Up"],
+                         [Round.round1, Round.round2, Round.empty, Round.empty, Round.empty, Round.empty],
+                         [LabelTitle.reps, LabelTitle.weight, LabelTitle.reps, LabelTitle.weight, LabelTitle.empty, LabelTitle.empty],
+                         [Color.one, Color.one, Color.four, Color.four, UIColor.white, UIColor.white],
+                         [false, true, false, true, true, true],
+                         [CellType.straight_2]]
+            
+            let cell3 = [["Underhand Pull-Up"],
+                         [Round.round1, Round.round2, Round.empty, Round.empty, Round.empty, Round.empty],
+                         [LabelTitle.reps, LabelTitle.weight, LabelTitle.reps, LabelTitle.weight, LabelTitle.empty, LabelTitle.empty],
+                         [Color.one, Color.one, Color.four, Color.four, UIColor.white, UIColor.white],
+                         [false, true, false, true, true, true],
+                         [CellType.straight_2]]
+            
+            let cell4 = [["Military Push-Up"],
+                         [Round.round1, Round.round2, Round.empty, Round.empty, Round.empty, Round.empty],
+                         [LabelTitle.reps, LabelTitle.weight, LabelTitle.reps, LabelTitle.weight, LabelTitle.empty, LabelTitle.empty],
+                         [Color.one, Color.one, Color.four, Color.four, UIColor.white, UIColor.white],
+                         [false, true, false, true, true, true],
+                         [CellType.straight_2]]
+            
+            let cell5 = [["Narrow Pull-Up"],
+                         [Round.round1, Round.round2, Round.empty, Round.empty, Round.empty, Round.empty],
+                         [LabelTitle.reps, LabelTitle.weight, LabelTitle.reps, LabelTitle.weight, LabelTitle.empty, LabelTitle.empty],
+                         [Color.one, Color.one, Color.four, Color.four, UIColor.white, UIColor.white],
+                         [false, true, false, true, true, true],
+                         [CellType.straight_2]]
+            
+            let cell6 = [["Wide Push-Up"],
+                         [Round.round1, Round.round2, Round.empty, Round.empty, Round.empty, Round.empty],
+                         [LabelTitle.reps, LabelTitle.weight, LabelTitle.reps, LabelTitle.weight, LabelTitle.empty, LabelTitle.empty],
+                         [Color.one, Color.one, Color.four, Color.four, UIColor.white, UIColor.white],
+                         [false, true, false, true, true, true],
+                         [CellType.straight_2]]
+            
+            let cell7 = [["Opposite Grip Pull-Up"],
+                         [Round.round1, Round.round2, Round.empty, Round.empty, Round.empty, Round.empty],
+                         [LabelTitle.reps, LabelTitle.weight, LabelTitle.reps, LabelTitle.weight, LabelTitle.empty, LabelTitle.empty],
+                         [Color.one, Color.one, Color.four, Color.four, UIColor.white, UIColor.white],
+                         [false, true, false, true, true, true],
+                         [CellType.straight_2]]
+            
+            let cell8 = [["Offset Push-Up"],
+                         [Round.round1, Round.round2, Round.empty, Round.empty, Round.empty, Round.empty],
+                         [LabelTitle.reps, LabelTitle.weight, LabelTitle.reps, LabelTitle.weight, LabelTitle.empty, LabelTitle.empty],
+                         [Color.one, Color.one, Color.four, Color.four, UIColor.white, UIColor.white],
+                         [false, true, false, true, true, true],
+                         [CellType.straight_2]]
+            
+            let cell9 = [["BONUS Pull-Up Push-Up"],
                          [Round.round1, Round.empty, Round.empty, Round.empty, Round.empty, Round.empty],
-                         [LabelType.reps, LabelType.weight, LabelType.empty, LabelType.empty, LabelType.empty, LabelType.empty],
-                         [Color.light, Color.dark, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
+                         [LabelTitle.reps, LabelTitle.weight, LabelTitle.reps, LabelTitle.weight, LabelTitle.empty, LabelTitle.empty],
+                         [Color.red, Color.four,UIColor.white, UIColor.white, UIColor.white, UIColor.white],
                          [false, true, true, true, true, true],
                          [CellType.straight_1]]
-            
-            let cell2 = [["Back to Stomach 1"],
-                         [Round.round1, Round.empty, Round.empty, Round.empty, Round.empty, Round.empty],
-                         [LabelType.reps, LabelType.weight, LabelType.empty, LabelType.empty, LabelType.empty, LabelType.empty],
-                         [Color.light, Color.dark, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
-                         [false, true, true, true, true, true],
-                         [CellType.straight_1]]
-            
-            let cell3 = [["Side Lunges"],
-                         [Round.round1, Round.empty, Round.empty, Round.empty, Round.empty, Round.empty],
-                         [LabelType.reps, LabelType.weight, LabelType.empty, LabelType.empty, LabelType.empty, LabelType.empty],
-                         [Color.light, Color.dark, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
-                         [false, false, true, true, true, true],
-                         [CellType.straight_1]]
-            
-            let cell4 = [["Runner Lunges"],
-                         [Round.round1, Round.empty, Round.empty, Round.empty, Round.empty, Round.empty],
-                         [LabelType.reps, LabelType.weight, LabelType.empty, LabelType.empty, LabelType.empty, LabelType.empty],
-                         [Color.light, Color.dark, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
-                         [false, false, true, true, true, true],
-                         [CellType.straight_1]]
-            
-            let cell5 = [["Push-Ups"],
-                         [Round.round1, Round.empty, Round.empty, Round.empty, Round.empty, Round.empty],
-                         [LabelType.reps, LabelType.weight, LabelType.empty, LabelType.empty, LabelType.empty, LabelType.empty],
-                         [Color.light, Color.dark, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
-                         [false, true, true, true, true, true],
-                         [CellType.straight_1]]
-            
-            let cell6 = [["Back to V"],
-                         [Round.round1, Round.empty, Round.empty, Round.empty, Round.empty, Round.empty],
-                         [LabelType.reps, LabelType.weight, LabelType.empty, LabelType.empty, LabelType.empty, LabelType.empty],
-                         [Color.light, Color.dark, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
-                         [false, true, true, true, true, true],
-                         [CellType.straight_1]]
-            
-            let cell7 = [["Deep Side Lunges"],
-                         [Round.round1, Round.empty, Round.empty, Round.empty, Round.empty, Round.empty],
-                         [LabelType.reps, LabelType.weight, LabelType.empty, LabelType.empty, LabelType.empty, LabelType.empty],
-                         [Color.light, Color.dark, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
-                         [false, true, true, true, true, true],
-                         [CellType.straight_1]]
-            
-            let cell8 = [["Top Shelf"],
-                         [Round.round1, Round.empty, Round.empty, Round.empty, Round.empty, Round.empty],
-                         [LabelType.reps, LabelType.weight, LabelType.empty, LabelType.empty, LabelType.empty, LabelType.empty],
-                         [Color.light, Color.dark, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
-                         [false, false, true, true, true, true],
-                         [CellType.straight_1]]
-            
-            let cell9 = [["Burpees"],
-                         [Round.round1, Round.empty, Round.empty, Round.empty, Round.empty, Round.empty],
-                         [LabelType.reps, LabelType.weight, LabelType.empty, LabelType.empty, LabelType.empty, LabelType.empty],
-                         [Color.light, Color.dark, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
-                         [false, true, true, true, true, true],
-                         [CellType.straight_1]]
-            
-            let cell10 = [["Side Sphinx Raises"],
-                          [Round.round1, Round.empty, Round.empty, Round.empty, Round.empty, Round.empty],
-                          [LabelType.reps, LabelType.weight, LabelType.empty, LabelType.empty, LabelType.empty, LabelType.empty],
-                          [Color.light, Color.dark, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
-                          [false, true, true, true, true, true],
-                          [CellType.straight_1]]
-            
-            let cell11 = [["Squat Press"],
-                          [Round.round1, Round.empty, Round.empty, Round.empty, Round.empty, Round.empty],
-                          [LabelType.reps, LabelType.weight, LabelType.empty, LabelType.empty, LabelType.empty, LabelType.empty],
-                          [Color.light, Color.dark, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
-                          [false, false, true, true, true, true],
-                          [CellType.straight_1]]
-            
-            let cell12 = [["Plank Crunches"],
-                          [Round.round1, Round.empty, Round.empty, Round.empty, Round.empty, Round.empty],
-                          [LabelType.reps, LabelType.weight, LabelType.empty, LabelType.empty, LabelType.empty, LabelType.empty],
-                          [Color.light, Color.dark, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
-                          [false, true, true, true, true, true],
-                          [CellType.straight_1]]
-            
-            let cell13 = [["Plank Crawls"],
-                          [Round.round1, Round.empty, Round.empty, Round.empty, Round.empty, Round.empty],
-                          [LabelType.reps, LabelType.weight, LabelType.empty, LabelType.empty, LabelType.empty, LabelType.empty],
-                          [Color.light, Color.dark, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
-                          [false, true, true, true, true, true],
-                          [CellType.straight_1]]
-            
-            let cell14 = [["Back to Stomach 2"],
-                          [Round.round1, Round.empty, Round.empty, Round.empty, Round.empty, Round.empty],
-                          [LabelType.reps, LabelType.weight, LabelType.empty, LabelType.empty, LabelType.empty, LabelType.empty],
-                          [Color.light, Color.dark, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
-                          [false, true, true, true, true, true],
-                          [CellType.straight_1]]
-            
-            let cell15 = [["Lunge to 3 Way Arms"],
-                          [Round.round1, Round.empty, Round.empty, Round.empty, Round.empty, Round.empty],
-                          [LabelType.reps, LabelType.weight, LabelType.empty, LabelType.empty, LabelType.empty, LabelType.empty],
-                          [Color.light, Color.dark, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
-                          [false, false, true, true, true, true],
-                          [CellType.straight_1]]
-            
-            let cell16 = [["Line Jumps"],
-                          [Round.round1, Round.empty, Round.empty, Round.empty, Round.empty, Round.empty],
-                          [LabelType.reps, LabelType.weight, LabelType.empty, LabelType.empty, LabelType.empty, LabelType.empty],
-                          [Color.light, Color.dark, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
-                          [false, true, true, true, true, true],
-                          [CellType.straight_1]]
-            
-            let cell17 = [["Half Plank Push-Ups"],
-                          [Round.round1, Round.empty, Round.empty, Round.empty, Round.empty, Round.empty],
-                          [LabelType.reps, LabelType.weight, LabelType.empty, LabelType.empty, LabelType.empty, LabelType.empty],
-                          [Color.light, Color.dark, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
-                          [false, true, true, true, true, true],
-                          [CellType.straight_1]]
-            
-            let cell18 = [["Standing Crunches"],
-                          [Round.round1, Round.empty, Round.empty, Round.empty, Round.empty, Round.empty],
-                          [LabelType.reps, LabelType.weight, LabelType.empty, LabelType.empty, LabelType.empty, LabelType.empty],
-                          [Color.light, Color.dark, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
-                          [false, true, true, true, true, true],
-                          [CellType.straight_1]]
-            
-            let cell19 = [["Squat Jumps"],
-                          [Round.round1, Round.empty, Round.empty, Round.empty, Round.empty, Round.empty],
-                          [LabelType.reps, LabelType.weight, LabelType.empty, LabelType.empty, LabelType.empty, LabelType.empty],
-                          [Color.light, Color.dark, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
-                          [false, true, true, true, true, true],
-                          [CellType.straight_1]]
-            
-            let cell20 = [["Plank Push-Ups"],
-                          [Round.round1, Round.empty, Round.empty, Round.empty, Round.empty, Round.empty],
-                          [LabelType.reps, LabelType.weight, LabelType.empty, LabelType.empty, LabelType.empty, LabelType.empty],
-                          [Color.light, Color.dark, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
-                          [false, true, true, true, true, true],
-                          [CellType.straight_1]]
-            
-            let cell21 = [["Tractor Tires"],
-                          [Round.round1, Round.empty, Round.empty, Round.empty, Round.empty, Round.empty],
-                          [LabelType.reps, LabelType.weight, LabelType.empty, LabelType.empty, LabelType.empty, LabelType.empty],
-                          [Color.light, Color.dark, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
-                          [false, true, true, true, true, true],
-                          [CellType.straight_1]]
-            
-            let cell22 = [["Dips"],
-                          [Round.round1, Round.empty, Round.empty, Round.empty, Round.empty, Round.empty],
-                          [LabelType.reps, LabelType.weight, LabelType.empty, LabelType.empty, LabelType.empty, LabelType.empty],
-                          [Color.light, Color.dark, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
-                          [false, true, true, true, true, true],
-                          [CellType.straight_1]]
             
             let completeCell = [[],
                                 [],
@@ -1916,122 +2403,16 @@ class WorkoutTVC: UITableViewController, UIPopoverPresentationControllerDelegate
                                 [],
                                 [CellType.completion]]
             
-            cellArray = [[cell1, cell2, cell3, cell4, cell5, cell6, cell7, cell8],
-                         [cell9, cell10, cell11, cell12, cell13, cell14, cell15, cell16],
-                         [cell17, cell18, cell19, cell20, cell21, cell22],
+            cellArray = [[cell1, cell2],
+                         [cell3, cell4],
+                         [cell5, cell6],
+                         [cell7, cell8],
+                         [cell9],
                          [completeCell]]
             
         default:
             break
         }
-    }
-    
-    func loadShuffledExerciseNameArray() {
-        
-        // Shuffled cells for "Chest + Back & Ab Workout"
-        
-        let cell1 = [["Wide Pull-Ups"],
-                     [Round.round1, Round.round2, Round.empty, Round.empty, Round.empty, Round.empty],
-                     [LabelType.reps, LabelType.weight, LabelType.reps, LabelType.weight, LabelType.empty, LabelType.empty],
-                     [Color.light, Color.light, Color.dark, Color.dark, UIColor.white, UIColor.white],
-                     [false, true, false, true, true, true],
-                     [CellType.straight_2]]
-        
-        let cell2 = [["Push-Ups"],
-                     [Round.round1, Round.round2, Round.empty, Round.empty, Round.empty, Round.empty],
-                     [LabelType.reps, LabelType.weight, LabelType.reps, LabelType.weight, LabelType.empty, LabelType.empty],
-                     [Color.light, Color.light, Color.dark, Color.dark, UIColor.white, UIColor.white],
-                     [false, true, false, true, true, true], // isHidden
-            [CellType.straight_2]]
-                
-        let cell3 = [["Underhand Pull-Ups"],
-                     [Round.round1, Round.round2, Round.empty, Round.empty, Round.empty, Round.empty],
-                     [LabelType.reps, LabelType.weight, LabelType.reps, LabelType.weight, LabelType.empty, LabelType.empty],
-                     [Color.light, Color.light, Color.dark, Color.dark, UIColor.white, UIColor.white],
-                     [false, true, false, true, true, true],
-                     [CellType.straight_2]]
-        
-        let cell4 = [["Shoulder Width Push-Ups"],
-                     [Round.round1, Round.round2, Round.empty, Round.empty, Round.empty, Round.empty],
-                     [LabelType.reps, LabelType.weight, LabelType.reps, LabelType.weight, LabelType.empty, LabelType.empty],
-                     [Color.light, Color.light, Color.dark, Color.dark, UIColor.white, UIColor.white],
-                     [false, true, false, true, true, true],
-                     [CellType.straight_2]]
-        
-        let cell5 = [["Narrow Pull-Ups"],
-                     [Round.round1, Round.round2, Round.empty, Round.empty, Round.empty, Round.empty],
-                     [LabelType.reps, LabelType.weight, LabelType.reps, LabelType.weight, LabelType.empty, LabelType.empty],
-                     [Color.light, Color.light, Color.dark, Color.dark, UIColor.white, UIColor.white],
-                     [false, true, false, true, true, true],
-                     [CellType.straight_2]]
-        
-        let cell6 = [["Wide Push-Ups"],
-                     [Round.round1, Round.round2, Round.empty, Round.empty, Round.empty, Round.empty],
-                     [LabelType.reps, LabelType.weight, LabelType.reps, LabelType.weight, LabelType.empty, LabelType.empty],
-                     [Color.light, Color.light, Color.dark, Color.dark, UIColor.white, UIColor.white],
-                     [false, true, false, true, true, true],
-                     [CellType.straight_2]]
-        
-        let cell7 = [["Bent Over Rows"],
-                     [Round.round1, Round.round2, Round.empty, Round.empty, Round.empty, Round.empty],
-                     [LabelType.reps, LabelType.weight, LabelType.reps, LabelType.weight, LabelType.empty, LabelType.empty],
-                     [Color.light, Color.light, Color.dark, Color.dark, UIColor.white, UIColor.white],
-                     [false, false, false, false, true, true],
-                     [CellType.straight_2]]
-        
-        let cell8 = [["Decline Push-Ups"],
-                     [Round.round1, Round.round2, Round.empty, Round.empty, Round.empty, Round.empty],
-                     [LabelType.reps, LabelType.weight, LabelType.reps, LabelType.weight, LabelType.empty, LabelType.empty],
-                     [Color.light, Color.light, Color.dark, Color.dark, UIColor.white, UIColor.white],
-                     [false, true, false, true, true, true],
-                     [CellType.straight_2]]
-        
-        let cell9 = [["Single Arm Bent Over Rows"],
-                     [Round.round1, Round.round2, Round.empty, Round.empty, Round.empty, Round.empty],
-                     [LabelType.reps, LabelType.weight, LabelType.reps, LabelType.weight, LabelType.empty, LabelType.empty],
-                     [Color.light, Color.light, Color.dark, Color.dark, UIColor.white, UIColor.white],
-                     [false, false, false, false, true, true],
-                     [CellType.straight_2]]
-        
-        let cell10 = [["Diamonds"],
-                      [Round.round1, Round.round2, Round.empty, Round.empty, Round.empty, Round.empty],
-                      [LabelType.reps, LabelType.weight, LabelType.reps, LabelType.weight, LabelType.empty, LabelType.empty],
-                      [Color.light, Color.light, Color.dark, Color.dark, UIColor.white, UIColor.white],
-                      [false, true, false, true, true, true],
-                      [CellType.straight_2]]
-        
-        let cell11 = [["Seated Back Flys"],
-                      [Round.round1, Round.round2, Round.empty, Round.empty, Round.empty, Round.empty],
-                      [LabelType.reps, LabelType.weight, LabelType.reps, LabelType.weight, LabelType.empty, LabelType.empty],
-                      [Color.light,Color.light, Color.dark, Color.dark, UIColor.white, UIColor.white],
-                      [false, false, false, false, true, true],
-                      [CellType.straight_2]]
-        
-        let cell12 = [["Under The Wall"],
-                      [Round.round1, Round.round2, Round.empty, Round.empty, Round.empty, Round.empty],
-                      [LabelType.reps, LabelType.weight, LabelType.reps, LabelType.weight, LabelType.empty, LabelType.empty],
-                      [Color.light, Color.light, Color.dark, Color.dark, UIColor.white, UIColor.white],
-                      [false, true, false, true, true, true],
-                      [CellType.straight_2]]
-        
-        let cell13 = [["Shuffle The Next Round"],
-                      [Round.round1, Round.round2, Round.empty, Round.empty, Round.empty, Round.empty],
-                      [LabelType.reps, LabelType.weight, LabelType.reps, LabelType.weight, LabelType.empty, LabelType.empty],
-                      [Color.light,Color.light, Color.dark, Color.dark, UIColor.white, UIColor.white],
-                      [false, false, false, false, true, true],
-                      [CellType.shuffle]]
-        
-        let completeCell = [[],
-                            [],
-                            [],
-                            [],
-                            [],
-                            [CellType.completion]]
-        
-        cellArray = [[cell1, cell2, cell3, cell4],
-                     [cell5, cell6, cell7, cell8],
-                     [cell9, cell10, cell11, cell12, cell13],
-                     [completeCell]]
     }
     
     // MARK: - <MPAdViewDelegate>

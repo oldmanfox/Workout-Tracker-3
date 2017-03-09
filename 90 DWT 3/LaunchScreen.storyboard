@@ -35,7 +35,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="qZD-ln-Y21">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" red="0.31764705882352939" green="0.38039215686274508" blue="0.49411764705882355" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="barTintColor" red="0.94901960784313721" green="0.32549019607843138" blue="0.094117647058823528" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>

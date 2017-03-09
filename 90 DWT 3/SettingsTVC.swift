@@ -99,54 +99,54 @@ class SettingsTVC: UITableViewController, UIPopoverPresentationControllerDelegat
 
     func configureButtonBorder() {
         
-        let red = UIColor(red: 203/255, green: 116/255, blue: 49/255, alpha: 1)
+        let blue = UIColor(red: 0/255, green: 125/255, blue: 191/255, alpha: 1)
         //let lightRed = UIColor(red: 175/255, green: 89/255, blue: 8/255, alpha: 0.75)
         
         // decreaseSession Button
         self.decreaseSessionButton.tintColor = UIColor.white
-        self.decreaseSessionButton.backgroundColor = red
+        self.decreaseSessionButton.backgroundColor = blue
         self.decreaseSessionButton.layer.borderWidth = 1
-        self.decreaseSessionButton.layer.borderColor = red.cgColor
+        self.decreaseSessionButton.layer.borderColor = blue.cgColor
         self.decreaseSessionButton.layer.cornerRadius = 5
         self.decreaseSessionButton.clipsToBounds = true
         
         // increaseSession Button
         self.increaseSessionButton.tintColor = UIColor.white
-        self.increaseSessionButton.backgroundColor = red
+        self.increaseSessionButton.backgroundColor = blue
         self.increaseSessionButton.layer.borderWidth = 1
-        self.increaseSessionButton.layer.borderColor = red.cgColor
+        self.increaseSessionButton.layer.borderColor = blue.cgColor
         self.increaseSessionButton.layer.cornerRadius = 5
         self.increaseSessionButton.clipsToBounds = true
         
         // ResetAllData Button
         self.resetAllDataButton.tintColor = UIColor.white
-        self.resetAllDataButton.backgroundColor = red
+        self.resetAllDataButton.backgroundColor = blue
         self.resetAllDataButton.layer.borderWidth = 1
-        self.resetAllDataButton.layer.borderColor = red.cgColor
+        self.resetAllDataButton.layer.borderColor = blue.cgColor
         self.resetAllDataButton.layer.cornerRadius = 5
         self.resetAllDataButton.clipsToBounds = true
         
         // ResetCurrentSessionData Button
         self.resetCurrentSessionDataButton.tintColor = UIColor.white
-        self.resetCurrentSessionDataButton.backgroundColor = red
+        self.resetCurrentSessionDataButton.backgroundColor = blue
         self.resetCurrentSessionDataButton.layer.borderWidth = 1
-        self.resetCurrentSessionDataButton.layer.borderColor = red.cgColor
+        self.resetCurrentSessionDataButton.layer.borderColor = blue.cgColor
         self.resetCurrentSessionDataButton.layer.cornerRadius = 5
         self.resetCurrentSessionDataButton.clipsToBounds = true
         
         // ExportAllData Button
         self.exportAllDataButton.tintColor = UIColor.white
-        self.exportAllDataButton.backgroundColor = red
+        self.exportAllDataButton.backgroundColor = blue
         self.exportAllDataButton.layer.borderWidth = 1
-        self.exportAllDataButton.layer.borderColor = red.cgColor
+        self.exportAllDataButton.layer.borderColor = blue.cgColor
         self.exportAllDataButton.layer.cornerRadius = 5
         self.exportAllDataButton.clipsToBounds = true
         
         // ExportCurrentSessionData Button
         self.exportCurrentSessionDataButton.tintColor = UIColor.white
-        self.exportCurrentSessionDataButton.backgroundColor = red
+        self.exportCurrentSessionDataButton.backgroundColor = blue
         self.exportCurrentSessionDataButton.layer.borderWidth = 1
-        self.exportCurrentSessionDataButton.layer.borderColor = red.cgColor
+        self.exportCurrentSessionDataButton.layer.borderColor = blue.cgColor
         self.exportCurrentSessionDataButton.layer.cornerRadius = 5
         self.exportCurrentSessionDataButton.clipsToBounds = true
     }

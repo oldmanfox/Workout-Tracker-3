@@ -55,7 +55,7 @@ class ProductCell: UITableViewCell {
                 
                 // The product was purchased so show the checkmark.
                 buyButton.setTitle("", for: UIControlState())
-                buyButton.setImage(UIImage(named: "RED_White_CheckMark"), for: UIControlState())
+                buyButton.setImage(UIImage(named: "Colored_White_CheckMark"), for: UIControlState())
                 buyButton.isUserInteractionEnabled = false
                 
             } else if IAPHelper.canMakePayments() {
