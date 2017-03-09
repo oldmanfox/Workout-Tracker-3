@@ -293,10 +293,10 @@
 		A5B645321E5C989800A747BA /* DatePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B6452D1E5C989800A747BA /* DatePickerViewController.swift */; };
 		A5B645341E5CA09700A747BA /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5B645331E5CA09700A747BA /* WebKit.framework */; };
 		A5B645361E5CA0A600A747BA /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A5B645351E5CA0A600A747BA /* libc++.tbd */; };
-		A5B6453E1E5CA1E600A747BA /* ShinobiCharts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5B6453D1E5CA1E600A747BA /* ShinobiCharts.framework */; };
 		A5B645401E5CA20B00A747BA /* Chartboost.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5B6453F1E5CA20B00A747BA /* Chartboost.framework */; };
 		A5B645421E5CA25C00A747BA /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5B645411E5CA25C00A747BA /* CoreText.framework */; };
 		A5B645441E5CA26A00A747BA /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5B645431E5CA26A00A747BA /* OpenGLES.framework */; };
+		A5BC879A1E72116A00213A80 /* ShinobiCharts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5BC87991E72116A00213A80 /* ShinobiCharts.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -958,10 +958,10 @@
 		A5B6452D1E5C989800A747BA /* DatePickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatePickerViewController.swift; sourceTree = "<group>"; };
 		A5B645331E5CA09700A747BA /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		A5B645351E5CA0A600A747BA /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
-		A5B6453D1E5CA1E600A747BA /* ShinobiCharts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ShinobiCharts.framework; sourceTree = "<group>"; };
 		A5B6453F1E5CA20B00A747BA /* Chartboost.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Chartboost.framework; sourceTree = "<group>"; };
 		A5B645411E5CA25C00A747BA /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		A5B645431E5CA26A00A747BA /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		A5BC87991E72116A00213A80 /* ShinobiCharts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ShinobiCharts.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -975,7 +975,6 @@
 				A5B645341E5CA09700A747BA /* WebKit.framework in Frameworks */,
 				58109DFD1BE1894C00C66B72 /* CoreBluetooth.framework in Frameworks */,
 				58109DFB1BE1894300C66B72 /* libxml2.tbd in Frameworks */,
-				A5B6453E1E5CA1E600A747BA /* ShinobiCharts.framework in Frameworks */,
 				58109DF81BE1890C00C66B72 /* EventKit.framework in Frameworks */,
 				58109DF91BE1890C00C66B72 /* EventKitUI.framework in Frameworks */,
 				58109DF51BE188FC00C66B72 /* CoreMedia.framework in Frameworks */,
@@ -996,6 +995,7 @@
 				58109DE91BE1884500C66B72 /* AdSupport.framework in Frameworks */,
 				A5720778185F830100638698 /* CoreImage.framework in Frameworks */,
 				A5B645401E5CA20B00A747BA /* Chartboost.framework in Frameworks */,
+				A5BC879A1E72116A00213A80 /* ShinobiCharts.framework in Frameworks */,
 				A5720770185F82C300638698 /* Security.framework in Frameworks */,
 				A57206C4185F631B00638698 /* CoreData.framework in Frameworks */,
 				A57206C2185F631B00638698 /* UIKit.framework in Frameworks */,
@@ -1041,10 +1041,10 @@
 		A57206BC185F631B00638698 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A5BC87991E72116A00213A80 /* ShinobiCharts.framework */,
 				A5B645431E5CA26A00A747BA /* OpenGLES.framework */,
 				A5B645411E5CA25C00A747BA /* CoreText.framework */,
 				A5B6453F1E5CA20B00A747BA /* Chartboost.framework */,
-				A5B6453D1E5CA1E600A747BA /* ShinobiCharts.framework */,
 				A5B645351E5CA0A600A747BA /* libc++.tbd */,
 				A5B645331E5CA09700A747BA /* WebKit.framework */,
 				58109DFC1BE1894C00C66B72 /* CoreBluetooth.framework */,
@@ -2511,24 +2511,13 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/MoPubSDK/AdNetworkSupport/GoogleAdMob/SDK",
-					"$(PROJECT_DIR)/MoPubSDK/AdNetworkSupport/Millennial/SDK",
-					"$(PROJECT_DIR)",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "90 DWT 3/90 DWT 3-Prefix.pch";
 				INFOPLIST_FILE = "90 DWT 3/90 DWT 3-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/90",
-					DWT,
-					3,
-					"$(PROJECT_DIR)/90\\ DWT\\ 3",
-				);
+				LIBRARY_SEARCH_PATHS = "";
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.g-rantsoftware.${PRODUCT_NAME:rfc1034identifier}";
@@ -2551,24 +2540,13 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/MoPubSDK/AdNetworkSupport/GoogleAdMob/SDK",
-					"$(PROJECT_DIR)/MoPubSDK/AdNetworkSupport/Millennial/SDK",
-					"$(PROJECT_DIR)",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "90 DWT 3/90 DWT 3-Prefix.pch";
 				INFOPLIST_FILE = "90 DWT 3/90 DWT 3-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/90",
-					DWT,
-					3,
-					"$(PROJECT_DIR)/90\\ DWT\\ 3",
-				);
+				LIBRARY_SEARCH_PATHS = "";
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.g-rantsoftware.${PRODUCT_NAME:rfc1034identifier}";
