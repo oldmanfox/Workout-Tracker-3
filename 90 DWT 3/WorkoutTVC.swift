@@ -154,6 +154,18 @@ class WorkoutTVC: UITableViewController, UIPopoverPresentationControllerDelegate
         // Force fetch when notified of significant data changes
         NotificationCenter.default.addObserver(self, selector: #selector(self.doNothing), name: NSNotification.Name(rawValue: "SomethingChanged"), object: nil)
         
+        // Set the AutoLock Setting
+        if CDOperation.getAutoLockSetting() == "ON" {
+            
+            // User wants to disable the autolock timer.
+            UIApplication.shared.isIdleTimerDisabled = true
+        }
+        else {
+            
+            // User doesn't want to disable the autolock timer.
+            UIApplication.shared.isIdleTimerDisabled = false
+        }
+
         self.graphViewPurchased = self.wasGraphViewPurchased()
         
         // Show or Hide Ads
@@ -537,7 +549,7 @@ class WorkoutTVC: UITableViewController, UIPopoverPresentationControllerDelegate
 //                    cell.previousWeight3.text = "0.0"
                     cell.previousNotes.text = "PREVIOUS NOTES"
 
-                    // Current Weight Fields and Notes
+                    // Current Rep Fields and Notes
                     if let workoutObjects = CDOperation.getRepWeightTextForExercise(session, routine: workoutRoutine, workout: selectedWorkout, exercise: titleArray![0] as! String, index: workoutIndex as NSNumber) as? [Workout] {
                         
                         if debug == 1 {

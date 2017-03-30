@@ -15,8 +15,6 @@ class RewardVideoViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
-        //MPRewardedVideo.presentAd(forAdUnitID: "1b90344b9bc749c4adc443909cbc09e4", from: self)
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -25,7 +23,7 @@ class RewardVideoViewController: UIViewController {
         if shouldShowAd {
             
             // Rewarded Ad Unit
-            MPRewardedVideo.presentAd(forAdUnitID: "ea3c6eed63914072a30b59358a9ada7d", from: self)
+            MPRewardedVideo.presentAd(forAdUnitID: "ea3c6eed63914072a30b59358a9ada7d", from: self, with: nil)
             
             shouldShowAd = false
         }

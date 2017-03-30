@@ -175,6 +175,8 @@ class CDOperation {
         return newObject 
     }
     
+    // MARK: - SAVE
+    
     class func saveRepsWithPredicate(_ session: String, routine: String, workout: String, month: String, week: String, exercise: String, index: NSNumber, reps: String, round: String) {
         
         let request = NSFetchRequest<NSFetchRequestResult>( entityName: "Workout")
@@ -488,6 +490,8 @@ class CDOperation {
             }
         } catch { print(" ERROR executing a fetch request: \( error)") }
     }
+    
+    // MARK: - GET
     
     class func getRepWeightTextForExercise(_ session: String, routine: String, workout: String, exercise: String, index: NSNumber) -> [NSManagedObject] {
         
@@ -855,6 +859,41 @@ class CDOperation {
         return "1"
     }
     
+    class func getAutoLockSetting() -> String {
+     
+        // Fetch AutoLock data.
+        let request = NSFetchRequest<NSFetchRequestResult>( entityName: "AutoLock")
+        let sortDate = NSSortDescriptor( key: "date", ascending: true)
+        request.sortDescriptors = [sortDate]
+        
+        do {
+            if let autoLockObjects = try CoreDataHelper.shared().context.fetch(request) as? [AutoLock] {
+                
+                if autoLockObjects.count != 0 {
+                    
+                    // Match Found.
+                    return (autoLockObjects.last?.useAutoLock)!
+                }
+                else {
+                    
+                    // No Matches Found.  Create new record and save.
+                    let insertAutoLockInfo = NSEntityDescription.insertNewObject(forEntityName: "AutoLock", into: CoreDataHelper.shared().context) as! AutoLock
+                    
+                    insertAutoLockInfo.useAutoLock = "OFF"
+                    insertAutoLockInfo.date = Date() as NSDate?
+                    
+                    CoreDataHelper.shared().backgroundSaveContext()
+                    
+                    return "OFF"
+                }
+            }
+        } catch { print(" ERROR executing a fetch request: \( error)") }
+        
+        return "OFF"
+    }
+    
+    // MARK: - WORKOUT COMPLETE DATE
+    
     class func saveWorkoutCompleteDate(_ session: NSString, routine: NSString, workout: NSString, index: NSNumber, useDate: Date) {
         
         let request = NSFetchRequest<NSFetchRequestResult>( entityName: "WorkoutCompleteDate")
@@ -989,6 +1028,8 @@ class CDOperation {
             }
         } catch { print(" ERROR executing a fetch request: \( error)") }
     }
+    
+    // MARK: - MEASUREMENTS
     
     class func getMeasurementObjects(_ session: NSString, month: NSString) -> [NSManagedObject] {
         
@@ -1180,6 +1221,8 @@ class CDOperation {
         } catch { print(" ERROR executing a fetch request: \( error)") }
     }
 
+    // MARK: - WORKOUT ARRAYS
+    
     class func loadWorkoutNameArray() -> [[String]] {
         
         switch getCurrentRoutine() {
@@ -2907,6 +2950,8 @@ class CDOperation {
         return exerciseTitleArray
     }
     
+    // MARK: - EMAIL STRINGS
+    
     class func allSessionStringForEmail() -> String {
         
         // Get Data from the database.
@@ -3913,6 +3958,8 @@ class CDOperation {
         return writeString as String
     }
 
+    // MARK: - UTITILYT METHODS
+    
     class func findMaxSessionValue() -> String {
         
         // Workout Entity

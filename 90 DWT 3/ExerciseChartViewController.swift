@@ -121,14 +121,14 @@ class ExerciseChartViewController: UIViewController, SChartDatasource {
         chart.legend.position = .bottomMiddle
         
         // Enable gestures
-        yAxis.enableGesturePanning = true;
-        yAxis.enableGestureZooming = true;
-        xAxis.enableGesturePanning = true;
-        xAxis.enableGestureZooming = true;
+        yAxis.enableGesturePanning = true
+        yAxis.enableGestureZooming = true
+        xAxis.enableGesturePanning = true
+        xAxis.enableGestureZooming = true
         
         // Show the x and y axis gridlines
-        xAxis.style.majorGridLineStyle.showMajorGridLines = true;
-        yAxis.style.majorGridLineStyle.showMajorGridLines = true;
+        xAxis.style.majorGridLineStyle.showMajorGridLines = true
+        yAxis.style.majorGridLineStyle.showMajorGridLines = true
     }
     
     // MARK:- SChartDatasource Functions
@@ -249,7 +249,7 @@ class ExerciseChartViewController: UIViewController, SChartDatasource {
             // Enable area fill
             //columnSeries.style.areaColorGradient = [UIColor clearColor];
             
-            let tryNumber = NSNumber(value: index + 1 as Int32)
+            let tryNumber = NSNumber(value: index + 1)
             
             if (ColumnSeriesMatchAtIndex(index)) {
                 
