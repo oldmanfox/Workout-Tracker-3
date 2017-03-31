@@ -44,6 +44,8 @@
 		A5720780185F835D00638698 /* Twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A572077F185F835D00638698 /* Twitter.framework */; };
 		A5720782185F836A00638698 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5720781185F836A00638698 /* MediaPlayer.framework */; };
 		A5853A2B1E6E0C65007E1E7E /* WorkoutTVC_Workout5Round_Weight_TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5853A2A1E6E0C65007E1E7E /* WorkoutTVC_Workout5Round_Weight_TableViewCell.swift */; };
+		A5A5F6E31E8EB26900A4FB79 /* Session+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A5F6E11E8EB26900A4FB79 /* Session+CoreDataClass.swift */; };
+		A5A5F6E41E8EB26900A4FB79 /* Session+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A5F6E21E8EB26900A4FB79 /* Session+CoreDataProperties.swift */; };
 		A5B641C91E5C950400A747BA /* AutoLock+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B641B71E5C950400A747BA /* AutoLock+CoreDataClass.swift */; };
 		A5B641CA1E5C950400A747BA /* AutoLock+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B641B81E5C950400A747BA /* AutoLock+CoreDataProperties.swift */; };
 		A5B641CB1E5C950400A747BA /* Workout+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B641B91E5C950400A747BA /* Workout+CoreDataClass.swift */; };
@@ -60,8 +62,6 @@
 		A5B641D61E5C950400A747BA /* Bands+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B641C41E5C950400A747BA /* Bands+CoreDataProperties.swift */; };
 		A5B641D71E5C950400A747BA /* Photo+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B641C51E5C950400A747BA /* Photo+CoreDataClass.swift */; };
 		A5B641D81E5C950400A747BA /* Photo+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B641C61E5C950400A747BA /* Photo+CoreDataProperties.swift */; };
-		A5B641D91E5C950400A747BA /* Session+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B641C71E5C950400A747BA /* Session+CoreDataClass.swift */; };
-		A5B641DA1E5C950400A747BA /* Session+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B641C81E5C950400A747BA /* Session+CoreDataProperties.swift */; };
 		A5B644C21E5C964700A747BA /* ExerciseChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B644C11E5C964700A747BA /* ExerciseChartViewController.swift */; };
 		A5B644CC1E5C969300A747BA /* CoreDataHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = A5B644C71E5C969300A747BA /* CoreDataHelper.m */; };
 		A5B644CD1E5C969300A747BA /* CoreDataImporter.m in Sources */ = {isa = PBXBuildFile; fileRef = A5B644C91E5C969300A747BA /* CoreDataImporter.m */; };
@@ -351,6 +351,9 @@
 		A572077F185F835D00638698 /* Twitter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Twitter.framework; path = System/Library/Frameworks/Twitter.framework; sourceTree = SDKROOT; };
 		A5720781185F836A00638698 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		A5853A2A1E6E0C65007E1E7E /* WorkoutTVC_Workout5Round_Weight_TableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkoutTVC_Workout5Round_Weight_TableViewCell.swift; sourceTree = "<group>"; };
+		A5A5F6E01E8EB1A600A4FB79 /* _0_DWT_ 3_v4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "_0_DWT_ 3_v4.xcdatamodel"; sourceTree = "<group>"; };
+		A5A5F6E11E8EB26900A4FB79 /* Session+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Session+CoreDataClass.swift"; sourceTree = "<group>"; };
+		A5A5F6E21E8EB26900A4FB79 /* Session+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Session+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		A5B641B51E5C93C500A747BA /* _0_DWT_ 3_v3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "_0_DWT_ 3_v3.xcdatamodel"; sourceTree = "<group>"; };
 		A5B641B61E5C950300A747BA /* 90 DWT 3-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "90 DWT 3-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
 		A5B641B71E5C950400A747BA /* AutoLock+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AutoLock+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -369,8 +372,6 @@
 		A5B641C41E5C950400A747BA /* Bands+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Bands+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		A5B641C51E5C950400A747BA /* Photo+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Photo+CoreDataClass.swift"; sourceTree = "<group>"; };
 		A5B641C61E5C950400A747BA /* Photo+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Photo+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		A5B641C71E5C950400A747BA /* Session+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Session+CoreDataClass.swift"; sourceTree = "<group>"; };
-		A5B641C81E5C950400A747BA /* Session+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Session+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		A5B644101E5C963B00A747BA /* SChart+Deprecated.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SChart+Deprecated.h"; sourceTree = "<group>"; };
 		A5B644111E5C963B00A747BA /* SChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SChart.h; sourceTree = "<group>"; };
 		A5B644121E5C963B00A747BA /* SChartActivityIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SChartActivityIndicator.h; sourceTree = "<group>"; };
@@ -1132,6 +1133,8 @@
 		A5B641DB1E5C951600A747BA /* Data Model */ = {
 			isa = PBXGroup;
 			children = (
+				A5A5F6E11E8EB26900A4FB79 /* Session+CoreDataClass.swift */,
+				A5A5F6E21E8EB26900A4FB79 /* Session+CoreDataProperties.swift */,
 				A5B641B71E5C950400A747BA /* AutoLock+CoreDataClass.swift */,
 				A5B641B81E5C950400A747BA /* AutoLock+CoreDataProperties.swift */,
 				A5B641B91E5C950400A747BA /* Workout+CoreDataClass.swift */,
@@ -1148,8 +1151,6 @@
 				A5B641C41E5C950400A747BA /* Bands+CoreDataProperties.swift */,
 				A5B641C51E5C950400A747BA /* Photo+CoreDataClass.swift */,
 				A5B641C61E5C950400A747BA /* Photo+CoreDataProperties.swift */,
-				A5B641C71E5C950400A747BA /* Session+CoreDataClass.swift */,
-				A5B641C81E5C950400A747BA /* Session+CoreDataProperties.swift */,
 			);
 			name = "Data Model";
 			sourceTree = "<group>";
@@ -2174,12 +2175,11 @@
 				A5B644DB1E5C969E00A747BA /* CDDeduplicator.swift in Sources */,
 				A5B644FD1E5C97E000A747BA /* StoreRewardVideoTableViewCell.swift in Sources */,
 				A5FFBA241E8D668400C323B1 /* MPVASTTrackingEvent.m in Sources */,
+				A5A5F6E41E8EB26900A4FB79 /* Session+CoreDataProperties.swift in Sources */,
 				A5B641D51E5C950400A747BA /* Bands+CoreDataClass.swift in Sources */,
 				A5B644F71E5C97E000A747BA /* WeekTVC_TableViewCell.swift in Sources */,
 				A5FFBA251E8D668400C323B1 /* MPVASTWrapper.m in Sources */,
-				A5B641DA1E5C950400A747BA /* Session+CoreDataProperties.swift in Sources */,
 				A5B641D31E5C950400A747BA /* Routine+CoreDataClass.swift in Sources */,
-				A5B641D91E5C950400A747BA /* Session+CoreDataClass.swift in Sources */,
 				A5B644DF1E5C969E00A747BA /* CDMigration.swift in Sources */,
 				A5FFB9FF1E8D668400C323B1 /* MRProperty.m in Sources */,
 				A5FFB9E81E8D668400C323B1 /* MPHTMLBannerCustomEvent.m in Sources */,
@@ -2253,6 +2253,7 @@
 				A5FFBA491E8D668400C323B1 /* MPNativeAdSource.m in Sources */,
 				A5FFBA551E8D668400C323B1 /* MOPUBNativeVideoAdAdapter.m in Sources */,
 				A5B644F81E5C97E000A747BA /* WorkoutTVC_WorkoutTableViewCell.swift in Sources */,
+				A5A5F6E31E8EB26900A4FB79 /* Session+CoreDataClass.swift in Sources */,
 				A5B645051E5C97EE00A747BA /* StoreTVC.swift in Sources */,
 				A5FFBA111E8D668400C323B1 /* MPReachability.m in Sources */,
 				A5FFB9E61E8D668400C323B1 /* MPRetryingHTTPOperation.m in Sources */,
@@ -2662,11 +2663,12 @@
 		A57206D1185F631B00638698 /* _0_DWT_3.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				A5A5F6E01E8EB1A600A4FB79 /* _0_DWT_ 3_v4.xcdatamodel */,
 				A5B641B51E5C93C500A747BA /* _0_DWT_ 3_v3.xcdatamodel */,
 				A562256D1C286C850026B141 /* _0_DWT_ 3_v2.xcdatamodel */,
 				A57206D2185F631B00638698 /* _0_DWT_3.xcdatamodel */,
 			);
-			currentVersion = A5B641B51E5C93C500A747BA /* _0_DWT_ 3_v3.xcdatamodel */;
+			currentVersion = A5A5F6E01E8EB1A600A4FB79 /* _0_DWT_ 3_v4.xcdatamodel */;
 			path = _0_DWT_3.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

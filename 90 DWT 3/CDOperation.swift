@@ -859,6 +859,39 @@ class CDOperation {
         return "1"
     }
     
+    class func getImportPreviousSessionData() -> Bool {
+        
+        let request = NSFetchRequest<NSFetchRequestResult>( entityName: "Session")
+        let sortDate = NSSortDescriptor( key: "date", ascending: true)
+        request.sortDescriptors = [sortDate]
+        
+        do {
+            if let sessionObjects = try CoreDataHelper.shared().context.fetch(request) as? [Session] {
+                
+                // print("sessionObjects.count = \(sessionObjects.count)")
+                
+                if sessionObjects.count != 0 {
+                    
+                    // Match Found.
+                    return (sessionObjects.last?.importPreviousSessionData)! as! Bool
+                }
+                else {
+                    
+                    // No Matches Found.  Create new record and save.
+                    let insertSessionInfo = NSEntityDescription.insertNewObject(forEntityName: "Session", into: CoreDataHelper.shared().context) as! Session
+                    
+                    insertSessionInfo.importPreviousSessionData = false
+                    
+                    CoreDataHelper.shared().backgroundSaveContext()
+                    
+                    return false
+                }
+            }
+        } catch { print(" ERROR executing a fetch request: \( error)") }
+        
+        return false
+    }
+
     class func getAutoLockSetting() -> String {
      
         // Fetch AutoLock data.
@@ -4039,6 +4072,308 @@ class CDOperation {
         default:
             // Round 5
             return 4
+        }
+    }
+    
+    class func findMaxIndexForWorkout(routine: String, workoutName: String) -> Int {
+        
+        switch routine {
+        case "Normal":
+            
+            switch workoutName {
+            case "Negative Lower":
+                return 5
+                
+            case "Negative Upper":
+                return 5
+                
+            case "Agility Upper":
+                return 8
+                
+            case "Agility Lower":
+                return 8
+                
+            case "Devastator":
+                return 3
+                
+            case "Complete Fitness":
+                return 5
+                
+            case "The Goal":
+                return 5
+
+            case "Cardio Resistance":
+                return 6
+                
+            case "MMA":
+                return 5
+                
+            case "Dexterity":
+                return 6
+                
+            case "Gladiator":
+                return 3
+                
+            case "Plyometrics T":
+                return 7
+                
+            case "Plyometrics D":
+                return 4
+                
+            case "Cardio Speed":
+                return 3
+                
+            case "Yoga":
+                return 15
+                
+            case "Pilates":
+                return 9
+                
+            case "Core I":
+                return 4
+                
+            case "Core D":
+                return 20
+                
+            case "Ab Workout":
+                return 6
+                
+            case "Rest":
+                return 17
+                
+            case "Warm Up":
+                return 0
+                
+            case "Finished":
+                return 2
+                
+            default:
+                // No matches
+                return 0
+            }
+            
+        case "Tone":
+            
+            switch workoutName {
+            case "Negative Lower":
+                return 2
+                
+            case "Negative Upper":
+                return 2
+                
+            case "Agility Upper":
+                return 8
+                
+            case "Agility Lower":
+                return 8
+                
+            case "Devastator":
+                return 3
+                
+            case "Complete Fitness":
+                return 0
+                
+            case "The Goal":
+                return 0
+                
+            case "Cardio Resistance":
+                return 9
+                
+            case "MMA":
+                return 7
+                
+            case "Dexterity":
+                return 6
+                
+            case "Gladiator":
+                return 6
+                
+            case "Plyometrics T":
+                return 7
+                
+            case "Plyometrics D":
+                return 6
+                
+            case "Cardio Speed":
+                return 6
+                
+            case "Yoga":
+                return 15
+                
+            case "Pilates":
+                return 9
+                
+            case "Core I":
+                return 7
+                
+            case "Core D":
+                return 20
+                
+            case "Ab Workout":
+                return 6
+                
+            case "Rest":
+                return 17
+                
+            case "Warm Up":
+                return 0
+                
+            case "Finished":
+                return 2
+                
+            default:
+                // No matches
+                return 0
+            }
+            
+        case "2-A-Days":
+            
+            switch workoutName {
+            case "Negative Lower":
+                return 5
+                
+            case "Negative Upper":
+                return 2
+                
+            case "Agility Upper":
+                return 8
+                
+            case "Agility Lower":
+                return 8
+                
+            case "Devastator":
+                return 3
+                
+            case "Complete Fitness":
+                return 8
+                
+            case "The Goal":
+                return 5
+                
+            case "Cardio Resistance":
+                return 10
+                
+            case "MMA":
+                return 14
+                
+            case "Dexterity":
+                return 8
+                
+            case "Gladiator":
+                return 3
+                
+            case "Plyometrics T":
+                return 7
+                
+            case "Plyometrics D":
+                return 4
+                
+            case "Cardio Speed":
+                return 13
+                
+            case "Yoga":
+                return 20
+                
+            case "Pilates":
+                return 14
+                
+            case "Core I":
+                return 14
+                
+            case "Core D":
+                return 39
+                
+            case "Ab Workout":
+                return 10
+                
+            case "Rest":
+                return 17
+                
+            case "Warm Up":
+                return 6
+                
+            case "Finished":
+                return 2
+                
+            default:
+                // No matches
+                return 0
+            }
+            
+        default:
+            
+            // Bulk
+            switch workoutName {
+            case "Negative Lower":
+                return 11
+                
+            case "Negative Upper":
+                return 11
+                
+            case "Agility Upper":
+                return 0
+                
+            case "Agility Lower":
+                return 0
+                
+            case "Devastator":
+                return 5
+                
+            case "Complete Fitness":
+                return 5
+                
+            case "The Goal":
+                return 5
+                
+            case "Cardio Resistance":
+                return 0
+                
+            case "MMA":
+                return 5
+                
+            case "Dexterity":
+                return 6
+                
+            case "Gladiator":
+                return 2
+                
+            case "Plyometrics T":
+                return 0
+                
+            case "Plyometrics D":
+                return 2
+                
+            case "Cardio Speed":
+                return 0
+                
+            case "Yoga":
+                return 13
+                
+            case "Pilates":
+                return 7
+                
+            case "Core I":
+                return 3
+                
+            case "Core D":
+                return 15
+                
+            case "Ab Workout":
+                return 0
+                
+            case "Rest":
+                return 13
+                
+            case "Warm Up":
+                return 0
+                
+            case "Finished":
+                return 1
+                
+            default:
+                // No matches
+                return 0
+            }
         }
     }
 }

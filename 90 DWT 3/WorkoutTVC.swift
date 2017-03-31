@@ -680,7 +680,29 @@ class WorkoutTVC: UITableViewController, UIPopoverPresentationControllerDelegate
                     }
 
                     // Previous Weight Fields
-                    if let workoutObjects = CDOperation.getRepWeightTextForExercise(session, routine: workoutRoutine, workout: selectedWorkout, exercise: titleArray![0] as! String, index: (workoutIndex - 1) as NSNumber) as? [Workout] {
+                    
+                    var localSession = ""
+                    var localIndex = 0
+                    
+                    // Get previous data based on if the user selected to import the previous session's last index data for each workout to use on the 1st index of each workout.  Will be placed in the Previous Text Field box.
+                    
+                    if workoutIndex == 1 && CDOperation.getImportPreviousSessionData() == true {
+                        
+                        //  Get the previous session last index data for this workout
+                        let tempSession = Int(self.session)! - 1
+                        localSession = String(tempSession)
+                        
+                        localIndex = CDOperation.findMaxIndexForWorkout(routine: self.workoutRoutine, workoutName: self.selectedWorkout)
+                    }
+                    else {
+                        
+                        // Either the user didn't want to import the previous session data or it is not the 1st index workout
+                        localSession = self.session
+                        localIndex = self.workoutIndex - 1
+                    }
+                    
+                    
+                    if let workoutObjects = CDOperation.getRepWeightTextForExercise(localSession, routine: workoutRoutine, workout: selectedWorkout, exercise: titleArray![0] as! String, index: localIndex as NSNumber) as? [Workout] {
                         
                         if debug == 1 {
                             
@@ -1006,7 +1028,29 @@ class WorkoutTVC: UITableViewController, UIPopoverPresentationControllerDelegate
                     }
                     
                     // Previous Reps Fields and Notes
-                    if let workoutObjects = CDOperation.getRepWeightTextForExercise(session, routine: workoutRoutine, workout: selectedWorkout, exercise: titleArray![0] as! String, index: workoutIndex - 1 as NSNumber)  as? [Workout] {
+                    
+                    var localSession = ""
+                    var localIndex = 0
+                    
+                    // Get previous data based on if the user selected to import the previous session's last index data for each workout to use on the 1st index of each workout.  Will be placed in the Previous Text Field box.
+                    
+                    if workoutIndex == 1 && CDOperation.getImportPreviousSessionData() == true {
+                        
+                        //  Get the previous session last index data for this workout
+                        let tempSession = Int(self.session)! - 1
+                        localSession = String(tempSession)
+                        
+                        localIndex = CDOperation.findMaxIndexForWorkout(routine: self.workoutRoutine, workoutName: self.selectedWorkout)
+                    }
+                    else {
+                        
+                        // Either the user didn't want to import the previous session data or it is not the 1st index workout
+                        localSession = self.session
+                        localIndex = self.workoutIndex - 1
+                    }
+                    
+                    
+                    if let workoutObjects = CDOperation.getRepWeightTextForExercise(localSession, routine: workoutRoutine, workout: selectedWorkout, exercise: titleArray![0] as! String, index: localIndex as NSNumber) as? [Workout] {
                         
                         if debug == 1 {
                             
@@ -1332,7 +1376,29 @@ class WorkoutTVC: UITableViewController, UIPopoverPresentationControllerDelegate
                     }
                     
                     // Previous Weight Fields and Notes
-                    if let workoutObjects = CDOperation.getRepWeightTextForExercise(session, routine: workoutRoutine, workout: selectedWorkout, exercise: titleArray![0] as! String, index: workoutIndex - 1 as NSNumber)  as? [Workout] {
+                    
+                    var localSession = ""
+                    var localIndex = 0
+                    
+                    // Get previous data based on if the user selected to import the previous session's last index data for each workout to use on the 1st index of each workout.  Will be placed in the Previous Text Field box.
+                    
+                    if workoutIndex == 1 && CDOperation.getImportPreviousSessionData() == true {
+                        
+                        //  Get the previous session last index data for this workout
+                        let tempSession = Int(self.session)! - 1
+                        localSession = String(tempSession)
+                        
+                        localIndex = CDOperation.findMaxIndexForWorkout(routine: self.workoutRoutine, workoutName: self.selectedWorkout)
+                    }
+                    else {
+                        
+                        // Either the user didn't want to import the previous session data or it is not the 1st index workout
+                        localSession = self.session
+                        localIndex = self.workoutIndex - 1
+                    }
+                    
+                    
+                    if let workoutObjects = CDOperation.getRepWeightTextForExercise(localSession, routine: workoutRoutine, workout: selectedWorkout, exercise: titleArray![0] as! String, index: localIndex as NSNumber) as? [Workout] {
                         
                         if debug == 1 {
                             

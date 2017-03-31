@@ -20,6 +20,7 @@ class SettingsTVC: UITableViewController, UIPopoverPresentationControllerDelegat
     @IBOutlet weak var emailCell: UITableViewCell!
     @IBOutlet weak var autoLockCell: UITableViewCell!
     @IBOutlet weak var currentSessionCell: UITableViewCell!
+    @IBOutlet weak var importPreviousSessionDataCell: UITableViewCell!
     @IBOutlet weak var exportCell: UITableViewCell!
     @IBOutlet weak var resetCell: UITableViewCell!
     @IBOutlet weak var iCloudDriveCell: UITableViewCell!
@@ -33,6 +34,7 @@ class SettingsTVC: UITableViewController, UIPopoverPresentationControllerDelegat
     @IBOutlet weak var currentSessionLabel: UILabel!
     @IBOutlet weak var decreaseSessionButton: UIButton!
     @IBOutlet weak var increaseSessionButton: UIButton!
+    @IBOutlet weak var importPreviusSessionDataSwitch: UISwitch!
     @IBOutlet weak var exportAllDataButton: UIButton!
     @IBOutlet weak var exportCurrentSessionDataButton: UIButton!
     @IBOutlet weak var resetAllDataButton: UIButton!
@@ -63,6 +65,7 @@ class SettingsTVC: UITableViewController, UIPopoverPresentationControllerDelegat
         self.findUseAutoLockSetting()
         self.findEmailSetting()
         self.findAppUsingiCloudStatus()
+        self.setImportPreviousSessionDataSwitch()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -95,6 +98,7 @@ class SettingsTVC: UITableViewController, UIPopoverPresentationControllerDelegat
         
         self.findiCloudStatus()
         self.findAppUsingiCloudStatus()
+        self.setImportPreviousSessionDataSwitch()
     }
 
     func configureButtonBorder() {
@@ -273,6 +277,7 @@ class SettingsTVC: UITableViewController, UIPopoverPresentationControllerDelegat
                             // Match Found.  Update existing record.
                             let newSessionNumber = Int(self.session)! - 1
                             sessionObjects.last?.currentSession = String(newSessionNumber)
+                            sessionObjects.last?.importPreviousSessionData = self.importPreviusSessionDataSwitch.isOn as NSNumber
                             sessionObjects.last?.date = Date() as NSDate?
                             
                             CoreDataHelper.shared().backgroundSaveContext()
@@ -333,6 +338,7 @@ class SettingsTVC: UITableViewController, UIPopoverPresentationControllerDelegat
                         // Match Found.  Update existing record.
                         let newSessionNumber = Int(self.session)! + 1
                         sessionObjects.last?.currentSession = String(newSessionNumber)
+                        sessionObjects.last?.importPreviousSessionData = self.importPreviusSessionDataSwitch.isOn as NSNumber
                         sessionObjects.last?.date = Date() as NSDate?
                         
                         CoreDataHelper.shared().backgroundSaveContext()
@@ -367,6 +373,47 @@ class SettingsTVC: UITableViewController, UIPopoverPresentationControllerDelegat
         present(alertController, animated: true, completion: nil)
     }
 
+    @IBAction func importPreviousSessionData(_ sender: UISwitch) {
+        
+        var newImportPreviousSessionDataSetting = false
+        
+        if sender.isOn {
+            
+            // User wants to import the previous session data into the new session.
+            newImportPreviousSessionDataSetting = true
+        }
+        else {
+            
+            // User doesn't want to import the previous session data into the new session.
+            newImportPreviousSessionDataSetting = false
+        }
+
+        // Fetch Session data.
+        let request = NSFetchRequest<NSFetchRequestResult>( entityName: "Session")
+        let sortDate = NSSortDescriptor( key: "date", ascending: true)
+        request.sortDescriptors = [sortDate]
+        
+        do {
+            if let sessionObjects = try CoreDataHelper.shared().context.fetch(request) as? [Session] {
+                
+                if self.debug == 1 {
+                    
+                    print("sessionObjects.count = \(sessionObjects.count)")
+                }
+                
+                if sessionObjects.count != 0 {
+                    
+                    // Match Found.  Update existing record.
+                    // Datatbase needs Boolean to be an NSNumber in order to store it.
+                    
+                    sessionObjects.last?.importPreviousSessionData = newImportPreviousSessionDataSetting as NSNumber
+                    
+                    CoreDataHelper.shared().backgroundSaveContext()
+                }
+            }
+        } catch { print(" ERROR executing a fetch request: \( error)") }
+    }
+    
     @IBAction func exportAllData(_ sender: UIButton) {
         
         //  Get the ALL SESSIONS csvstring and then send the email
@@ -814,6 +861,18 @@ class SettingsTVC: UITableViewController, UIPopoverPresentationControllerDelegat
         } catch { print(" ERROR executing a fetch request: \( error)") }
     }
     
+    func setImportPreviousSessionDataSwitch() {
+        
+        if CDOperation.getImportPreviousSessionData() == true {
+            
+            self.importPreviusSessionDataSwitch.setOn(true, animated: true)
+        }
+        else {
+            
+            self.importPreviusSessionDataSwitch.setOn(false, animated: true)
+        }
+    }
+
     func sendEmail(_ sessionType: String, cvsString: String) {
         
         // Create MailComposerViewController object.
