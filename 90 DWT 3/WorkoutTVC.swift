@@ -2079,7 +2079,7 @@ class WorkoutTVC: UITableViewController, UIPopoverPresentationControllerDelegate
                          [Round.round1, Round.empty, Round.empty, Round.empty, Round.empty, Round.empty],
                          [LabelTitle.reps, LabelTitle.weight, LabelTitle.empty, LabelTitle.empty, LabelTitle.empty, LabelTitle.empty],
                          [Color.one, Color.four, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
-                         [false, true, true, true, true, true], // isHidden
+                         [false, false, true, true, true, true], // isHidden
                 [CellType.straight_1]]
             
             let cell2 = [["Pull-Ups"],
@@ -2107,21 +2107,21 @@ class WorkoutTVC: UITableViewController, UIPopoverPresentationControllerDelegate
                          [Round.round1, Round.empty, Round.empty, Round.empty, Round.empty, Round.empty],
                          [LabelTitle.reps, LabelTitle.weight, LabelTitle.empty, LabelTitle.empty, LabelTitle.empty, LabelTitle.empty],
                          [Color.one, Color.four, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
-                         [false, true, true, true, true, true],
+                         [false, false, true, true, true, true],
                          [CellType.straight_1]]
             
             let cell6 = [["Underhand Pull-Ups"],
                          [Round.round1, Round.empty, Round.empty, Round.empty, Round.empty, Round.empty],
                          [LabelTitle.reps, LabelTitle.weight, LabelTitle.empty, LabelTitle.empty, LabelTitle.empty, LabelTitle.empty],
                          [Color.one, Color.four, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
-                         [false, false, true, true, true, true],
+                         [false, true, true, true, true, true],
                          [CellType.straight_1]]
             
             let cell7 = [["Laying Chest Press"],
                          [Round.round1, Round.empty, Round.empty, Round.empty, Round.empty, Round.empty],
                          [LabelTitle.reps, LabelTitle.weight, LabelTitle.empty, LabelTitle.empty, LabelTitle.empty, LabelTitle.empty],
                          [Color.one, Color.four, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
-                         [false, true, true, true, true, true],
+                         [false, false, true, true, true, true],
                          [CellType.straight_1]]
             
             let cell8 = [["Military Push-Ups"],
@@ -2156,21 +2156,21 @@ class WorkoutTVC: UITableViewController, UIPopoverPresentationControllerDelegate
                           [Round.round1, Round.empty, Round.empty, Round.empty, Round.empty, Round.empty],
                           [LabelTitle.reps, LabelTitle.weight, LabelTitle.empty, LabelTitle.empty, LabelTitle.empty, LabelTitle.empty],
                           [Color.one, Color.four, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
-                          [false, false, true, true, true, true],
+                          [false, true, true, true, true, true],
                           [CellType.straight_1]]
             
             let cell13 = [["Hammer Curls"],
                           [Round.round1, Round.empty, Round.empty, Round.empty, Round.empty, Round.empty],
                           [LabelTitle.reps, LabelTitle.weight, LabelTitle.empty, LabelTitle.empty, LabelTitle.empty, LabelTitle.empty],
                           [Color.one, Color.four, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
-                          [false, true, true, true, true, true],
+                          [false, false, true, true, true, true],
                           [CellType.straight_1]]
             
             let cell14 = [["Leaning Curls"],
                           [Round.round1, Round.empty, Round.empty, Round.empty, Round.empty, Round.empty],
                           [LabelTitle.reps, LabelTitle.weight, LabelTitle.empty, LabelTitle.empty, LabelTitle.empty, LabelTitle.empty],
                           [Color.one, Color.four, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
-                          [false, true, true, true, true, true],
+                          [false, false, true, true, true, true],
                           [CellType.straight_1]]
             
             let cell15 = [["Laying Cross Tricep Extension"],
@@ -2184,7 +2184,7 @@ class WorkoutTVC: UITableViewController, UIPopoverPresentationControllerDelegate
                           [Round.round1, Round.empty, Round.empty, Round.empty, Round.empty, Round.empty],
                           [LabelTitle.reps, LabelTitle.weight, LabelTitle.empty, LabelTitle.empty, LabelTitle.empty, LabelTitle.empty],
                           [Color.one, Color.four, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
-                          [false, false, true, true, true, true],
+                          [false, true, true, true, true, true],
                           [CellType.straight_1]]
             
             let cell17 = [["2 Way Curl"],
@@ -2198,14 +2198,14 @@ class WorkoutTVC: UITableViewController, UIPopoverPresentationControllerDelegate
                           [Round.round1, Round.empty, Round.empty, Round.empty, Round.empty, Round.empty],
                           [LabelTitle.reps, LabelTitle.weight, LabelTitle.empty, LabelTitle.empty, LabelTitle.empty, LabelTitle.empty],
                           [Color.one, Color.four, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
-                          [false, true, true, true, true, true],
+                          [false, false, true, true, true, true],
                           [CellType.straight_1]]
             
             let cell19 = [["BONUS Push-Ups Plank Sphinx"],
                           [Round.round1, Round.empty, Round.empty, Round.empty, Round.empty, Round.empty],
                           [LabelTitle.reps, LabelTitle.weight, LabelTitle.empty, LabelTitle.empty, LabelTitle.empty, LabelTitle.empty],
                           [Color.red, Color.four, UIColor.white, UIColor.white, UIColor.white, UIColor.white],
-                          [false, false, true, true, true, true],
+                          [false, true, true, true, true, true],
                           [CellType.straight_1]]
             
             let completeCell = [[],
