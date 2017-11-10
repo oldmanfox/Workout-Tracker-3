@@ -181,6 +181,7 @@ class WorkoutTVC: UITableViewController, UIPopoverPresentationControllerDelegate
             self.adView.frame = CGRect(x: (self.view.bounds.size.width - self.bannerSize.width) / 2,
                                            y: self.bannerSize.height - self.bannerSize.height,
                                            width: self.bannerSize.width, height: self.bannerSize.height)
+            self.headerView.addSubview(self.adView)
             self.adView.isHidden = false
         }
         
@@ -239,14 +240,17 @@ class WorkoutTVC: UITableViewController, UIPopoverPresentationControllerDelegate
     
     func wasGraphViewPurchased() -> Bool {
         
-        if Products.store.isProductPurchased("com.grantsoftware.90DWT3.slidergraph") {
-            
-            return true
-        }
-        else {
-            
-            return false
-        }
+        //  Testing GraphView
+        return true
+        
+//        if Products.store.isProductPurchased("com.grantsoftware.90DWT3.slidergraph") {
+//
+//            return true
+//        }
+//        else {
+//
+//            return false
+//        }
     }
 
     @objc func actionButtonPressed(_ sender: UIBarButtonItem) {
