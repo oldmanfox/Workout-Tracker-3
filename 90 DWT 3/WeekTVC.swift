@@ -202,7 +202,7 @@ class WeekTVC: UITableViewController, UIPopoverPresentationControllerDelegate, U
         self.adView.removeFromSuperview()
     }
     
-    func doNothing() {
+    @objc func doNothing() {
         
         // Do nothing
         self.tableView.reloadData()
@@ -213,7 +213,7 @@ class WeekTVC: UITableViewController, UIPopoverPresentationControllerDelegate, U
         // Dispose of any resources that can be recreated.
     }
 
-    func editButtonPressed(_ sender: UIBarButtonItem) {
+    @objc func editButtonPressed(_ sender: UIBarButtonItem) {
         
         let tempMessage = "Set the status for all workouts of:\n\n\(workoutRoutine) - \(workoutWeek)"
         

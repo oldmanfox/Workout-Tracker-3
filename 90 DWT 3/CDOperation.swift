@@ -3050,7 +3050,7 @@ class CDOperation {
                             
                             if workoutObjects1.count != 0 {
                                 
-                                maxIndex = Int((workoutObjects1.last?.index)!)
+                                maxIndex = Int(truncating: (workoutObjects1.last?.index)!)
                                 
                                 var localSession = ""
                                 var localRoutine = ""
@@ -3402,7 +3402,7 @@ class CDOperation {
                         
                         if workoutObjects1.count != 0 {
                             
-                            maxIndex = Int((workoutObjects1.last?.index)!)
+                            maxIndex = Int(truncating: (workoutObjects1.last?.index)!)
                             
                             var localSession = ""
                             var localRoutine = ""

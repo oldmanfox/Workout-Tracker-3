@@ -67,7 +67,7 @@ class WorkoutTVC_Workout5Round_Weight_TableViewCell: UITableViewCell, UITextFiel
     @IBAction func saveCurrentWeight1(_ sender: UITextField) {
         
         // Only update the fields that have been changed.
-        if ((sender.text?.characters.count)! > 0 && sender.text != "0.0" && sender.text != self.originalCurrentWeight1_Text) {
+        if ((sender.text?.count)! > 0 && sender.text != "0.0" && sender.text != self.originalCurrentWeight1_Text) {
             
             if debug == 1 {
                 
@@ -85,7 +85,7 @@ class WorkoutTVC_Workout5Round_Weight_TableViewCell: UITableViewCell, UITextFiel
     @IBAction func saveCurrentWeight2(_ sender: UITextField) {
         
         // Only update the fields that have been changed.
-        if ((sender.text?.characters.count)! > 0 && sender.text != "0.0" && sender.text != self.originalCurrentWeight2_Text) {
+        if ((sender.text?.count)! > 0 && sender.text != "0.0" && sender.text != self.originalCurrentWeight2_Text) {
             
             if debug == 1 {
                 
@@ -103,7 +103,7 @@ class WorkoutTVC_Workout5Round_Weight_TableViewCell: UITableViewCell, UITextFiel
     @IBAction func saveCurrentWeight3(_ sender: UITextField) {
         
         // Only update the fields that have been changed.
-        if ((sender.text?.characters.count)! > 0 && sender.text != "0.0" && sender.text != self.originalCurrentWeight3_Text) {
+        if ((sender.text?.count)! > 0 && sender.text != "0.0" && sender.text != self.originalCurrentWeight3_Text) {
             
             if debug == 1 {
                 
@@ -121,7 +121,7 @@ class WorkoutTVC_Workout5Round_Weight_TableViewCell: UITableViewCell, UITextFiel
     @IBAction func saveCurrentWeight4(_ sender: UITextField) {
         
         // Only update the fields that have been changed.
-        if ((sender.text?.characters.count)! > 0 && sender.text != "0.0" && sender.text != self.originalCurrentWeight4_Text) {
+        if ((sender.text?.count)! > 0 && sender.text != "0.0" && sender.text != self.originalCurrentWeight4_Text) {
             
             if debug == 1 {
                 
@@ -139,7 +139,7 @@ class WorkoutTVC_Workout5Round_Weight_TableViewCell: UITableViewCell, UITextFiel
     @IBAction func saveCurrentWeight5(_ sender: UITextField) {
         
         // Only update the fields that have been changed.
-        if ((sender.text?.characters.count)! > 0 && sender.text != "0.0" && sender.text != self.originalCurrentWeight5_Text) {
+        if ((sender.text?.count)! > 0 && sender.text != "0.0" && sender.text != self.originalCurrentWeight5_Text) {
             
             if debug == 1 {
                 
@@ -157,7 +157,7 @@ class WorkoutTVC_Workout5Round_Weight_TableViewCell: UITableViewCell, UITextFiel
     @IBAction func saveCurrentNotes(_ sender: UITextField) {
         
         // Only update the fields that have been changed.
-        if ((sender.text?.characters.count)! > 0 && sender.text != "CURRENT NOTES" && sender.text != originalCurrentNotes_Text) {
+        if ((sender.text?.count)! > 0 && sender.text != "CURRENT NOTES" && sender.text != originalCurrentNotes_Text) {
             
             if debug == 1 {
                 

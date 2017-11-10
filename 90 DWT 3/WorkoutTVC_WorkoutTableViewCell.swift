@@ -92,7 +92,7 @@ class WorkoutTVC_WorkoutTableViewCell: UITableViewCell, UITextFieldDelegate {
     @IBAction func saveCurrentRep1(_ sender: UITextField) {
         
         // Only update the fields that have been changed.
-        if (sender.text?.characters.count > 0 && sender.text != "0.0" && sender.text != originalCurrentRep1_Text) {
+        if (sender.text?.count > 0 && sender.text != "0.0" && sender.text != originalCurrentRep1_Text) {
             
             if debug == 1 {
                 
@@ -110,7 +110,7 @@ class WorkoutTVC_WorkoutTableViewCell: UITableViewCell, UITextFieldDelegate {
     @IBAction func saveCurrentWeight1(_ sender: UITextField) {
         
         // Only update the fields that have been changed.
-        if (sender.text?.characters.count > 0 && sender.text != "0.0" && sender.text != originalCurrentWeight1_Text) {
+        if (sender.text?.count > 0 && sender.text != "0.0" && sender.text != originalCurrentWeight1_Text) {
             
             if debug == 1 {
                 
@@ -128,7 +128,7 @@ class WorkoutTVC_WorkoutTableViewCell: UITableViewCell, UITextFieldDelegate {
     @IBAction func saveCurrentRep2(_ sender: UITextField) {
         
         // Only update the fields that have been changed.
-        if (sender.text?.characters.count > 0 && sender.text != "0.0" && sender.text != originalCurrentRep2_Text) {
+        if (sender.text?.count > 0 && sender.text != "0.0" && sender.text != originalCurrentRep2_Text) {
             
             if debug == 1 {
                 
@@ -146,7 +146,7 @@ class WorkoutTVC_WorkoutTableViewCell: UITableViewCell, UITextFieldDelegate {
     @IBAction func saveCurrentWeight2(_ sender: UITextField) {
         
         // Only update the fields that have been changed.
-        if (sender.text?.characters.count > 0 && sender.text != "0.0" && sender.text != originalCurrentWeight2_Text) {
+        if (sender.text?.count > 0 && sender.text != "0.0" && sender.text != originalCurrentWeight2_Text) {
             
             if debug == 1 {
                 
@@ -164,7 +164,7 @@ class WorkoutTVC_WorkoutTableViewCell: UITableViewCell, UITextFieldDelegate {
     @IBAction func saveCurrentNotes(_ sender: UITextField) {
         
         // Only update the fields that have been changed.
-        if (sender.text?.characters.count > 0 && sender.text != "CURRENT NOTES" && sender.text != originalCurrentNotes_Text) {
+        if (sender.text?.count > 0 && sender.text != "CURRENT NOTES" && sender.text != originalCurrentNotes_Text) {
             
             if debug == 1 {
                 
