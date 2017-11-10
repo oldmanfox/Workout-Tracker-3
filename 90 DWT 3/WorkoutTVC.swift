@@ -241,16 +241,16 @@ class WorkoutTVC: UITableViewController, UIPopoverPresentationControllerDelegate
     func wasGraphViewPurchased() -> Bool {
         
         //  Testing GraphView
-        return true
+        //return true
         
-//        if Products.store.isProductPurchased("com.grantsoftware.90DWT3.slidergraph") {
-//
-//            return true
-//        }
-//        else {
-//
-//            return false
-//        }
+        if Products.store.isProductPurchased("com.grantsoftware.90DWT3.slidergraph") {
+
+            return true
+        }
+        else {
+
+            return false
+        }
     }
 
     @objc func actionButtonPressed(_ sender: UIBarButtonItem) {
